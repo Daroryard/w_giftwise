@@ -834,6 +834,7 @@
             </div>
         </div>
         
+
         <!-- breadcrumb End -->
 
 
@@ -844,7 +845,9 @@
                     <div class="productbox">
                         <div class="img-wrapper">
                             <div class="front">
-                                <a href="#" onclick="productDetail({{ $product->sal_confirmorder_dt_id }})"><img src="https://erp.giftwise.co.th/{{$product->sal_confirmorder_dt_imgpic}}" class="img-fluid customer-product" alt=""></a>
+                                
+                            <a href="#" onclick="productDetail({{ $product->sal_confirmorder_dt_id }})"><img src="https://erp.giftwise.co.th/{{$product->sal_confirmorder_dt_imgpic}}" class="img-fluid customer-product" alt=""></a>
+
                             </div>                      
                         </div>
                         <div class="product-detail">
