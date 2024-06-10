@@ -1147,8 +1147,7 @@ https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js
 <script>
 
 $(document).ready(function() {
-
-
+    
 productDetail('{{$ref}}');
 
 });

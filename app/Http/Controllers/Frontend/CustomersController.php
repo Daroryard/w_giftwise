@@ -1760,7 +1760,6 @@ class CustomersController extends Controller
 
     public function productOrderLink ($token){
 
-
         try{
 
         $datenow = Carbon::now();

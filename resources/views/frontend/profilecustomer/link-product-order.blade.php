@@ -943,7 +943,6 @@ div:where(.swal2-container) .swal2-html-container {
 @endsection
 @section('content')
 
-
 <!--modal quick quotation start-->
 <div class="modal fade bd-example-modal theme-modal" id="productDetail" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -1005,7 +1004,43 @@ div:where(.swal2-container) .swal2-html-container {
                 
             </div>
             <div class="progress-track">
-            
+            <ul id="progressbar">
+                    <li class="step0  " id="step1">
+                    @if (app()->getLocale() == 'th')
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-po.png') }}" alt="step1" style="width: 70px;">
+                    @else
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-po.png') }}" alt="step1" style="width: 70px;">
+                    @endif
+                    </li>
+                    <li class="step0 " id="step2">
+                    @if (app()->getLocale() == 'th')
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-create.png') }}" alt="step1" style="width: 70px;">
+                    @else
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-create.png') }}" alt="step1" style="width: 70px;">
+                    @endif
+                    </li>
+                    <li class="step0 " id="step3" style="text-align: center;">
+                    @if (app()->getLocale() == 'th')
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-pd.png') }}" alt="step1" style="width: 70px;">
+                    @else
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-pd.png') }}" alt="step1" style="width: 70px;">
+                    @endif
+                    </li>
+                    <li class="step0 " id="step4" style="text-align: right;">
+                    @if (app()->getLocale() == 'th')
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-re.png') }}" alt="step1" style="width: 70px;">
+                    @else
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-re.png') }}" alt="step1" style="width: 70px;">
+                    @endif                      
+                    </li>
+                    <li class="step0 " id="step5" style="text-align: right;">
+                    @if (app()->getLocale() == 'th')
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-finish.png') }}" alt="step1" style="width: 70px;">
+                    @else
+                    <img src="{{ asset('assets/frontend/images/profile_customer/iconprogress/wh-finish.png') }}" alt="step1" style="width: 70px;">
+                    @endif
+                    </li>
+                </ul>
             </div>
 
 
@@ -1069,7 +1104,7 @@ https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js
 <script>
 
 $(document).ready(function() {
-
+    
 
 productDetail('{{$ref}}');
 
@@ -1090,18 +1125,42 @@ productDetail('{{$ref}}');
         },
         dataType: 'json',
         success: function(data) {
-
+            
+            if(data[0].webconfirmorder_status_id == 1){
+                $('#step1').addClass('active');
+            }else if(data[0].webconfirmorder_status_id == 2){
+                $('#step1').addClass('active');
+            }else if(data[0].webconfirmorder_status_id == 3){
+                $('#step1').addClass('active');
+                $('#step2').addClass('active');
+            }else if(data[0].webconfirmorder_status_id == 4){
+                $('#step1').addClass('active');
+                $('#step2').addClass('active');
+                $('#step3').addClass('active');
+            }else if(data[0].webconfirmorder_status_id == 5){
+                $('#step1').addClass('active');
+                $('#step2').addClass('active');
+                $('#step3').addClass('active');
+                $('#step4').addClass('active');
+            }else if(data[0].webconfirmorder_status_id == 6){
+                $('#step1').addClass('active');
+                $('#step2').addClass('active');
+                $('#step3').addClass('active');
+                $('#step4').addClass('active');
+                $('#step5').addClass('active');
+            }else if(data[0].webconfirmorder_status_id == 9){
+                $('#step1').addClass('active');
+                $('#step2').addClass('active');
+            }
 
             $('#productDetail').modal('show',
             {
                 backdrop: 'static',
                 keyboard: false
             });
-     
-
-
+    
         
-            $('#pd_title').html(`<h3>${data[0].ms_product_name1}</h3> <h6>รหัสสินค้า: ${data[0].ms_product_code}</h6>`);
+            $('#pd_title').html(`<h3>${data[0].ms_product_name1}</h3> <h6>รหัสสินค้xxxxxา: ${data[0].ms_product_code}</h6>`);
             $('#docs_no').html(`Order : ` + data[0].sal_confirmorder_hd_docuno);
             $('#price_sku').html(`฿ ${addComma(parseFloat(data[0].sal_confirmorder_dt_price))}`);
             $('#qty_sku').html(`${addComma(parseFloat(data[0].sal_confirmorder_dt_qty))} ${data[0].ms_product_unit_name}`);
