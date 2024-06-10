@@ -958,7 +958,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <h6 style="color:black">รายการ</h6>
-                            
+                                <div id="list_detail"></div>
                             </div>
                             <div class="col-4">
                                 <h6 style="color:black">รายละเอียด</h6>
@@ -1074,13 +1074,17 @@
                     `);
     
                     let file = ``;
-    
+                    let list_detail = ``;
             
                     if(data[0].quotation != null) {
                             file += `
                             <a href="javascript:void(0)" id="download-quo" style="color: #007275;font-size: 12px;" onclick="downloadQuo(${data[0].quotation.sal_quotation_hd_id})">
                                 <i class="fa fa-file-pdf-o"></i> ${data[0].quotation.sal_quotation_hd_docuno}.pdf
                             </a>`;
+                            list_detail += `
+                            <div class="col-12">
+                                <small>Quotation</small>
+                            </div>`;
                   
                     } 
     
@@ -1092,6 +1096,10 @@
                         <a href="javascript:void(0)" target="_blank" style="color: #007275;font-size: 12px;" onclick="downloadCo(${data[0].sal_confirmorder_dt_id}, ${data[0].sal_confirmorder_hd_id})">
                             <i class="fa fa-file-pdf-o"></i> ${data[0].sal_confirmorder_hd_docuno}.pdf
                         </a>`;
+                        list_detail += `
+                        <div class="col-12">
+                            <small>Confirm Order</small>
+                        </div>`;
                     }
     
                     if(data[0].inv != null) {
@@ -1100,10 +1108,13 @@
                             <br>
                             <i class="fa fa-file-pdf-o"></i> ${data[0].inv.invoice_docuno}.pdf
                         </a>`;
+                        list_detail += `
+                        <div class="col-12">
+                            <small>Invoice</small>
+                        </div>`;
                     }
                       
     
-            
     
                     setTimeout(() => {
                         $('.product-slick').slick({
@@ -1124,6 +1135,7 @@
                     }); 
                     
                     $('#docs_detail').html(file);
+                    $('#list_detail').html(list_detail);
     
                 }, 500);
         
