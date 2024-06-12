@@ -1062,7 +1062,8 @@ div:where(.swal2-container) .swal2-html-container {
                         <div class="row">
                             <div class="col-4">
                                 <h6 style="color:black">รายการ</h6>
-                            
+                                <div id="list_detail"></div>
+
                             </div>
                             <div class="col-4">
                                 <h6 style="color:black">รายละเอียด</h6>
@@ -1175,8 +1176,6 @@ productDetail('{{$ref}}');
                 keyboard: false
             });
      
-
-
         
             $('#pd_title').html(`<h3>${data[0].ms_product_name1}</h3> <h6>รหัสสินค้า: ${data[0].ms_product_code}</h6>`);
             $('#docs_no').html(`Order : ` + data[0].sal_confirmorder_hd_docuno);
@@ -1205,56 +1204,68 @@ productDetail('{{$ref}}');
                 `);
 
                 let file = ``;
-
-        
-                if(data[0].quotation != null) {
-                        file += `
-                        <a href="javascript:void(0)" id="download-quo" style="color: #007275;font-size: 12px;" onclick="downloadQuo(${data[0].quotation.sal_quotation_hd_id})">
-                            <i class="fa fa-file-pdf-o"></i> ${data[0].quotation.sal_quotation_hd_docuno}.pdf
-                        </a>`;
-              
-                } 
-
-
-                file += `<br>`;
-
-                if(data[0].sal_confirmorder_hd_docuno != null) {
-                    file += `
-                    <a href="javascript:void(0)" target="_blank" style="color: #007275;font-size: 12px;" onclick="downloadCo(${data[0].sal_confirmorder_dt_id}, ${data[0].sal_confirmorder_hd_id})">
-                        <i class="fa fa-file-pdf-o"></i> ${data[0].sal_confirmorder_hd_docuno}.pdf
-                    </a>`;
-                }
-
-                if(data[0].inv != null) {
-                    file += `
-                    <a href="javascript:void(0)" target="_blank" style="color: #007275;font-size: 12px;" onclick="downloadInv(${data[0].quotation.sal_quotation_hd_id})">
-                        <br>
-                        <i class="fa fa-file-pdf-o"></i> ${data[0].inv.invoice_docuno}.pdf
-                    </a>`;
-                }
+                    let list_detail = ``;
+            
+                    if(data[0].quotation != null) {
+                            file += `
+                            <a href="javascript:void(0)" id="download-quo" style="color: #007275;font-size: 12px;" onclick="downloadQuo(${data[0].quotation.sal_quotation_hd_id})">
+                                <i class="fa fa-file-pdf-o"></i> ${data[0].quotation.sal_quotation_hd_docuno}.pdf
+                            </a>`;
+                            list_detail += `
+                            <div class="col-12">
+                                <small>Quotation</small>
+                            </div>`;
                   
-
-        
-
-                setTimeout(() => {
-                    $('.product-slick').slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false,
-                    fade: true,
-                    asNavFor: '.slider-nav'
-                });
-
-                $('.slider-nav').slick({
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    asNavFor: '.product-slick',
-                    dots: false,
-                    centerMode: true,
-                    focusOnSelect: true
-                }); 
-                
-                $('#docs_detail').html(file);
+                    } 
+    
+    
+                    file += `<br>`;
+    
+                    if(data[0].sal_confirmorder_hd_docuno != null) {
+                        file += `
+                        <a href="javascript:void(0)" target="_blank" style="color: #007275;font-size: 12px;" onclick="downloadCo(${data[0].sal_confirmorder_dt_id}, ${data[0].sal_confirmorder_hd_id})">
+                            <i class="fa fa-file-pdf-o"></i> ${data[0].sal_confirmorder_hd_docuno}.pdf
+                        </a>`;
+                        list_detail += `
+                        <div class="col-12">
+                            <small>Confirm Order</small>
+                        </div>`;
+                    }
+    
+                    if(data[0].inv != null) {
+                        file += `
+                        <a href="javascript:void(0)" target="_blank" style="color: #007275;font-size: 12px;" onclick="downloadInv(${data[0].quotation.sal_quotation_hd_id})">
+                            <br>
+                            <i class="fa fa-file-pdf-o"></i> ${data[0].inv.invoice_docuno}.pdf
+                        </a>`;
+                        list_detail += `
+                        <div class="col-12">
+                            <small>Invoice</small>
+                        </div>`;
+                    }
+                      
+    
+    
+                    setTimeout(() => {
+                        $('.product-slick').slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        fade: true,
+                        asNavFor: '.slider-nav'
+                    });
+    
+                    $('.slider-nav').slick({
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        asNavFor: '.product-slick',
+                        dots: false,
+                        centerMode: true,
+                        focusOnSelect: true
+                    }); 
+                    
+                    $('#docs_detail').html(file);
+                    $('#list_detail').html(list_detail);
 
             }, 500);
     

@@ -1545,12 +1545,10 @@ $(".loadMore-relevants").on('click', function(e) {
 
     filterSize = (color, ref, el) => {
 
-
         reloadColor()
 
         $('.loading').removeAttr('hidden');
 
-        // uncheck radio
 
         $('input[name="size"]').prop('checked', false);
         $('input[name="addon"]').prop('checked', false);
@@ -1571,7 +1569,7 @@ $(".loadMore-relevants").on('click', function(e) {
             },
             dataType: "json",
             success: function(response) {
-
+                // console.log(response);
 
                 var size = `<h4 class="font-weight-bold mt-2 mb-3">ขนาดไซส์</h4>`;
 

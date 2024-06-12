@@ -383,10 +383,12 @@ input[type="checkbox"][id^="my-checkbox"] {
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
                     <div class="d-flex flex">
                         <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <div class="me-2"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></div>
-                        <div class="me-2"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></div>
-                        <div class="me-2"><span class="badge p-2">Staff Pick</span></div>
-                        <div class="me-2"><span class="badge p-2">Gift Set</span></div>
+                        <a href="/product-quick-tag/68">
+                        <span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span>
+                        <span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span>
+                        <span class="badge p-2">Staff Pick</span>
+                        <span class="badge p-2">Gift Set</span>
+                        </a>
                     </div>
                 </div>
 
@@ -525,7 +527,8 @@ input[type="checkbox"][id^="my-checkbox"] {
                 style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px" onclick="downLoadList()">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('validation.finder_button_select_download') }} (0)
                 </label>
-                <label class="btn btn-outline-secondary  rounded-3 border border-1 border-secondary checkbox-label fs-6 mr-2 mb-1 btn-download download-all" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
+                <label class="btn btn-outline-secondary  rounded-3 border border-1 border-secondary checkbox-label fs-6 mr-2 mb-1 btn-download download-all"
+                 style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px" onclick="downloadAll()">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('validation.finder_button_select_download_all') }}
                 </label>
                 <label class="checkbox-label fs-6 mr-2 mb-1" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;">
@@ -710,6 +713,8 @@ input[type="checkbox"][id^="my-checkbox"] {
                 },
                 dataType: "json",
                 success: function(response) {
+
+
                     $('#listpro').html('')
 
                     let html_pro = '';
@@ -775,6 +780,8 @@ input[type="checkbox"][id^="my-checkbox"] {
 
                                                             <h6 class="mt-1">${value.conf_subproduct_name_th}</h6>
                                                             <h4 class="mt-1">${value.conf_mainproduct_price}</h4>
+                                                            <h6 class="mt-1">ไซส์/size : ${value.conf_size_name_th}</h6>
+                                                            <h6 class="mt-1">สี/color : ${value.conf_color_name_th}/ ${value.conf_color_name_en}</h6>
                                                             <h6 class="mt-1">สั่งขั้นต่ำ ${value.conf_mainproduct_quota} ชิ้น</h6>
                                                             <h6 class="mt-1">ส่งภายใน ${value.conf_subproduct_days} วัน</h6>
 
@@ -830,7 +837,7 @@ input[type="checkbox"][id^="my-checkbox"] {
                 },
                 dataType: "json",
                 success: function(response) {
-
+// console.log(response);
                     let preview = '';
 
                     let img1 = '';
@@ -973,7 +980,7 @@ input[type="checkbox"][id^="my-checkbox"] {
                 },
                 error: function(response) {
 
-                    console.log(response);
+                    // console.log(response);
 
                 }
 
@@ -1017,45 +1024,42 @@ input[type="checkbox"][id^="my-checkbox"] {
 
 
 
-        // $.ajax({
-        //         url: "{{ route('finder.download') }}",
-        //         type: "POST",
-        //         data: {
-        //             "_token": "{{ csrf_token() }}",
-        //             product: product
-        //         },
-        //         xhrFields: {
-        //              responseType: 'blob'
-        //         },
-        //         success: function(response) {
-
-        //             console.log(response);
-        //             // let blob = new Blob([response], {type: 'application/pdf'});
-
-        //             // let link = document.createElement('a');
-
-        //             // let filename_ymdhis = new Date().toISOString().slice(0, 19).replace(/-/g, "").replace(/:/g, "").replace("T", "");
-
-        //             // link.href = window.URL.createObjectURL(blob);
-
-        //             // link.download = filename_ymdhis + '.pdf';
-
-        //             // link.click();
+        }
 
 
-
-        //         },
-        //         error: function(response) {
-
-        //             console.log(response);
-
-        //         }
-
-        //     });
 
         }
 
 
+        downloadAll = () =>{
+
+            $('input[name="check_product[]"]').prop('checked', true);
+
+
+            setTimeout(() => {
+                downLoadList();
+                Swal.fire({
+                title: 'Please wait...',
+                html: 'Downloading all products',
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    // console.log('I was closed by the timer')
+                }
+                })
+
+            }, 1000);
+
+        
 
         }
 </script>

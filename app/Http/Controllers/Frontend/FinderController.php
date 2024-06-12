@@ -229,6 +229,8 @@ class FinderController extends Controller
 
         public function downloadPDF2 (Request $request) {
 
+            try{
+
             $product = $request->check_product;
 
             $productdata = DB::table('conf_subproduct')
@@ -247,9 +249,16 @@ class FinderController extends Controller
 
             $filename_format_time = date('YmdHis');
 
+            // dd($productdata);
+            // return $pdf->stream();
 
             return $pdf->download($filename_format_time.'.pdf');
 
+            }catch(\Exception $e){
+
+                return view('frontend.finder.finder');
+
+            }
 
 
 
