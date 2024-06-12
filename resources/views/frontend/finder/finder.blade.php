@@ -527,10 +527,10 @@ input[type="checkbox"][id^="my-checkbox"] {
                 style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px" onclick="downLoadList()">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('validation.finder_button_select_download') }} (0)
                 </label>
-                <label class="btn btn-outline-secondary  rounded-3 border border-1 border-secondary checkbox-label fs-6 mr-2 mb-1 btn-download download-all"
+                <!-- <label class="btn btn-outline-secondary  rounded-3 border border-1 border-secondary checkbox-label fs-6 mr-2 mb-1 btn-download download-all"
                  style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px" onclick="downloadAll()">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('validation.finder_button_select_download_all') }}
-                </label>
+                </label> -->
                 <label class="checkbox-label fs-6 mr-2 mb-1" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;">
                     <a href="javascript:void(0)" class="text-secondary" data-bs-toggle="modal" data-bs-target="#preview" onclick="loadData()"><i class="fas fa-exclamation-circle"></i> {{ __('validation.finder_button_select_sample') }}</a>
                 </label>
@@ -1018,6 +1018,16 @@ input[type="checkbox"][id^="my-checkbox"] {
             timer: 1500
         })
 
+    }
+    else if(product.length > 20){
+
+        Swal.fire({
+            icon: 'error',
+            title: 'สามารถเลือกสินค้าได้ไม่เกิน 20 รายการ',
+            showConfirmButton: false,
+            timer: 1500
+        })
+
     }else{
 
         $('#form-download').submit();
@@ -1031,35 +1041,35 @@ input[type="checkbox"][id^="my-checkbox"] {
         }
 
 
-        downloadAll = () =>{
+        // downloadAll = () =>{
 
-            $('input[name="check_product[]"]').prop('checked', true);
+        //     $('input[name="check_product[]"]').prop('checked', true);
 
 
-            setTimeout(() => {
-                downLoadList();
-                Swal.fire({
-                title: 'Please wait...',
-                html: 'Downloading all products',
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading()
-                },
-                willClose: () => {
-                    clearInterval(timerInterval)
-                }
-                }).then((result) => {
-                if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.timer
-                ) {
-                    // console.log('I was closed by the timer')
-                }
-                })
+        //     setTimeout(() => {
+        //         downLoadList();
+        //         Swal.fire({
+        //         title: 'Please wait...',
+        //         html: 'Downloading all products',
+        //         timerProgressBar: true,
+        //         didOpen: () => {
+        //             Swal.showLoading()
+        //         },
+        //         willClose: () => {
+        //             clearInterval(timerInterval)
+        //         }
+        //         }).then((result) => {
+        //         if (
+        //             /* Read more about handling dismissals below */
+        //             result.dismiss === Swal.DismissReason.timer
+        //         ) {
+        //             // console.log('I was closed by the timer')
+        //         }
+        //         })
 
-            }, 1000);
+        //     }, 1000);
 
         
 
-        }
+        // }
 </script>
