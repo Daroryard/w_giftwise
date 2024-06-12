@@ -376,12 +376,14 @@
                 </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                    <div class="d-flex flex">
-                        <div class="me-2">คำค้นหายอดนิยม :</div>
-                        <div class="me-2"><span class="badge p-2">แก้วน้ำ</span></div>
-                        <div class="me-2"><span class="badge p-2">ขวดน้ำ</span></div>
-                        <div class="me-2"><span class="badge p-2">Staff Pick</span></div>
-                        <div class="me-2"><span class="badge p-2">Gift Set</span></div>
+                <div class="d-flex flex">
+                        <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
+                        <a href="/product-quick-tag/68">
+                        <span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span>
+                        <span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span>
+                        <span class="badge p-2">Staff Pick</span>
+                        <span class="badge p-2">Gift Set</span>
+                        </a>
                     </div>
                 </div>
 
