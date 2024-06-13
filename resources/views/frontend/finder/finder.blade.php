@@ -381,14 +381,12 @@ input[type="checkbox"][id^="my-checkbox"] {
                 </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                    <div class="d-flex flex">
+                <div class="d-flex flex">
                         <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/product-quick-tag/68">
-                        <span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span>
-                        <span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span>
-                        <span class="badge p-2">Staff Pick</span>
-                        <span class="badge p-2">Gift Set</span>
-                        </a>
+                        <a href="/product-quick-tag/72"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
+                        <a href="/product-quick-tag/71"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
+                        <a href="/product-quick-tag/73"><span class="badge p-2">Staff Pick</span></a>
+                        <a href="/product-quick-tag/74"><span class="badge p-2">Gift Set</span></a>
                     </div>
                 </div>
 
@@ -443,9 +441,12 @@ input[type="checkbox"][id^="my-checkbox"] {
                 </label>
             </div>
         </div>
+
         <div class="col-md-12 mt-3">
             <p class=" m-0 px-5"><img src="{{ asset('assets/images/icon/archive.png') }}" alt="" class="img-fluid me-2"><span class="text-dark fs-6 fw-bold  Set">{{ __('validation.finder_title_qty') }}</span></p>
         </div>
+
+
         <div class="col-md-12">
             <div id="price" class=" m-0 px-5 py-1 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
@@ -714,6 +715,7 @@ input[type="checkbox"][id^="my-checkbox"] {
                 dataType: "json",
                 success: function(response) {
 
+                    // console.log(response);
 
                     $('#listpro').html('')
 
@@ -726,7 +728,7 @@ input[type="checkbox"][id^="my-checkbox"] {
 
                     let img_show = '';
 
-                    $.each(response, function(index, value) {
+                    $.each(unique_response, function(index, value) {
 
                         if (value.tag.length > 0) {
 
@@ -778,10 +780,8 @@ input[type="checkbox"][id^="my-checkbox"] {
                                                         </span>        
                                                         <div class="product-detail" style="text-align: left;">
 
-                                                            <h6 class="mt-1">${value.conf_subproduct_name_th}</h6>
-                                                            <h4 class="mt-1">${value.conf_mainproduct_price}</h4>
-                                                            <h6 class="mt-1">ไซส์/size : ${value.conf_size_name_th}</h6>
-                                                            <h6 class="mt-1">สี/color : ${value.conf_color_name_th}/ ${value.conf_color_name_en}</h6>
+                                                            <h6 class="mt-1">${value.conf_mainproduct_name_th}</h6>
+                                                            <h4 class="mt-1">${value.conf_mainproduct_price}</h4>                                                        
                                                             <h6 class="mt-1">สั่งขั้นต่ำ ${value.conf_mainproduct_quota} ชิ้น</h6>
                                                             <h6 class="mt-1">ส่งภายใน ${value.conf_subproduct_days} วัน</h6>
 
@@ -891,8 +891,9 @@ input[type="checkbox"][id^="my-checkbox"] {
                         if(value.conf_subproduct_img4 == null){
                             value.conf_subproduct_img4 = value.conf_mainproduct_img4;
                         }
+                        
 
-
+                    
 
                         preview += `                               
 <div class='page-break-after'  style="font-size: 13px !important;">
@@ -916,13 +917,9 @@ input[type="checkbox"][id^="my-checkbox"] {
   </div>
   <div class="col-7">
   <div class="row">
-  <div class="col-7">
+  <div class="col-12">
     <label class="form-label">Product Code</label>
     <input type="text" class="form-control input-catalog" value="${value.conf_mainproduct_code}" style="font-size: 18px;" disabled>
-  </div>
-  <div class="col-5">
-    <label class="form-label">Color</label>
-    <input type="text" class="form-control input-catalog" value="${value.conf_color_name_th}" style="font-size: 18px;" disabled>
   </div>
   <div class="col-12">
     <label class="form-label">Product Name</label>
@@ -934,34 +931,6 @@ input[type="checkbox"][id^="my-checkbox"] {
     ${value.conf_mainproduct_remark_th}
     </textarea>
   </div>
-  <div class="col-12">
-    <table class="table" style="margin-top: 5px;">
-    <thead>
-    <tr>
-      <th scope="col">Size</th>
-      <th scope="col">Under 100</th>
-      <th scope="col">100-300</th>
-      <th scope="col">300-500</th>
-      <th scope="col">500-1000</th>
-      <th scope="col">1000 Up</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>${value.conf_size_name_th}</td>
-      <td>${value.conf_subproduct_price1}</td>
-      <td>${value.conf_subproduct_price2}</td>
-      <td>${value.conf_subproduct_price3}</td>
-      <td>${value.conf_subproduct_price4}</td>
-      <td>${value.conf_subproduct_price5}</td>
-    </tr>
-  </tbody>
-
-    </table>
-    
-
-  </div>
-
   </div>
 </div>
 </div>
