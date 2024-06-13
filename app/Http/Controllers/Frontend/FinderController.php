@@ -210,7 +210,6 @@ class FinderController extends Controller
             $pdf = PDF::loadView('frontend.finder.download-catalog', $data)->setPaper('a4', 'landscape');
 
             $filename_format_time = date('YmdHis');
-
             // return $pdf->stream();
 
             return $pdf->download();
@@ -233,10 +232,26 @@ class FinderController extends Controller
 
             $product = $request->check_product;
 
-            $productdata = DB::table('conf_subproduct')
-            ->join('conf_mainproduct', 'conf_subproduct.conf_mainproduct_id', '=', 'conf_mainproduct.conf_mainproduct_id')
-            ->whereIn('conf_subproduct.conf_subproduct_id', $product)
+            $productdata = DB::table('conf_mainproduct')
+            ->whereIn('conf_mainproduct_id', $product)
             ->get();  
+                // dd($productdata);
+
+
+            foreach($productdata as $product){
+
+                $subproduct = DB::table('conf_subproduct')
+                ->where('conf_mainproduct_id', $product->conf_mainproduct_id)
+                ->where('conf_subproduct_stcqty', '>', 0)
+                ->inRandomOrder()->take(3)
+                ->get();
+
+
+                $product->subproduct = $subproduct;
+
+
+            }
+
 
             $data = [
                 'catalog' => $productdata
@@ -256,6 +271,7 @@ class FinderController extends Controller
 
             }catch(\Exception $e){
 
+                dd($e->getMessage());
                 return view('frontend.finder.finder');
 
             }

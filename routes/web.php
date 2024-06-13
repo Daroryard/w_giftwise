@@ -21,7 +21,6 @@ Route::group(['prefix' => '{locale?}', 'where' => ['locale' => 'en|th'], 'middle
 
     Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home');
     Route::get('/discover', [App\Http\Controllers\Frontend\DiscoverController::class, 'discover']);
-    Route::post('/search-category',  [App\Http\Controllers\Frontend\DiscoverController::class , 'searchCategory'])->name('search.category');
     Route::get('/product/{id}/{ref}', [App\Http\Controllers\Frontend\ProductController::class, 'detail'])->name('product.detail');
     Route::post('check-stock', [App\Http\Controllers\Frontend\ProductController::class, 'checkStock'])->name('product.checkstock');
     Route::post('get-addon', [App\Http\Controllers\Frontend\ProductController::class, 'getAddon'])->name('product.getaddon');
@@ -73,6 +72,9 @@ Route::group(['prefix' => '{locale?}', 'where' => ['locale' => 'en|th'], 'middle
     });
         
 });
+
+Route::post('/search-category',  [App\Http\Controllers\Frontend\DiscoverController::class , 'searchCategory'])->name('search.category');
+
 
 // Route::get('language/{locale}', [App\Http\Controllers\HomeController::class, 'language'])->name('language');
 

@@ -76,8 +76,8 @@
   }
 
   .card-body {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 
   .onhover-div {
@@ -447,6 +447,12 @@
   a:active {
     text-decoration: none;
     color: #000000;
+  }
+  .slick-prev {
+    display: none !important;
+  }
+  .slick-next {
+    display: none !important;
   }
 </style>
 
