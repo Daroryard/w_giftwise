@@ -370,7 +370,7 @@ input[type="checkbox"][id^="my-checkbox"] {
 @endsection
 
 @section('content')
-<div>
+<div class="card-body">
     <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
                  <div class="input-group">
@@ -765,7 +765,7 @@ input[type="checkbox"][id^="my-checkbox"] {
 
 
                         html_pro += `<div class="col-lg-2 col-6 col-grid-box">
-               <input type="checkbox" id="my-checkbox${index}" name="check_product[]" value="${value.conf_subproduct_id}" class="d-none" onclick="countProduct()">
+               <input type="checkbox" id="my-checkbox${index}" name="check_product[]" value="${value.conf_mainproduct_id}" class="d-none" onclick="countProduct()">
                                                     <label class="product-box" for="my-checkbox${index}">
                                                         <div class="img-wrapper mb-1">
                                                             <div class="front">

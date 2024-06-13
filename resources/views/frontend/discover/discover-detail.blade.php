@@ -678,6 +678,8 @@ searchCategory = (val) => {
 
 let search = val
 
+console.log(search);
+
 if (search != '') {
 
   setTimeout(function() {

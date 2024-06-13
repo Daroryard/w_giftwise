@@ -313,7 +313,7 @@ getModal = (ref) => {
         dataType: "json",
         success: function(data) {
 
-          console.log(data);
+          // console.log(data);
 
           if(data.review == null) {
             Swal.fire({

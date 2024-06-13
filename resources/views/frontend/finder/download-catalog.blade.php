@@ -13,6 +13,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 
   body {
     font-family: 'Sarabun';
+    font-size: 12px;
 }
 
 
@@ -63,11 +64,13 @@ div.page-break-after {
     display: block !important;
     page-break-after: always;}
     
-    input{
+  input{
   border: none;
-  border-bottom: 1px solid #000;
+  border: 2px solid #02FFFF;
+  border-radius: 10px;
   text-align: center;
   height: 80px;
+  color : #FFAB40;
 
 }
 </style>
@@ -80,25 +83,19 @@ div.page-break-after {
             <td class="w-half text-center">
               <div class="row">
                 <div class="col-12">
-                  <img src="{{ $row->conf_mainproduct_img1 }}" width="400" />
+                  <input type="text"  value="{{$row->conf_mainproduct_code}}" style="font-size: 20px;width:50% !important;text-align: center;" disabled>
                   <br>
                   <br>
-                  <img src="{{ $row->conf_mainproduct_img2 }}" width="150" />
-                  <img src="{{ $row->conf_mainproduct_img3 }}" width="150" />
-                  <img src="{{ $row->conf_mainproduct_img4 }}" width="150" />
+                  <img src="{{ $row->conf_mainproduct_img2 }}" width="400" />                 
                 </div>
               </div>
             </td>
             <td class="w-half">
             <div class="row">
-  <div class="col-12">
-    <label class="form-label">Product Code</label>
-    <br>
-    <input type="text"  value="{{$row->conf_mainproduct_code}}" style="font-size: 20px;width:100% !important;text-align: center;" disabled>
-  </div>
    <div class="col-12">
-    <label class="form-label">Product Name</label>
-    <input type="text"  value="{{$row->conf_mainproduct_name_th}}" style="font-size: 20px;width:100% !important;text-align: center;" disabled>
+    <label class="form-label"><h1><b>{{$row->conf_mainproduct_name_th}}</b></h1></label>
+    <br>
+    <br>
   </div>
   <div class="col-12">
     <label class="form-label">Product Detail</label>
@@ -106,6 +103,37 @@ div.page-break-after {
     {{$row->conf_mainproduct_remark_th}}
     </textarea>  
   </div>
+  @if($row->subproduct->count() > 0)
+  <div class="col-12">
+    <table class="table" style="margin-top: 15px">
+    <tr class="text-center">
+      <th scope="col" style="border: 1px solid black;">รหัสสินค้า</th>
+      <th scope="col" style="border: 1px solid black;">จำนวน</th>
+      <th scope="col" style="border: 1px solid black;">50</th>
+      <th scope="col" style="border: 1px solid black;">100</th>
+      <th scope="col" style="border: 1px solid black;">300</th>
+      <th scope="col" style="border: 1px solid black;">500</th>
+      <th scope="col" style="border: 1px solid black;">1000</th>
+    </tr>
+  </thead>
+  <tbody>     
+     @foreach($row->subproduct as $sub)
+    <tr class="text-center">
+      <td style="border: 1px solid black;">{{$sub->conf_subproduct_code}}</td>
+      <td style="border: 1px solid black;">ราคา</td>
+      <td style="border: 1px solid black;">{{number_format($sub->conf_subproduct_price1,2)}}</td>
+      <td style="border: 1px solid black;">{{number_format($sub->conf_subproduct_price2,2)}}</td>
+      <td style="border: 1px solid black;">{{number_format($sub->conf_subproduct_price3,2)}}</td>
+      <td style="border: 1px solid black;">{{number_format($sub->conf_subproduct_price4,2)}}</td>
+      <td style="border: 1px solid black;">{{number_format($sub->conf_subproduct_price5,2)}}</td>
+    </tr>
+    @endforeach
+  </tbody>
+    </table>
+  </div>
+  @endif
+
+
               </td>
         </tr>
    
@@ -115,11 +143,89 @@ div.page-break-after {
 
 </div>
 
+<div class='page-break-after'>
+<table class="w-full">
+        <tr>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ $row->conf_mainproduct_img3 }}" width="300" style="margin-bottom: 10px;"/>          
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ $row->conf_mainproduct_img4 }}" width="300" style="margin-bottom: 15px;"/>                   
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ $row->conf_mainproduct_img5 }}" width="300" style="margin-bottom: 15px;"/>                   
+                </div>
+              </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ $row->conf_mainproduct_img6 }}" width="300" style="margin-top: 15px;"/>                 
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ $row->conf_mainproduct_img7 }}" width="300" style="margin-top: 15px;"/>                 
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ $row->conf_mainproduct_img8 }}" width="300" style="margin-top: 15px;"/>                 
+                </div>
+              </div>
+            </td>
+        </tr>
+        
+</table>
+
+
+<!-- <div class="row">
+<div class="col-4">
+<img src="{{ $row->conf_mainproduct_img3 }}" width="200" />
+</div>
+<div class="col-4">
+<img src="{{ $row->conf_mainproduct_img4 }}" width="200" />
+</div>
+<div class="col-4">
+<img src="{{ $row->conf_mainproduct_img5 }}" width="200" />
+</div>
+</div>
+
+<div class="row">
+<div class="col-4">
+<img src="{{ $row->conf_mainproduct_img6 }}" width="200" />
+</div>
+<div class="col-4">
+<img src="{{ $row->conf_mainproduct_img7 }}" width="200" />
+</div>
+<div class="col-4">
+<img src="{{ $row->conf_mainproduct_img8 }}" width="200" />
+</div>
+</div>
+ -->
+
+
+
+</div>
+
+
 @endforeach
-
-
-
-
 
 </body>
 </html>
