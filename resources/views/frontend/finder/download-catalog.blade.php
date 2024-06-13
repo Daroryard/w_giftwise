@@ -93,11 +93,9 @@ div.page-break-after {
             <div class="row">
   <div class="col-12">
     <label class="form-label">Product Code</label>
-    <label class="form-label" style="margin-left:160px">Color</label><br>
-    <input type="text"  value="{{$row->conf_subproduct_code}}" style="font-size: 20px;width:48% !important;text-align: center;" disabled>
-    <input type="text"  value="{{$row->conf_color_name_th}}" style="font-size: 20px;width:48% !important;text-align: center;" disabled>
+    <br>
+    <input type="text"  value="{{$row->conf_mainproduct_code}}" style="font-size: 20px;width:100% !important;text-align: center;" disabled>
   </div>
-
    <div class="col-12">
     <label class="form-label">Product Name</label>
     <input type="text"  value="{{$row->conf_mainproduct_name_th}}" style="font-size: 20px;width:100% !important;text-align: center;" disabled>
@@ -108,34 +106,6 @@ div.page-break-after {
     {{$row->conf_mainproduct_remark_th}}
     </textarea>  
   </div>
-  <div class="col-12">
-    <table class="table table-bordered" style="margin-top: 15px;border: 1px solid black;">
-    <tr style="border: 1px solid black;" class="text-center">
-      <th scope="col" style="border: 1px solid black;">Size</th>
-      <th scope="col" style="border: 1px solid black;">Under 100</th>
-      <th scope="col" style="border: 1px solid black;">100-300</th>
-      <th scope="col" style="border: 1px solid black;">300-500</th>
-      <th scope="col" style="border: 1px solid black;">500-1000</th>
-      <th scope="col" style="border: 1px solid black;">1000 Up</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="text-center">
-      <td style="border: 1px solid black;">{{$row->conf_size_name_th}}</td>
-      <td style="border: 1px solid black;">{{number_format($row->conf_subproduct_price1,2)}}</td>
-      <td style="border: 1px solid black;">{{number_format($row->conf_subproduct_price2,2)}}</td>
-      <td style="border: 1px solid black;">{{number_format($row->conf_subproduct_price3,2)}}</td>
-      <td style="border: 1px solid black;">{{number_format($row->conf_subproduct_price4,2)}}</td>
-      <td style="border: 1px solid black;">{{number_format($row->conf_subproduct_price5,2)}}</td>
-    </tr>
-  </tbody>
-
-    </table>
-
-
-  </div>
-
-
               </td>
         </tr>
    
