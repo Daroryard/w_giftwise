@@ -76,8 +76,8 @@
   }
 
   .card-body {
-    padding-left: 30px !important;
-    padding-right: 30px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
   }
 
   .onhover-div {
@@ -449,10 +449,11 @@
     color: #000000;
   }
   .slick-prev {
-    display: none !important;
+    /* display: none !important; */
   }
   .slick-next {
-    display: none !important;
+    /* display: none !important; */
+
   }
 </style>
 

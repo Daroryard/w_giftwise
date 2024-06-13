@@ -370,7 +370,7 @@ input[type="checkbox"][id^="my-checkbox"] {
 @endsection
 
 @section('content')
-<div>
+<div class="card-body">
     <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
                  <div class="input-group">
