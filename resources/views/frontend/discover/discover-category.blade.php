@@ -402,7 +402,7 @@ p {
                 </div>    
     </div>
     </div><br><br>
-    <div class="section-content-discovery">
+    <div class="container">
     <div class="row" style="height: 170px;
     background: black;
     color: #fff;
