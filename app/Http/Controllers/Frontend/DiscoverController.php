@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CategorySub;
 use Illuminate\Support\Facades\DB;
+use App\Models\MainProduct;
 
 
 class DiscoverController extends Controller
@@ -24,6 +25,7 @@ class DiscoverController extends Controller
         ->orderBy('qty','DESC')
         ->inRandomOrder()->take(30)
         ->get();
+        
         $categ1 = Category::where('conf_category_active',1)
         ->whereIn('conf_category_id',[20,21,22,23,24])
         ->inRandomOrder()->take(4)
@@ -39,7 +41,6 @@ class DiscoverController extends Controller
         ->get();
 
        
-
 
         return view('frontend.discover.discover-detail' , compact('pdsale','categ1','categ2','categories'));
     }
@@ -118,14 +119,11 @@ class DiscoverController extends Controller
         ->orderBy('qty','DESC')
         ->inRandomOrder()->take(30)
         ->get();
-        $categ1 = Category::where('conf_category_active',1)
-        ->whereIn('conf_category_id',[20,21,22,23,24])
-        ->inRandomOrder()->take(4)
+
+        $categ = Category::where('conf_category_active',1)
+        ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])
         ->get();
-        $categ2 = Category::where('conf_category_active',1)
-        ->whereIn('conf_category_id',[28,29,30,31,35])
-        ->inRandomOrder()->take(4)
-        ->get();
+       
 
         $categories = CategorySub::where('conf_categorysub_active', 1)
         ->orderBy('conf_category_id', 'asc')
@@ -133,28 +131,39 @@ class DiscoverController extends Controller
         ->get();
 
        
-        return view('frontend.discover.discover-detail' , compact('pdsale','categ1','categ2','categories'));
+        return view('frontend.discover.discover-detail' , compact('pdsale','categ','categories'));
     }
 
     public function searchCategory (Request $request){
 
         $keyword = $request->search;
 
-        $category = DB::table('conf_mainproduct')
-        ->select('conf_mainproduct_id' , 'conf_category_name_th' , 'conf_category_name_en')
+        $categ = Category::where('conf_category_active',1)
         ->where('conf_category_name_th' , 'LIKE' , '%'.$keyword.'%')
         ->orWhere('conf_category_name_en' , 'LIKE' , '%'.$keyword.'%')
-        ->groupBy('conf_mainproduct_id' ,'conf_category_name_th','conf_category_name_en')
         ->get();
 
-        $productname = DB::table('conf_mainproduct')
-        ->select('conf_mainproduct_id' , 'conf_mainproduct_name_th' , 'conf_mainproduct_name_en')
-        ->where('conf_mainproduct_name_th' , 'LIKE' , '%'.$keyword.'%')
-        ->orWhere('conf_mainproduct_name_en' , 'LIKE' , '%'.$keyword.'%')->get();
-
-
-        return response()->json(['category' => $category , 'productname' => $productname]);
+        return response()->json(['category' => $categ]);
 
 
     }
+
+
+    public function discoverCategory ($ref,$name) {
+
+        $pd = MainProduct::with('mainProductTags')
+        ->where('conf_category_name_en',$name)->get();
+
+        $sub_category = MainProduct::select('conf_categorysub_id','conf_categorysub_name_en','conf_categorysub_name_th')
+        ->where('conf_category_name_en',$name)
+        ->groupBy('conf_categorysub_id','conf_categorysub_name_en','conf_categorysub_name_th')
+        ->get();
+
+        $category_name = Category::where('conf_category_name_en',$name)->first();
+
+        return view('frontend.discover.discover-category' , compact('pd','category_name','sub_category'));
+
+    }
+
+
 }

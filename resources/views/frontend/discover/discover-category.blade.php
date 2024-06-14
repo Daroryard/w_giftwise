@@ -403,54 +403,38 @@ p {
     </div>
     </div><br><br>
     <div class="section-content-discovery">
-    <div class="row">
+    <div class="row" style="height: 170px;
+    background: black;
+    color: #fff;
+     padding-top: 50px;
+    ">
         <center>
-            <span class="h3">{{ __('validation.discover_title_search') }}</span><br>
-            <span class="h6" style="color : #ccc;">
-            {{ __('validation.discover_title_search_description') }}
-            </span><br><br>
-            <div class="input-group" style="width: 50%">
-                  <span class="input-group-text me-2">
-                    <i class="fas fa-search text-secondary mt-1"></i>
-                </span>
-                <input type="search" class="form-control no-border-input" id="search-category" placeholder="{{ __('validation.discover_title_search_input') }}" onkeyup="searchCategory(this.value)" onclick="clearCategory()">
-  
-            </div>
-            <div id="result-category" class="input-group" style="width: 50%" hidden>
-            <div class="col-12" style="border: 0.2px solid #ccc;border-radius:5px !important">
-            <ul class="list-group dropdown scroll-list-category">
-                     
-            </ul>
-            </div>
-            </div>
+
+            <span class="h3 mt-10">{{ $category_name->conf_category_name_en }} / {{ $category_name->conf_category_name_th }}</span><br>
+                    
         </center>        
     </div>
-    </div><br><br>
-    <div class="section-content-discovery section-pd">
+    </div>
+    <br>
+    <div class="section-content-discovery">
     <div class="row">
         <div class="row mb-3">
-            <div class="col-md-10">
-                <p>
-                    <span class="h4">{{ __('validation.discover_title_product_hot_week') }}</span><br>
-                    <span class="h6" style="color : #ccc;">
-                    {{ __('validation.discover_title_product_hot_week_description') }}
-                    </span>
-                </p>
+            <div class="col-md-12">
+            @foreach($sub_category as $sub)
+               <button class="btn bt-sub-{{ $sub->conf_categorysub_id }}" style="background:#F2F4F7;border-radius: 20px;" onclick="filterSub('{{ $sub->conf_categorysub_id }}')">{{ $sub->conf_categorysub_name_th }}</button>
+            @endforeach
             </div>
-            <div class="col-md-2">
-                <!-- <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p> -->
-            </div>
-            <div class="col-md-12 mb-3">
-                <div class="new-product-slider mb-3">
-                    @foreach ($pdsale as $item)
-                    <div>
+            <br>
+            @foreach ($pd as $item)
+            <div class="col-md-15 col-sm-3 mb-4 product-all sub-filter-{{ $item->conf_categorysub_id }}">
+                <div class="product-item">
                     <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
                             <img src={{$item->conf_mainproduct_img1}} width="230.4" height="225" />
                         </a>
                         <div class="product-details">
                             <span class="product-tag">
-                                @if(!empty($item->saleProductTags))
-                                @foreach ($item->saleProductTags as $tag)
+                                @if(!empty($item->mainProductTags))
+                                @foreach ($item->mainProductTags as $tag)
                                 @if(app()->getLocale() == 'th')
                                 <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                 @else
@@ -459,6 +443,7 @@ p {
                                 @endforeach
                                 @endif
                             </span>
+                               
                             <p>
                                 @if(app()->getLocale() == 'th')
                                 {{ Str::limit($item->conf_mainproduct_name_th,50)}}
@@ -470,59 +455,14 @@ p {
                             <p class="product-min-quantity text-secondary">{{__('validation.discover_production_min')}} {{number_format($item->timeline_qty,0)}} {{__('validation.unit_piece')}}</p>
                             <p class="product-estimate-date text-secondary">{{__('validation.discover_delivery_in')}} {{number_format($item->timeline_day,0)}} {{__('validation.unit_day')}}</p>
                         </div>
-                    </div>
-                    @endforeach
-                </div>
             </div>
+            </div>
+            @endforeach
+
         </div>
     </div>
     </div>
-    <br>
-    <section class="banner-furniture absolute_banner ratio3_2 section-cate">
-        <div class="section-content-discovery">
-        <div class="row partition3">
-        @foreach ($categ as $item)
-        <div class="col-md-3 cate-{{$item->conf_category_id}} cate-all" style="padding-bottom: 35px;">
-            <a href="/{{ app()->getLocale() }}/discover/category/{{$item->conf_category_name_en}}">
-                <div class="collection-banner p-left text-left">
-                    <img src="{{ $item->conf_category_img2 }}" alt=""
-                        class="img-fluid lazyload bg-img" style="border-radius: 25px;">
-                    <div class="absolute-contain">
-                    @if(app()->getLocale() == 'th')
-                        <h6>{{$item->conf_category_name_th}}</h6>
-                    @else
-                        <h6>{{$item->conf_category_name_en}}</h6>
-                    @endif
-                        <small style="font-size: .8em !important">
-                        @if(app()->getLocale() == 'th')
-                        {{$item->conf_category_remark_th}}
-                        @else
-                        {{$item->conf_category_remark_en}}
-                        @endif
-                    </small>
-                    </div>
-                </div>
-            </a>
-        </div>
-        @endforeach 
-        </div>      
-    </div>             
-    </section>
-
-
-    <section class="banner-furniture absolute_banner ratio3_2 section-not" style="display: none;">
-        <div class="section-content-discovery">
-        <div class="row">
-            <div class="col-md-12">
-                <img src="{{ asset('assets/frontend/images/discover/search_not_found.png') }}" alt="" width="100%"
-                    class="img-fluid lazyload bg-img" style="border-radius: 25px;">
-            </div>
-        </div>      
-    </div>             
-    </section>
-</div>
-</div>
-</div>
+   
 
 @endsection
 @section('script')
@@ -533,218 +473,23 @@ p {
 <script type="text/javascript" src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('.responsive-slick').slick({
-            infinite: false,
-            arrow: true,
-            slidesToShow: 8,
-            slidesToScroll: 8,
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 6,
-                        slidesToScroll: 6,
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 4,
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                    }
-                }
-            ],
-            // nextArrow: '<button class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-            // prevArrow: '<button class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-        });
-        $('.new-product-slider').slick({
-            infinite: false,
-            arrow: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 4,
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                    }
-                }
-            ],
-            // nextArrow: '<button class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-            // prevArrow: '<button class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-        });
 
-        $('.product-slider').slick({
-            slidesToShow: 5, // Number of products to show at a time
-            slidesToScroll: 1, // Number of products to scroll at a time
-            autoplay: true, // Autoplay the slider
-            autoplaySpeed: 3000, // Autoplay interval in milliseconds
-            dots: true, // Display navigation dots
-            responsive: [{
-                    breakpoint: 1024, // Tablet breakpoint
-                    settings: {
-                        slidesToShow: 2, // Number of products to show at a time
-                        slidesToScroll: 1, // Number of products to scroll at a time
-                    }
-                },
-                {
-                    breakpoint: 600, // Mobile breakpoint
-                    settings: {
-                        slidesToShow: 1, // Number of products to show at a time
-                        slidesToScroll: 1, // Number of products to scroll at a time
-                    }
-                }
-            ]
-        });
+filterSub = (val) => {
 
-        $('.project-love-slick').slick({
-            infinite: false,
-            arrow: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
-                }
-            ],
-            // nextArrow: '<button class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-            // prevArrow: '<button class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-        });
+    $('.btn').css('border','none');
+    $('.product-all').hide();
 
-      
-    });
+    setTimeout(() => {
+        $('.bt-sub-'+val).css('border','1px solid #00C2C7');
+        $('.sub-filter-'+val).show();
 
-
-
-
-
-
-
-
-
-searchCategory = (val) => {
-
-let search = val
-
-if(search == ''){
-
-    $('.section-cate').show();
-    $('.section-pd').show();
-    $('.section-not').hide();
-    $('.cate-all').show();
-
-}
-
-if (search != '') {
-
-  setTimeout(function() {
-
-    $.ajax({
-      url: "{{ route('search.category') }}",
-      type: "POST",
-      data: {
-        _token: "{{ csrf_token() }}",
-        search: search
-      },
-      dataType: "json",
-      success: function(response) {
-
-        if(response.category.length > 0) {
-
-            $('.section-pd').hide();
-            $('.cate-all').hide();
-            $('.section-not').hide();
-
-            $('.section-cate').show();
-
-
-            $.each(response.category, function(index, value) {
-
-                $('.cate-'+value.conf_category_id).show();
-
-            })
-
-
-        } else {
-
-            $('.section-not').show();
-            $('.section-cate').hide();
-            $('.section-pd').hide();
-            $('.cate-all').hide();
-
-
-
-        }
-
-
-        $('.loading').removeAttr('hidden');
-
-        setTimeout(function() {
-
-
-          $('.loading').attr('hidden', 'hidden');
-
-        }, 500);
-
-
-
-      }
-
-    })
-
-  }, 1000);
-
-}
-
-}
-
-clearCategory = () => {
-
-    $('.section-pd').show();
-    $('.section-cate').show();
-    $('.cate-all').show();
-    $('.section-not').hide();
+    }, 100);
 
 
 }
-
+  
 </script>
 @endsection
+
+
+

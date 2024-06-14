@@ -19,7 +19,7 @@ class SaleProduct extends Model
         'conf_mainproduct_img1',
         'timeline_qty',
         'timeline_day',
-        'price',
+        'price'
     ];
 
     public function saleProductTags()
