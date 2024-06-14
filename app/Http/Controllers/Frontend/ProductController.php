@@ -68,7 +68,6 @@ class ProductController extends Controller
 
         }
 
-
         $pdsale = SaleProduct::inRandomOrder()->take(30)->get();
 
         $arr_img = array();
@@ -80,14 +79,16 @@ class ProductController extends Controller
                 $arr_img[] = [
                 'remark' => $r->docu_review_remeak,
                 'star' => $r->docu_review_qty,
-                'img' => $r->docu_review_img1
+                'img' => $r->docu_review_img1,
+                'id' => $r->product_code
             ];
             if($r->docu_review_img2 != null)
             {
                 $arr_img[] = [
                     'remark' => $r->docu_review_remeak,
                     'star' => $r->docu_review_qty,
-                    'img' => $r->docu_review_img2
+                    'img' => $r->docu_review_img2,
+                    'id' => $r->product_code
                 ];
             }
             if($r->docu_review_img3 != null)
@@ -95,7 +96,8 @@ class ProductController extends Controller
                 $arr_img[] = [
                     'remark' => $r->docu_review_remeak,
                     'star' => $r->docu_review_qty,
-                    'img' => $r->docu_review_img3
+                    'img' => $r->docu_review_img3,
+                    'id' => $r->product_code
                 ];
             }
             if($r->docu_review_img4 != null)
@@ -103,7 +105,8 @@ class ProductController extends Controller
                 $arr_img[] = [
                     'remark' => $r->docu_review_remeak,
                     'star' => $r->docu_review_qty,
-                    'img' => $r->docu_review_img4
+                    'img' => $r->docu_review_img4,
+                    'id' => $r->product_code
                 ];
             }
 
