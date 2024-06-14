@@ -190,11 +190,6 @@ class CustomersController extends Controller
 
 
 
-
-     
-
-       
-
         return response()->json([
             'review' => $review,
             'ck' => $ck

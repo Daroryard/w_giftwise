@@ -622,22 +622,22 @@ p {
             <div class="col-md-12">
                 <div class="row">
                 @if($count > 0)
-                    @foreach ($arr_img as $item)         
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 mt-3">
+                    @foreach ($arr_img as $key => $item)
+                   
+                    @if($key >= 12)
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2 mt-3 review-customer" style="display:none;" onclick="showReview('{{ $item['id'] }}')">
+                        @else
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2 mt-3 review-customer" style="display:block;" onclick="showReview('{{ $item['id'] }}')">
+                        @endif     
                         <div class="card review-card">
                             <img src="{{ $item['img'] }}" class="card-img-top img-fluid" alt="Reviewer Image" style="max-width: 258px;height: 258px;">
                             <div class="card-body">
                                 <p class="card-text">
 
                                     <span class="text-secondary">
-                                        @for($i = 0; $i < $item['star']; $i++)
-                                           
+                                        @for($i = 0; $i < $item['star']; $i++)                                       
                                         &#9733;
-
-                                        @endfor
-                                        
-                                        
-                                        
+                                        @endfor                                                             
                                         {{ $item['star'] }}</span>
                                     <!-- 4-star rating -->
                                 </p>
@@ -646,14 +646,14 @@ p {
                                 </p>                  
                             </div>
                         </div>
-                </div>
-                @endforeach
+                    </div>
+                    @endforeach
                 @endif
             </div>
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12 mt-3">
-                        <button type="button" class="text-secondary btn btn-block rounded-2 text-white mt-3" style="display:none;">แสดงเพิ่มเติม <i class="fa fa-angle-down"></i></button>
+                        <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-review">{{ __('validation.product_view_more') }}</a></div>
                     </div>
                 </div>
             </div>
@@ -686,9 +686,9 @@ p {
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if(app()->getLocale() == 'th')
-                                    <span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span>
+                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span>
+                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif
@@ -731,6 +731,36 @@ p {
 </section>
 </div>
 
+
+
+<div class="modal fade bd-example-modal theme-modal" id="dataReview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body modal1" style="background-image:none !important;border-radius: 10px;">
+          <div class="container-fluid p-0">
+            <div class="row">
+
+                <div class="col-6" id="m-img-review">
+                </div>
+                <div class="col-6">
+                <p style="font-size: 16px; margin-top:15px" id="m-mss-review">
+                </p>
+                <div class="rate">
+         
+                </div>
+                <div id="m-review">
+               
+                </div>
+               
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('script')
@@ -768,6 +798,16 @@ $(".loadMore-relevants").on('click', function(e) {
         $(".loadMore-relevants").text('no more products');
     }else{
         $(".product-relevants:hidden").slice(0, 6).slideDown().css('display', 'block');
+
+    }
+});
+
+$(".loadMore-review").on('click', function(e) {
+
+    if ($(".review-customer:hidden").length === 0) {
+        $(".loadMore-review").text('no more products');
+    }else{
+        $(".review-customer:hidden").slice(0, 6).slideDown().css('display', 'block');
 
     }
 });
@@ -2107,6 +2147,83 @@ proJect = (type,id) => {
           
         }
     })
+    }
+    showReview = (ref) => {
+
+        $.ajax({
+        url: "{{ url('customer/get-modal-review') }}",
+        type: "POST",
+        data: {
+            ref: ref,
+            _token: "{{ csrf_token() }}",
+        },
+        dataType: "json",
+        success: function(data) {
+
+          if(data.review == null) {
+
+            Swal.fire({
+                icon: 'info',
+                text: 'No data found!',
+            });
+
+          }else{
+
+            let start = '';
+
+            for(let i = 0; i < data.review.docu_review_qty; i++) {
+                start += '<i class="fa fa-star" style="color: #FFD700;"></i>';
+            }
+
+            let product_name = '';
+            let lg = '{{ app()->getLocale() }}';
+
+            if(lg == 'th') {
+                product_name = data.review.conf_mainproduct_name_th;
+            } else {
+                product_name = data.review.conf_mainproduct_name_en;
+            }
+
+            $('#m-img-review').html(`<img src="${data.review.docu_review_img1}" class="img-fluid" style="width: 100%;">`);
+            $('#m-mss-review').html(`${data.review.docu_review_remeak}`);
+            $('.rate').html(`${start} <small>${data.review.docu_review_qty}</small>`);
+
+            if(data.review.conf_mainproduct_price == null) {
+
+             
+            }else{
+
+              $('#m-review').html(`<a href="/{{ app()->getLocale() }}/product/${data.review.conf_mainproduct_id}/-">
+                <div style="margin-top: 50px;border: 1px solid #ccc;border-radius: 5px;padding: 15px;text-decoration: none;">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="${data.review.docu_review_img1}" class="img-fluid" style="width: 100%;border-radius: 50%;">
+                    </div>
+                    <div class="col-8">
+                    <p style="font-size: 16px; margin-top:15px">${product_name}</p>
+                        <p style="font-size: 16px; margin-top:15px;">${data.review.conf_mainproduct_price}</p>
+                        <small style="font-size: 12px;color: gray;">ส่งขั้นต่ำ/Minimum ${data.review.conf_mainproduct_quota} ชิ้น/Piece</small>
+                        <br>
+                        <small style="font-size: 12px;color: gray;">ส่งภายใน/Within ${data.review.conf_mainproduct_days} วัน/Day</small>
+                    </div>
+                </div>
+                </div>
+                </a>
+                `)
+            }
+
+         
+
+
+    
+setTimeout(function() {
+    $('#dataReview').modal('show');
+}, 500);
+
+          }
+        }
+    });
+
     }
     
 </script>

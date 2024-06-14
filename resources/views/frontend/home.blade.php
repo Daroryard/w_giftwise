@@ -854,7 +854,7 @@ flex-wrap: wrap;">
                 </div>
                 @foreach ($cate as $item)
                 <div class="col-md-3">
-                    <a href="#">
+                    <a href="/{{ app()->getLocale() }}/discover/category/{{$item->conf_category_name_en}}">
                         <div class="collection-banner p-left text-left">
                             <img src="{{$item->conf_category_img2}}" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
                             <div class="absolute-contain">

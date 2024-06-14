@@ -366,6 +366,16 @@ input[type="checkbox"][id^="my-checkbox"] {
         /* box-shadow: 0 0 5px #333; */
         z-index: -1;
     }
+
+    .input-view{
+  border: none;
+  border: 2px solid #02FFFF;
+  border-radius: 10px;
+  text-align: center;
+  height: 80px;
+  color : #FFAB40;
+
+}
 </style>
 @endsection
 
@@ -837,13 +847,21 @@ input[type="checkbox"][id^="my-checkbox"] {
                 },
                 dataType: "json",
                 success: function(response) {
-// console.log(response);
+
+                    
                     let preview = '';
 
                     let img1 = '';
                     let img2 = '';
                     let img3 = '';
                     let img4 = '';
+
+                    let sec_img1 = '';
+                    let sec_img2 = '';
+                    let sec_img3 = '';
+                    let sec_img4 = '';
+                    let sec_img5 = '';
+                    let sec_img6 = '';
 
             
                     $.each(response, function(index, value) {
@@ -891,7 +909,83 @@ input[type="checkbox"][id^="my-checkbox"] {
                         if(value.conf_subproduct_img4 == null){
                             value.conf_subproduct_img4 = value.conf_mainproduct_img4;
                         }
+
+                        let sub = '';
+
+                        let ele_sub = '';
+
+                        if(value.subproduct.length > 0){
+
+            
+                            $.each(value.subproduct, function(index, value) {
+
+                                sub += `<tr class="text-center">
+                                        <td style="border: 1px solid black;">${value.conf_subproduct_code}</td>
+                                        <td style="border: 1px solid black;">ราคา</td>
+                                        <td style="border: 1px solid black;">${value.conf_subproduct_price1}</td>
+                                        <td style="border: 1px solid black;">${value.conf_subproduct_price2}</td>
+                                        <td style="border: 1px solid black;">${value.conf_subproduct_price3}</td>
+                                        <td style="border: 1px solid black;">${value.conf_subproduct_price4}</td>
+                                        <td style="border: 1px solid black;">${value.conf_subproduct_price5}</td>
+                                        </tr>`
+
+                            });
+
+
+                            ele_sub = `<div class="col-12">
+                                        <table class="table" style="margin-top: 15px">
+                                        <tr class="text-center">
+                                        <th scope="col" style="border: 1px solid black;">รหัสสินค้า</th>
+                                        <th scope="col" style="border: 1px solid black;">จำนวน</th>
+                                        <th scope="col" style="border: 1px solid black;">50</th>
+                                        <th scope="col" style="border: 1px solid black;">100</th>
+                                        <th scope="col" style="border: 1px solid black;">300</th>
+                                        <th scope="col" style="border: 1px solid black;">500</th>
+                                        <th scope="col" style="border: 1px solid black;">1000</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>     
+                                    ${sub}
+                                    </tbody>
+                                        </table>
+                                    </div>`
+
+                        }
+
                         
+                        if(value.conf_mainproduct_img1 == null){
+                            value.conf_mainproduct_img1 = '';
+                        }
+
+                        if(value.conf_mainproduct_img2 == null){
+                            value.conf_mainproduct_img2 = '';
+                        }
+
+                        if(value.conf_mainproduct_img3 == null){
+                            value.conf_mainproduct_img3 = '';
+                        }
+
+                        if(value.conf_mainproduct_img4 == null){
+                            value.conf_mainproduct_img4 = '';
+                        }
+
+                        if(value.conf_mainproduct_img5 == null){
+                            value.conf_mainproduct_img5 = '';
+                        }
+
+                        if(value.conf_mainproduct_img6 == null){
+                            value.conf_mainproduct_img6 = '';
+                        }
+
+                        if(value.conf_mainproduct_img7 == null){
+                            value.conf_mainproduct_img7 = '';
+                        }
+
+                        if(value.conf_mainproduct_img8 == null){
+                            value.conf_mainproduct_img8 = '';
+                        }
+
+
 
                     
 
@@ -900,30 +994,19 @@ input[type="checkbox"][id^="my-checkbox"] {
 <div class="row" style="margin-top:10px;">
   <div class="col-5">
   <div class="w3-content" style="height:fit-content !important;margin-top: 50px">
-  <img class="mySlides" src="${value.conf_subproduct_img1}" style="width:100%;height:100%;object-fit: contain">
-
-  <div class="w3-row-padding w3-section">
-    <div class="w3-col s4">
-      <img src="${value.conf_subproduct_img2}" style="width:100%">
-    </div>
-    <div class="w3-col s4">
-      <img src="${value.conf_subproduct_img3}" style="width:100%">
-    </div>
-    <div class="w3-col s4">
-      <img src="${value.conf_subproduct_img4}" style="width:100%">
-    </div>
-  </div>
+  <center>
+  <input type="text"  class="input-view" value="${value.conf_mainproduct_code}" style="font-size: 20px;width:50% !important;text-align: center;" disabled>
+  </center>
+  <br>
+  <img class="mySlides" src="${value.conf_mainproduct_img2}" style="width:100%;height:100%;object-fit: contain">
 </div>
   </div>
   <div class="col-7">
   <div class="row">
-  <div class="col-12">
-    <label class="form-label">Product Code</label>
-    <input type="text" class="form-control input-catalog" value="${value.conf_mainproduct_code}" style="font-size: 18px;" disabled>
-  </div>
-  <div class="col-12">
-    <label class="form-label">Product Name</label>
-    <input type="text" class="form-control input-catalog" value="${value.conf_mainproduct_name_th}" style="font-size: 16px;" disabled>
+     <div class="col-12">
+    <label class="form-label"><h4><b>${value.conf_mainproduct_name_th}</b></h4></label>
+    <br>
+    <br>
   </div>
   <div class="col-12">
     <label class="form-label">Product Detail</label>
@@ -931,10 +1014,63 @@ input[type="checkbox"][id^="my-checkbox"] {
     ${value.conf_mainproduct_remark_th}
     </textarea>
   </div>
+${ele_sub}
   </div>
 </div>
+<table class="w-full">
+        <tr>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="${value.conf_mainproduct_img3}" width="300" style="margin-bottom: 10px;"/>          
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="${value.conf_mainproduct_img4}" width="300" style="margin-bottom: 15px;"/>                   
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="${value.conf_mainproduct_img5}" width="300" style="margin-bottom: 15px;"/>                   
+                </div>
+              </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="${value.conf_mainproduct_img6}" width="300" style="margin-top: 15px;"/>                 
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="${value.conf_mainproduct_img7}" width="300" style="margin-top: 15px;"/>                 
+                </div>
+              </div>
+            </td>
+            <td class="w-half text-center">
+              <div class="row">
+                <div class="col-12">
+                  <img src="${value.conf_mainproduct_img8}" width="300" style="margin-top: 15px;"/>                 
+                </div>
+              </div>
+            </td>
+        </tr>
+        
+</table>
+
 </div>
-</div>`;
+</div>
+
+`;
 
                     });
 

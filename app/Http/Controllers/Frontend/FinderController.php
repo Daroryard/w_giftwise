@@ -169,10 +169,23 @@ class FinderController extends Controller
 
         $product = $request->product;
 
-        $productdata = DB::table('conf_subproduct')
-        ->join('conf_mainproduct', 'conf_subproduct.conf_mainproduct_id', '=', 'conf_mainproduct.conf_mainproduct_id')
-        ->whereIn('conf_subproduct.conf_subproduct_id', $product)
-        ->get();
+        $productdata = DB::table('conf_mainproduct')
+        ->whereIn('conf_mainproduct_id', $product)
+        ->get();  
+
+        foreach($productdata as $product){
+
+            $subproduct = DB::table('conf_subproduct')
+            ->where('conf_mainproduct_id', $product->conf_mainproduct_id)
+            ->where('conf_subproduct_stcqty', '>', 0)
+            ->inRandomOrder()->take(3)
+            ->get();
+
+
+            $product->subproduct = $subproduct;
+
+
+        }
 
 
 
