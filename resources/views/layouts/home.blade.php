@@ -76,6 +76,10 @@
     padding: 10px !important;
   }
 
+  .container-discover {
+    max-width: 1880px !important;
+  }
+
   .card-body {
     padding-left: 50px !important;
     padding-right: 50px !important;
