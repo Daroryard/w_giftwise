@@ -483,15 +483,17 @@
             </p>
         </div>
         <div class="col-md-2">
-            <!-- <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p> -->
+            <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
         </div>
         <div class="col-md-12">
             <div class="new-product-slider">
                 @foreach ($pdsale1 as $item)
-                <div>
+                <div class="slick-active-hov" width="230.4">
+                    <center>
                     <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                        <img src="{{$item->conf_mainproduct_img1}}" width="230.4" height="225" style="border-radius:10px"/>
+                        <img src="{{$item->conf_mainproduct_img1}}" height="225" style="border-radius:10px"/>
                     </a>
+                    </center>
                     <div class="product-details">
                         <span class="product-tag">
                             @if(!empty($item->saleProductTags))
@@ -601,15 +603,17 @@ flex-wrap: wrap;">
             </p>
         </div>
         <div class="col-md-2">
-            <!-- <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p> -->
+            <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
         </div>
         <div class="col-md-12">
             <div class="new-product-slider">
                 @foreach ($pdsale2 as $item)
-                <div>
+                <div class="slick-active-hov" width="230.4">
+                    <center>
                     <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                        <img src="{{$item->conf_mainproduct_img1}}" width="230.4" height="225" style="border-radius:10px"/>
+                        <img src="{{$item->conf_mainproduct_img1}}"  height="225" style="border-radius:10px"/>
                     </a>
+                    </center>
                     <div class="product-details">
                         <span class="product-tag">
                             @if(!empty($item->saleProductTags))
@@ -643,15 +647,17 @@ flex-wrap: wrap;">
             </p>
         </div>
         <div class="col-md-2">
-            <!-- <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p> -->
+            <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
         </div>
         <div class="col-md-12">
             <div class="new-product-slider">
                 @foreach ($pdsale3 as $item)
-                <div>
+                <div class="slick-active-hov" width="230.4">
+                    <center>
                     <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                        <img src="{{$item->conf_mainproduct_img1}}" width="230.4" height="225" style="border-radius:10px"/>
+                        <img src="{{$item->conf_mainproduct_img1}}" height="225" style="border-radius:10px"/>
                     </a>
+                    </center>
                     <div class="product-details">
                         <span class="product-tag">
                             @if(!empty($item->saleProductTags))
@@ -683,15 +689,15 @@ flex-wrap: wrap;">
     </div>
     <div class="bg-project-home container">
     <div class="row">
-        <div class="mt-5 mb-5" align="center">
+        <div class="mt-5 mb-3" align="center">
             <span class="h4">{{__('validation.home_project_we_love')}}</span>
         </div>
-        <div class="col-md-12">    
+        <div class="col-md-12" width="332">    
             <div class="new-product-slider" style="text-align:-webkit-center"> 
             @foreach ($pjlist as $item)   
             <div class="product-details">       
                 <a href="/{{ app()->getLocale() }}/customer/{{$item->conf_projectlist_id}}/-" style="text-decoration:none">
-                <img src="{{$item->conf_projectlist_img1}}" width="230.4" height="225" style="border-radius:10px">
+                <img src="{{$item->conf_projectlist_img1}}" width="292" height="332" style="border-radius:10px">
                 <div class="product-details" style="width: 292px;">
                 @if (app()->getLocale() == 'th')
                 <p class="product-estimate-date text-secondary">{{$item->conf_projectlist_remark_th}}</p>
@@ -714,15 +720,17 @@ flex-wrap: wrap;">
             </p>
         </div>
         <div class="col-md-2">
-            <!-- <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p> -->
+            <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
         </div>
         <div class="col-md-12 mb-3">
             <div class="new-product-slider mb-3">
                 @foreach ($pdsale4 as $item)
-                <div>
+                <div class="slick-active-hov" width="230.4">
+                    <center>
                     <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                        <img src="{{$item->conf_mainproduct_img1}}" width="230.4" height="225" style="border-radius:10px"/>
+                        <img src="{{$item->conf_mainproduct_img1}}" height="225" style="border-radius:10px"/>
                     </a>
+                    </center>
                     <div class="product-details">
                         <span class="product-tag">
                             @if(!empty($item->saleProductTags))
@@ -850,7 +858,7 @@ flex-wrap: wrap;">
                     </p>
                 </div>
                 <div class="col-md-2">
-                    <!-- <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p> -->
+                    <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
                 </div>
                 @foreach ($cate as $item)
                 <div class="col-md-3">
