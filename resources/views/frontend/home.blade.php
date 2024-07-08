@@ -314,6 +314,56 @@
     size : 14px !important;
     color: #000 !important;
    }
+
+.btn-outline-we {
+    display: inline-block;
+    padding: 13px 29px;
+    letter-spacing: 0.05em;
+    border: 2px solid #B4B4B4;
+    position: relative;
+    color: #fff !important;
+    background-color: #B4B4B4;
+    border-radius: 10px !important;
+}
+
+.btn-outline-we:hover {
+    display: inline-block;
+    padding: 13px 29px;
+    letter-spacing: 0.05em;
+    border: 2px solid #B4B4B4;
+    position: relative;
+    color: #fff !important;
+    background-color: #B4B4B4;
+    border-radius: 10px !important;
+
+}
+
+.product-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-wrapper {
+  position: relative;
+}
+
+.details-product {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.details-product h6 {
+  margin: 0;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+
 </style>
 @endsection
 @section('content')
@@ -496,8 +546,7 @@
                     </center>
                     <div class="product-details">
                         <span class="product-tag">
-                            @if(!empty($item->saleProductTags))
-                            
+                            @if(!empty($item->saleProductTags))                         
                             @foreach ($item->saleProductTags as $tag)
                             @if (app()->getLocale() == 'th')
                             <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
@@ -695,18 +744,42 @@ flex-wrap: wrap;">
         <div class="col-md-12" width="332">    
             <div class="new-product-slider" style="text-align:-webkit-center"> 
             @foreach ($pjlist as $item)   
-            <div class="product-details">       
+            <!-- <div class="product-details">       
                 <a href="/{{ app()->getLocale() }}/customer/{{$item->conf_projectlist_id}}/-" style="text-decoration:none">
-                <img src="{{$item->conf_projectlist_img1}}" width="292" height="332" style="border-radius:10px">
+                <img src="{{$item->conf_projectlist_img1}}" width="292" height="332" style="border-radius:10px">             
                 <div class="product-details" style="width: 292px;">
                 @if (app()->getLocale() == 'th')
-                <p class="product-estimate-date text-secondary">{{$item->conf_projectlist_remark_th}}</p>
+                <p class="product-estimate-date text-secondary">xxx{{$item->conf_projectlist_remark_th}}</p>
                 @else
-                <p class="product-estimate-date text-secondary">{{$item->conf_projectlist_remark_en}}</p>
+                <p class="product-estimate-date text-secondary">xxx{{$item->conf_projectlist_remark_en}}</p>
                 @endif
                     </div>
                 </a>
-            </div>                                      
+            </div>                                       -->
+                                <div class="product-box product-wrap">
+                                        <div class="img-wrapper">                                   
+                                            <div class="front">
+                                                    <img alt="" src="{{$item->conf_projectlist_img1}}"  width="292" height="332" style="border-radius:10px">
+                                            </div>
+                                                                                   
+                                        </div>
+                                        <div class="product-info">                                        
+                                            <div class="add-btn">
+                                                <a href="javascript:void(0)" class="btn btn-outline-we">
+                                                    Message
+                                                </a>
+                                            </div>
+                                            @if (app()->getLocale() == 'th' && !empty($item->conf_projectlist_remark_th))
+                                            <div class="details-product">
+                                                    <h6>{{$item->conf_projectlist_remark_th}}</h6>
+                                            </div>
+                                            @elseif(app()->getLocale() == 'en' && !empty($item->conf_projectlist_remark_en))
+                                            <div class="details-product">
+                                                    <h6>{{$item->conf_projectlist_remark_en}}</h6>
+                                            </div>
+                                            @endif                                                                                      
+                                        </div>
+                                    </div>
             @endforeach           
             </div>
         </div>    
@@ -1032,7 +1105,7 @@ flex-wrap: wrap;">
         </div>
     </div>
     </div>
-    <div class="container">
+    <div class="section-content" style="padding-top: 50px;">
         <section class="small-section border-section border-top-0 subscribe">
             <div class="row">
                 <div class="col-lg-6">

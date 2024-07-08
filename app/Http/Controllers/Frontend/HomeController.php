@@ -67,7 +67,7 @@ class HomeController extends Controller
         $cont2 = DB::table('conf_contact')->where('conf_contact_id',2)->first(); 
 
 
-
+        // dd($pjlist);
         return view('frontend.home' , compact('slides' , 'categories','pdsale1','pdsale2','pdsale3','pdsale4','pick1','pick2','pick3','pick4','pick5','pick6','pick7','pick8','pick9','pjlist','cate','pickmanu','cont1','cont2'));
 
     }
