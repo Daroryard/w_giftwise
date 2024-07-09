@@ -385,10 +385,10 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
                 <div class="d-flex flex">
                         <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74"><span class="badge p-2">Gift Set</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72/-"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71/-"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73/-"><span class="badge p-2">Staff Pick</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74/-"><span class="badge p-2">Gift Set</span></a>
                     </div>
                 </div>
 
@@ -593,9 +593,9 @@
                                                                             @if(!empty($item->saleProductTags))
                                                                             @foreach ($item->saleProductTags as $tag)
                                                                             @if(app()->getLocale() == 'th')
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                                                             @else
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                                                             @endif
                                                                             @endforeach
                                                                             @endif
@@ -661,9 +661,9 @@
                                                                             @if(!empty($item->saleProductTags))
                                                                             @foreach ($item->saleProductTags as $tag)
                                                                             @if(app()->getLocale() == 'th')
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                                                             @else
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                                                             @endif
                                                                             @endforeach
                                                                             @endif
@@ -739,9 +739,9 @@
                                                                         @if(!empty($item->saleProductTags))
                                                                         @foreach ($item->saleProductTags as $tag)
                                                                         @if(app()->getLocale() == 'th')
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                                                         @else
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                                                         @endif
                                                                         @endforeach
                                                                         @endif
@@ -809,9 +809,9 @@
                                                                         @if(!empty($item->saleProductTags))
                                                                         @foreach ($item->saleProductTags as $tag)
                                                                         @if(app()->getLocale() == 'th')
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                                                         @else
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                                                         @endif
                                                                         @endforeach
                                                                         @endif
@@ -1031,7 +1031,7 @@
                                     let tag = '';
                                     if (value.tag != null) {
                                         $.each(value.tag, function(index1, value1) {
-                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
                                         });
                                     }
 
@@ -1076,7 +1076,7 @@
                                     let tag = '';
                                     if (value.tag != null) {
                                         $.each(value.tag, function(index1, value1) {
-                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
                                         });
                                     }
 
@@ -1120,7 +1120,7 @@
                                     let tag = '';
                                     if (value.tag != null) {
                                         $.each(value.tag, function(index1, value1) {
-                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
                                         });
                                     }
 
@@ -1165,7 +1165,7 @@
                                     let tag = '';
                                     if (value.tag != null) {
                                         $.each(value.tag, function(index1, value1) {
-                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
                                         });
                                     }
 

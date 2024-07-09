@@ -777,9 +777,9 @@
                   @foreach ($footer_tag as $key => $sub)
 
                   @if(app()->getLocale() == 'th')
-                  <li><a href="/{{ app()->getLocale() }}/product-quick-tag/{{$sub->ms_product_tag_id}}">{{ $sub->ms_product_tag_name }}</a></li>
+                  <li><a href="/{{ app()->getLocale() }}/product-quick-tag/{{$sub->ms_product_tag_id}}/-">{{ $sub->ms_product_tag_name }}</a></li>
                   @else
-                  <li><a href="/{{ app()->getLocale() }}/product-quick-tag/{{$sub->ms_product_tag_id}}">{{ $sub->ms_product_tag_nameen }}</a></li>
+                  <li><a href="/{{ app()->getLocale() }}/product-quick-tag/{{$sub->ms_product_tag_id}}/-">{{ $sub->ms_product_tag_nameen }}</a></li>
                   @endif
 
                   @endforeach
@@ -1150,13 +1150,13 @@
               if (value.conf_mainproduct_tag_name_en == null) {
 
               } else {
-                tag_en += `<li class="list-group-item"><a href="{{url('/product-quick-tag/` + value.conf_mainproduct_id + `')}}" style="color:black">` + value.conf_mainproduct_tag_name_en + `</a></li>`
+                tag_en += `<li class="list-group-item"><a href="/{{ app()->getLocale() }}/product-quick-tag/` + value.conf_mainproduct_tag_id + `/-" style="color:black">` + value.conf_mainproduct_tag_name_en + `</a></li>`
               }
 
               if (value.conf_mainproduct_tag_name_th == null) {
 
               } else {
-                tag_th += `<li class="list-group-item"><a href="{{url('/product-quick-tag/` + value.conf_mainproduct_tag_id + `')}}" style="color:black">` + value.conf_mainproduct_tag_name_th + `</a></li>`
+                tag_th += `<li class="list-group-item"><a href="/{{ app()->getLocale() }}/product-quick-tag/` + value.conf_mainproduct_tag_id + `/-" style="color:black">` + value.conf_mainproduct_tag_name_th + `</a></li>`
               }
 
             })
