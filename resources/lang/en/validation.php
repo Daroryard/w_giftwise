@@ -18,6 +18,7 @@ return [
     'menu_view_profile' => 'Profile',
     'menu_customer_login' => 'Login',
 
+    'footer_tag' => 'Tag',
 
 
     'modal_request_quotation_title' => 'Request Quotation',

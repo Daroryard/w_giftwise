@@ -39,9 +39,6 @@ class ProductQucikController extends Controller
 
       
 
-        // dd($catmanu);
-
-
         return view('frontend.product-quick.product-quick',compact('pd','pd1','pd2','pd3','img1','img2','categories'));
     }
     public function quickcategorysub($ref,$id)
@@ -686,7 +683,7 @@ class ProductQucikController extends Controller
 
 
 
-    public function productTag ($id) {
+    public function productTag ($local,$id) {
 
         $tags = DB::table('conf_mainproduct_tag')->where('conf_mainproduct_tag_id',$id)->first();
 

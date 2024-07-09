@@ -46,6 +46,11 @@
     margin: auto !important;
   }
 
+  .section-content-footer {
+    max-width: 1680px !important;
+    margin: auto !important;
+  }
+
   .section-content-product-detail {
     max-width: 1480px !important;
     margin: auto !important;
@@ -698,7 +703,7 @@
 
   <footer class="footer-light" style="background-color: #EBEBEB;color: #878F9E;">
     <section class="section-b-space light-layout">
-      <div class="container">
+      <div class="section-content-footer">
         <div class="row footer-theme partition-f">
           <div class="col-lg-2 col-md-6">
 
@@ -733,11 +738,11 @@
 
                   @if(app()->getLocale() == 'th')
 
-                  <li><a href="{{url('/quickcategorysub/'.$sub->conf_category_id)}}">{{ $sub->conf_categorysub_name_th }}</a></li>
+                  <li><a href="/{{ app()->getLocale() }}/quickcategorysub/{{$sub->conf_category_id}}">{{ $sub->conf_categorysub_name_th }}</a></li>
 
                   @else
 
-                  <li><a href="{{url('/quickcategorysub/'.$sub->conf_category_id)}}">{{ $sub->conf_categorysub_name_en }}</a></li>
+                  <li><a href="/{{ app()->getLocale() }}/quickcategorysub/{{$sub->conf_category_id}}">{{ $sub->conf_categorysub_name_en }}</a></li>
 
                   @endif
 
@@ -753,7 +758,36 @@
               </div>
             </div>
           </div>
-          @endforeach
+          @endforeach        
+        </div>
+        <div class="row footer-theme partition-f">
+        <div class="col-lg-2 col-md-6">
+
+      
+        </div>
+        <div class="col">
+            <div class="sub-title">
+              <div class="footer-title">
+                <b>{{ __('validation.footer_tag') }}</b>
+              </div>
+
+
+              <div class="footer-contant">
+                <ul>
+                  @foreach ($footer_tag as $key => $sub)
+
+                  @if(app()->getLocale() == 'th')
+                  <li><a href="/{{ app()->getLocale() }}/product-quick-tag/{{$sub->ms_product_tag_id}}">{{ $sub->ms_product_tag_name }}</a></li>
+                  @else
+                  <li><a href="/{{ app()->getLocale() }}/product-quick-tag/{{$sub->ms_product_tag_id}}">{{ $sub->ms_product_tag_nameen }}</a></li>
+                  @endif
+
+                  @endforeach
+
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Cart;
 use App\Models\CategorySub;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,6 +49,12 @@ class AppServiceProvider extends ServiceProvider
             $catmanu = Category::where('conf_category_active',1)
             ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])->get();
 
+            $footer_tag =  DB::table('vw_erp_producttag')
+            ->select('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+            ->groupBy('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+            ->get();
+    
+
     
             $arr_cate = array();
     
@@ -64,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-            $view->with(['cart' => $cart, 'cart_count' => $cart_count, 'totalprice_cart' => $top_netcart, 'sku_cart' => $sku_cart, 'categorie_sub' => $categorie_sub, 'catmanu' => $catmanu, 'arr_cate' => $arr_cate]);
+            $view->with(['cart' => $cart, 'cart_count' => $cart_count, 'totalprice_cart' => $top_netcart, 'sku_cart' => $sku_cart, 'categorie_sub' => $categorie_sub, 'catmanu' => $catmanu, 'arr_cate' => $arr_cate, 'footer_tag' => $footer_tag]);
         });
         
     }

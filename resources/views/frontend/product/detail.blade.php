@@ -430,17 +430,15 @@ p {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>ขนาดบรรจุ @if (!empty($item->subProducts))
-                                            @foreach ($item->subProducts as $tag)
+                                        <td> 
                                             @if(app()->getLocale() == 'th')
-                                            <span class="badge">{{ $tag->conf_size_name_th }}</span>
+                                            {{ $hd->conf_mainproduct_spec_th }}
                                             @else
-                                            <span class="badge">{{ $tag->conf_size_name_en }}</span>
+                                            {{ $hd->conf_mainproduct_spec_en }}
                                             @endif
-                                            @endforeach
-                                            @endif
+                                           
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>สี @if (!empty($item->subProducts))
                                             @foreach ($item->subProducts as $tag)
                                             @if(app()->getLocale() == 'th')
@@ -455,7 +453,7 @@ p {
                                     <tr>
                                         <td>{{ number_format($hd->conf_mainproduct_quota, 0) }} ชิ้น ผลิตสีตาม Pantone
                                             ได้</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -686,9 +684,9 @@ p {
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if(app()->getLocale() == 'th')
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Models\MainProduct;
 
 
 
@@ -58,6 +59,19 @@ class HomeController extends Controller
         $pick8 =DB::table('conf_homestaffpick')->where('conf_homestaffpick_listno',8)->first(); 
         $pick9 =DB::table('conf_homestaffpick')->where('conf_homestaffpick_listno',9)->first(); 
 
+
+        $pick_tag =  DB::table('vw_erp_producttag')
+        ->select('ms_product_tag_name','ms_product_tag_nameen')
+        ->groupBy('ms_product_tag_name','ms_product_tag_nameen')
+        ->inRandomOrder()->take(5)
+        ->get();
+
+        $fav_tag =  DB::table('vw_erp_producttag')
+        ->select('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+        ->groupBy('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+        ->inRandomOrder()->take(4)
+        ->get();
+
         $pjlist = DB::table('conf_projectlist')->whereNotNull('conf_projectlist_img1')->inRandomOrder()->take(20)->get();   
 
         foreach($pjlist as $key => $value){
@@ -95,21 +109,21 @@ class HomeController extends Controller
         }
         
     
-
         $cate = Category::where('conf_category_active',1)
         ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])
         ->inRandomOrder()->take(4)
         ->get();
+
         $pickmanu = Category::where('conf_category_active',1)
         ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])
         ->inRandomOrder()->take(5)
         ->get();
+
         $cont1 = DB::table('conf_contact')->where('conf_contact_id',1)->first(); 
         $cont2 = DB::table('conf_contact')->where('conf_contact_id',2)->first(); 
 
 
-        // dd($pjlist);
-        return view('frontend.home' , compact('slides' , 'categories','pdsale1','pdsale2','pdsale3','pdsale4','pick1','pick2','pick3','pick4','pick5','pick6','pick7','pick8','pick9','pjlist','cate','pickmanu','cont1','cont2'));
+        return view('frontend.home' , compact('slides' , 'categories','pdsale1','pdsale2','pdsale3','pdsale4','pick1','pick2','pick3','pick4','pick5','pick6','pick7','pick8','pick9','pjlist','cate','pickmanu','cont1','cont2','pick_tag','fav_tag'));
 
     }
 
@@ -209,11 +223,33 @@ class HomeController extends Controller
 
         $id = $request->ref;
 
-        $pickmanu = Category::where('conf_category_active',1)
-        ->where('conf_category_id', $id)
+        $th = $request->th;
+
+        $en = $request->en;
+
+
+        $check_tag = DB::table('conf_mainproduct_tag')
+        ->where('conf_mainproduct_tag_name_th',$th)
+        ->whereOr('conf_mainproduct_tag_name_en',$en)
         ->get();
 
-        return response()->json(['data' => $pickmanu]);
+        $get_id = array();
+
+        foreach($check_tag as $c){
+
+            $get_id[] = $c->conf_mainproduct_id;
+
+        }
+
+               
+        $pds = MainProduct::whereIn('conf_mainproduct.conf_mainproduct_id',$get_id)
+        ->inRandomOrder()->take(9)
+        ->get();
+
+
+ 
+
+        return response()->json(['data' => $pds]);
 
     }
 

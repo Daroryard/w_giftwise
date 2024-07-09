@@ -407,6 +407,10 @@
         }
 
     }
+    .absolute-contain{
+        background-color:#969492 !important;
+
+    }
 </style>
 @endsection
 @section('content')
@@ -425,10 +429,10 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
                     <div class="d-flex flex">
                         <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/product-quick-tag/72"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/product-quick-tag/71"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/product-quick-tag/73"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/product-quick-tag/74"><span class="badge p-2">Gift Set</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73"><span class="badge p-2">Staff Pick</span></a>
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74"><span class="badge p-2">Gift Set</span></a>
                     </div>
                 </div>
 
@@ -598,9 +602,9 @@
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if (app()->getLocale() == 'th')
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif
@@ -626,11 +630,11 @@
             <section class="py-5 mb-5" style="background-color:#00C2C7;color:#fff">
                 <div class="row text-center text-md-start text-lg-start">
                     <div class="col-6  d-flex justify-content-center align-items-center p-4 p-md-3 p-lg-3" style="display: flex;
-width: 112px;
-align-items: flex-start;
-align-content: flex-start;
-gap: 16px;
-flex-wrap: wrap;">
+                    width: 112px;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                    gap: 16px;
+                    flex-wrap: wrap;">
                         <img src="{{asset('assets/frontend/images/staffpick/Ellipse 46.svg')}}" width="30px">
                         <img src="{{asset('assets/frontend/images/staffpick/Ellipse 46.svg')}}" width="30px">
                         <img src="{{asset('assets/frontend/images/staffpick/Ellipse 46.svg')}}" width="30px">
@@ -647,16 +651,16 @@ flex-wrap: wrap;">
                         <div class="p-1" style="text-align: left;">
                             <h4 class="ms-3 text-white"><i class="fa fa-star"></i> Staffpick</h4>
                             <nav class="nav nav-pills flex-column mt-3">
-                                @foreach ($pickmanu as $item)
-                                <a class="nav-link" href="javascript:void(0)" onclick="playList('{{ $item->conf_category_id }}')">
+                                @foreach ($pick_tag as $key => $item)
+                                <a class="nav-link" href="javascript:void(0)" onclick="playList('{{$key}}','{{$item->ms_product_tag_name}}','{{$item->ms_product_tag_nameen}}')">
                                     <div class="rounded-3 row align-items-center">
                                         <p class="text-white fs-6 fw-normal font-family-Sukhumvit Set col-9 m-0 px-3">
                                             @if (app()->getLocale() == 'th')
-                                            {{$item->conf_category_name_th}}
+                                            {{$item->ms_product_tag_name}}
                                             @else
-                                            {{$item->conf_category_name_en}}
+                                            {{$item->ms_product_tag_nameen}}
                                             @endif
-                                        <div class="position-relative col-1 float-right arrow-staff-{{ $item->conf_category_id }} arrow-ck"></div>
+                                        <div class="position-relative col-1 float-right arrow-staff-{{ $key }} arrow-ck"></div>
                                         </p>
                                         <div class="position-relative col-1 text-right"></div>
                                     </div>
@@ -696,7 +700,7 @@ flex-wrap: wrap;">
         <div class="section-content-slide">
             <div class="row">
                 <div class="col-md-10">
-                    <p>
+                    <p onclick="window.location.href='/{{ app()->getLocale() }}/discover'">
                         <span class="h4">{{__('validation.home_welcome_employee')}}</span>
                     </p>
                 </div>
@@ -717,9 +721,9 @@ flex-wrap: wrap;">
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if (app()->getLocale() == 'th')
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif
@@ -740,7 +744,7 @@ flex-wrap: wrap;">
                     </div>
                 </div>
                 <div class="col-md-10">
-                    <p>
+                    <p onclick="window.location.href='/{{ app()->getLocale() }}/discover'">
                         <span class="h4">{{__('validation.home_echo_friendly_product')}}</span>
                     </p>
                 </div>
@@ -761,9 +765,9 @@ flex-wrap: wrap;">
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if (app()->getLocale() == 'th')
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif
@@ -870,9 +874,9 @@ flex-wrap: wrap;">
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if (app()->getLocale() == 'th')
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <a href="/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif
@@ -991,14 +995,19 @@ flex-wrap: wrap;">
                     <div class="col-md-2">
                         <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
                     </div>
-                    @foreach ($cate as $item)
+                    @foreach ($fav_tag as $item)
                     <div class="col-md-3">
-                        <a href="/{{ app()->getLocale() }}/discover/category/{{$item->conf_category_name_en}}">
+                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{$item->ms_product_tag_id}}" class="absolute-contain">
                             <div class="collection-banner p-left text-left">
-                                <img src="{{$item->conf_category_img2}}" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
+                                <img src="{{$item->ms_product_tag_img1}}" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
                                 <div class="absolute-contain">
-                                    <h6>{{$item->conf_category_name_th}}</h6>
-                                    <small style="font-size: .8em !important">{{$item->conf_category_remark_th}}</small>
+                                    @if(app()->getLocale() == 'th')
+                                    <p class="text-we">{{$item->ms_product_tag_name}}</p>
+                                    <small style="font-size: .8em !important">{{$item->ms_product_tag_remark}}</small>
+                                    @else
+                                    <p class="text-we">{{$item->ms_product_tag_nameen}}</p>
+                                    <small style="font-size: .8em !important">{{$item->ms_product_tag_remarken}}</small>
+                                    @endif
                                 </div>
                             </div>
                         </a>
@@ -1224,43 +1233,34 @@ flex-wrap: wrap;">
 
 
 <script>
-    playList = (ref) => {
+    playList = (ref,th,en) => {
 
         $.ajax({
             url: "{{ url('/get-play-list') }}",
             type: "POST",
             data: {
                 ref: ref,
+                th: th,
+                en: en,
                 _token: '{{ csrf_token() }}'
             },
             dataType: "json",
             success: function(res) {
-
-                
-
+             
                 let html = '';
 
                 $.each(res.data, function(index, value) {
 
-                    if (value.conf_category_img1 != null) {
-                        html += `<img src="${value.conf_category_img1}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;">`;
-                    }
-                    if (value.conf_category_img2 != null) {
-                        html += `<img src="${value.conf_category_img2}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;">`;
-                    }
-                    if (value.conf_category_img3 != null) {
-                        html += `<img src="${value.conf_category_img3}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;">`;
-                    }
-
+                    if (value.conf_mainproduct_img1 != null) {
+                        html += `<img src="${value.conf_mainproduct_img1}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;">`;
+                    }  
                 });
 
-                // console.log(html);
 
 
                 $('.playlist').html(`<div style="margin: 5px;">
                         ${html}
                     </div>`).hide().fadeIn(1000);
-
           
 
                 $('.arrow-ck').html(``);
