@@ -684,9 +684,9 @@ p {
                                     @if(!empty($item->saleProductTags))
                                     @foreach ($item->saleProductTags as $tag)
                                     @if(app()->getLocale() == 'th')
-                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                     @else
-                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
                                     @endif
                                     @endforeach
                                     @endif
