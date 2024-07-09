@@ -793,18 +793,7 @@ flex-wrap: wrap;">
                 <div class="col-md-12" width="332">
                     <div class="new-product-slider" style="text-align:-webkit-center">
                         @foreach ($pjlist as $item)
-                        <!-- <div class="product-details">       
-                <a href="/{{ app()->getLocale() }}/customer/{{$item->conf_projectlist_id}}/-" style="text-decoration:none">
-                <img src="{{$item->conf_projectlist_img1}}" width="292" height="332" style="border-radius:10px">             
-                <div class="product-details" style="width: 292px;">
-                @if (app()->getLocale() == 'th')
-                <p class="product-estimate-date text-secondary">xxx{{$item->conf_projectlist_remark_th}}</p>
-                @else
-                <p class="product-estimate-date text-secondary">xxx{{$item->conf_projectlist_remark_en}}</p>
-                @endif
-                    </div>
-                </a>
-            </div>                                       -->
+                    
                         <div class="product-box product-wrap">
                             <div class="img-wrapper">
                                 <div class="front">
@@ -817,7 +806,7 @@ flex-wrap: wrap;">
                                 <div class="add-btn">
                                     <a href="javascript:void(0)" class="btn btn-outline-we">
                                         @if($item->ms_productsub_img1 != 'ไม่มีข้อมูล' && $item->ms_productsub_img1 != null)
-                                        <span class="inline-content">
+                                        <span class="inline-content" onclick="window.location.href='/{{ app()->getLocale() }}/product/{{$item->ms_pd}}/-'">
                                             <img src="https://erp.giftwise.co.th/{{$item->ms_productsub_img1}}" width="50" style="border-radius:10px">
                                             <p class="text-we">{{$item->ms_productsub_name_th}}</p>
                                         </span>
@@ -830,7 +819,7 @@ flex-wrap: wrap;">
                                 <div class="add-btn">
                                     <a href="javascript:void(0)" class="btn btn-outline-we">
                                         @if($item->ms_productsub_img1 != 'ไม่มีข้อมูล' && $item->ms_productsub_img1 != null)
-                                        <span class="inline-content">
+                                        <span class="inline-content" onclick="window.location.href='/{{ app()->getLocale() }}/product/{{$item->ms_pd}}/-'">
                                             <img src="https://erp.giftwise.co.th/{{$item->ms_productsub_img1}}" width="50" style="border-radius:10px">
                                             <p class="text-we">{{$item->ms_productsub_name_en}}</p>
                                         </span>
@@ -916,10 +905,7 @@ flex-wrap: wrap;">
                         <span class="h4">Total Premiums & Promotion Solution</span>
                     </p>
                     <br>
-                    <!-- <p>
-                    <span class="h6" style="color:darkgray">Lorem ......</span>
-                </p> -->
-
+                   
                 </div>
                 <div class="col-lg-4 service-block1">
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

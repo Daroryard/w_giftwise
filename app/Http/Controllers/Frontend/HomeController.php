@@ -62,6 +62,7 @@ class HomeController extends Controller
 
         foreach($pjlist as $key => $value){
             $pd_sub = DB::table('erp_productsublist')->select(
+                'ms_product_id',
                 'ms_productsub_name1',
                 'ms_productsub_name2',
                 'ms_productsub_img1',
@@ -72,6 +73,7 @@ class HomeController extends Controller
             ->where('ms_productsub_code',$value->conf_projectlist_pdcode)->first();
 
             if($pd_sub == null){
+                $value->ms_pd = 'ไม่มีข้อมูล';
                 $value->ms_productsub_name_th = 'ไม่มีข้อมูล';
                 $value->ms_productsub_name_en = 'ไม่มีข้อมูล';
                 $value->ms_productsub_img1 = 'ไม่มีข้อมูล';
@@ -79,7 +81,7 @@ class HomeController extends Controller
                 $value->ms_productsub_img3 = 'ไม่มีข้อมูล';
                 $value->ms_productsub_img4 = 'ไม่มีข้อมูล';
             }else{
-
+            $value->ms_pd = $pd_sub->ms_product_id;
             $value->ms_productsub_name_th = $pd_sub->ms_productsub_name1;
             $value->ms_productsub_name_en = $pd_sub->ms_productsub_name2;
             $value->ms_productsub_img1 = $pd_sub->ms_productsub_img1;
