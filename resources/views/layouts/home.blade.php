@@ -46,6 +46,11 @@
     margin: auto !important;
   }
 
+  .section-content-footer {
+    max-width: 1680px !important;
+    margin: auto !important;
+  }
+
   .section-content-product-detail {
     max-width: 1480px !important;
     margin: auto !important;
@@ -698,7 +703,7 @@
 
   <footer class="footer-light" style="background-color: #EBEBEB;color: #878F9E;">
     <section class="section-b-space light-layout">
-      <div class="container">
+      <div class="section-content-footer">
         <div class="row footer-theme partition-f">
           <div class="col-lg-2 col-md-6">
 
