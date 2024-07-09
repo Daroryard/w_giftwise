@@ -14,6 +14,8 @@ return [
     'menu_view_profile' => 'โปรไฟล์',
     'menu_customer_login' => 'ล็อคอิน',
 
+    'footer_tag' => 'แท็ก',
+
 
     'modal_request_quotation_title' => 'ขอใบเสนอราคาด่วน',
     'modal_request_quotation_name' => 'ชื่อ',

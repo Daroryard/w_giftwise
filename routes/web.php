@@ -34,6 +34,7 @@ Route::group(['prefix' => '{locale?}', 'where' => ['locale' => 'en|th'], 'middle
     Route::get('/quickcategorysub/{id}/{ref}', [App\Http\Controllers\Frontend\ProductQucikController::class, 'quickcategorysub']);
     Route::get('/customer/{id}/{ref}', [App\Http\Controllers\Frontend\CustomersController::class, 'customerProject']);
     Route::get('/quotation' , [App\Http\Controllers\Frontend\QuotationCartController::class , 'quotationIndex']);
+    Route::get('/product-quick-tag/{local}/{id}' , [App\Http\Controllers\Frontend\ProductQucikController::class , 'productTag']);
 
 
 
@@ -86,7 +87,6 @@ Route::post('finder-preview' , [App\Http\Controllers\Frontend\FinderController::
 Route::post('finder-download' , [App\Http\Controllers\Frontend\FinderController::class , 'downloadPDF'])->name('finder.download');
 Route::post('product-quick-filter' , [App\Http\Controllers\Frontend\ProductQucikController::class , 'filter'])->name('product-quick.filter');
 Route::get('/product-quick-filter/{id}' , [App\Http\Controllers\Frontend\ProductQucikController::class , 'productSearch'])->name('product-quick.search');
-Route::get('/product-quick-tag/{id}' , [App\Http\Controllers\Frontend\ProductQucikController::class , 'productTag']);
 
 
 
