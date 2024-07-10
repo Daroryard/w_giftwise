@@ -556,7 +556,7 @@
                         @foreach ($categories as $category)
                         <div>
                             <center>
-                                <a href="/{{app()->getLocale()}}/quickcategorysub/{{$category->conf_category_id}}/-">
+                                <a href="/{{app()->getLocale()}}/discover/category/{{$category->conf_category_name_en}}">
                                     <img class="img-fluid rounded-3 mb-1" src="{{$category->conf_categorysub_img1}}" alt="Image 1" style="width: 116px;height:104px;" />
                                 </a>
                                 @if (app()->getLocale() == 'th')
@@ -584,8 +584,8 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                <a href="/{{ app()->getLocale() }}/product-quick">
-                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
+                <a href="/{{ app()->getLocale() }}/discover">
+                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
                 </a>
                 </div>
                 <div class="col-md-12">
@@ -705,8 +705,9 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                    <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
-                </div>
+                <a href="/{{ app()->getLocale() }}/discover">
+                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                </a>                </div>
                 <div class="col-md-12">
                     <div class="new-product-slider">
                         @foreach ($pdsale2 as $item)
@@ -749,8 +750,9 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                    <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
-                </div>
+                <a href="/{{ app()->getLocale() }}/discover">
+                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                </a>                </div>
                 <div class="col-md-12">
                     <div class="new-product-slider">
                         @foreach ($pdsale3 as $item)
@@ -858,8 +860,9 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                    <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
-                </div>
+                <a href="/{{ app()->getLocale() }}/discover">
+                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                </a>                </div>
                 <div class="col-md-12 mb-3">
                     <div class="new-product-slider mb-3">
                         @foreach ($pdsale4 as $item)
@@ -993,13 +996,18 @@
                         </p>
                     </div>
                     <div class="col-md-2">
-                        <p class="text-end text-secondary fs-6 fw-semibold font-family-Sukhumvit Set col-12 m-0 px-3 py-2">ดูทั้งหมด</p>
-                    </div>
+                    <a href="/{{ app()->getLocale() }}/discover">
+                        <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                    </a>                    </div>
                     @foreach ($fav_tag as $item)
                     <div class="col-md-3">
                         <a href="/{{ app()->getLocale() }}/product-quick-tag/{{$item->ms_product_tag_id}}/-" class="absolute-contain">
                             <div class="collection-banner p-left text-left">
+                            @if($item->ms_product_tag_img1 == null)
+                                    <img src="https://erp.giftwise.co.th/assets/images/categorys/IMG_20231121034623_73sQ0.jpg" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
+                                @else
                                 <img src="{{$item->ms_product_tag_img1}}" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
+                                @endif
                                 <div class="absolute-contain">
                                     @if(app()->getLocale() == 'th')
                                     <p class="text-we">{{$item->ms_product_tag_name}}</p>
