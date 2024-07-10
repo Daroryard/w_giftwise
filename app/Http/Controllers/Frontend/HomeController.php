@@ -14,6 +14,7 @@ use App\Models\MainProduct;
 
 
 
+
 class HomeController extends Controller
 {
     /**
@@ -26,10 +27,13 @@ class HomeController extends Controller
 
         $slides = HomeSlide::where('conf_homeslide_active', 1)->orderBy('conf_homeslide_listno', 'asc')->get();
 
-        $categories = CategorySub::where('conf_categorysub_active', 1)
-        ->orderBy('conf_category_id', 'asc')
+        $categories = CategorySub::
+        join('conf_category','conf_category.conf_category_id','=','conf_categorysub.conf_category_id')
+        ->where('conf_categorysub.conf_categorysub_active', 1)
+        ->orderBy('conf_category.conf_category_id', 'asc')
         ->where('conf_categorysub_img1','<>',null)
         ->get();
+
 
         $pdsale1 = SaleProduct::where('conf_mainproduct_name_th','not like','ค่า%')
         ->where('conf_mainproduct_img1','<>',null)

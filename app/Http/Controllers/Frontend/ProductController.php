@@ -122,6 +122,8 @@ class ProductController extends Controller
     }
 
     public function checkStock(Request $request){
+
+
         $product = SubProduct::where('conf_mainproduct_id', $request->id)
         ->where('conf_subproduct_active', 1)
         ->get();
@@ -146,6 +148,7 @@ class ProductController extends Controller
         $color = $request->color;
         $id = $request->ref;
         $subid = $request->subid;
+        
         
         $size = SubProduct::where('conf_mainproduct_id', $id)->where('conf_subproduct_active' , 1)->where('conf_color_id' , $color)->get();
 

@@ -413,7 +413,7 @@ p {
                   <span class="input-group-text me-2">
                     <i class="fas fa-search text-secondary mt-1"></i>
                 </span>
-                <input type="search" class="form-control no-border-input" id="search-category" placeholder="{{ __('validation.discover_title_search_input') }}" onkeyup="searchCategory(this.value)" onclick="clearCategory()">
+                <input type="search" class="form-control no-border-input" id="search-category" placeholder="{{ __('validation.discover_title_search_input') }}" onkeyup="searchTag(this.value)" onclick="clearCategory()">
   
             </div>
             <div id="result-category" class="input-group" style="width: 50%" hidden>
@@ -481,23 +481,28 @@ p {
     <section class="banner-furniture absolute_banner ratio3_2 section-cate">
         <div class="section-content-discovery">
         <div class="row partition3">
-        @foreach ($categ as $item)
-        <div class="col-md-3 cate-{{$item->conf_category_id}} cate-all" style="padding-bottom: 35px;">
-            <a href="/{{ app()->getLocale() }}/discover/category/{{$item->conf_category_name_en}}">
+        @foreach ($fav_tag as $item)
+        <div class="col-md-3 cate-{{$item->ms_product_tag_id}} cate-all" style="padding-bottom: 35px;">
+                <a href="/{{ app()->getLocale() }}/product-quick-tag/{{$item->ms_product_tag_id}}/-" class="absolute-contain">
                 <div class="collection-banner p-left text-left">
-                    <img src="{{ $item->conf_category_img2 }}" alt=""
+                    @if($item->ms_product_tag_img1 == null)
+                    <img src="https://erp.giftwise.co.th/assets/images/categorys/IMG_20231121034623_73sQ0.jpg" alt=""
                         class="img-fluid lazyload bg-img" style="border-radius: 25px;">
+                    @else
+                    <img src="{{$item->ms_product_tag_img1}}" alt=""
+                        class="img-fluid lazyload bg-img" style="border-radius: 25px;">
+                    @endif
                     <div class="absolute-contain">
                     @if(app()->getLocale() == 'th')
-                        <h6>{{$item->conf_category_name_th}}</h6>
+                        <h6>{{$item->ms_product_tag_name}}</h6>
                     @else
-                        <h6>{{$item->conf_category_name_en}}</h6>
+                        <h6>{{$item->ms_product_tag_nameen}}</h6>
                     @endif
                         <small style="font-size: .8em !important">
                         @if(app()->getLocale() == 'th')
-                        {{$item->conf_category_remark_th}}
+                        <small style="font-size: .8em !important">{{$item->ms_product_tag_remark}}</small>
                         @else
-                        {{$item->conf_category_remark_en}}
+                        <small style="font-size: .8em !important">{{$item->ms_product_tag_remarken}}</small>
                         @endif
                     </small>
                     </div>
@@ -660,7 +665,7 @@ p {
 
 
 
-searchCategory = (val) => {
+searchTag = (val) => {
 
 let search = val
 
@@ -698,7 +703,7 @@ if (search != '') {
 
             $.each(response.category, function(index, value) {
 
-                $('.cate-'+value.conf_category_id).show();
+                $('.cate-'+value.ms_product_tag_id).show();
 
             })
 

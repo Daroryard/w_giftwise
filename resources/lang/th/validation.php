@@ -109,11 +109,13 @@ return [
 
     // end unit global
 
+    'home_all' => 'ทั้งหมด',
+
     // Discover page
 
-    'discover_title_search' => 'ค้นหาจากหมวดหมู่',
+    'discover_title_search' => 'ค้นหาจากแท็ก',
     'discover_title_search_description' => 'ค้นหาสินค้าที่คุณชอบ ค้นพบแรงบันดาลใจจาก 300 กว่าหมวดหมู่ที่เราอัปเดตทุกวัน',
-    'discover_title_search_input' => 'ค้นหาจากหมวดหมู่สินค้า',
+    'discover_title_search_input' => 'ค้นหาจากหมวดแท็ก',
     'discover_title_product_hot_week' => 'สินค้าฮิตประจำสัปดาห์',
     'discover_title_product_hot_week_description' => 'ค้นหาแรงบันดาลใจจากการจัดอันดับรายวัน เรียงตามข้อมูลจริง',
     'discover_production_min' => 'จำนวนสั่งขั้นต่ำ',

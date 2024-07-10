@@ -115,13 +115,14 @@ return [
 
     // end unit global
 
+    'home_all' => 'All',
 
 
     // Discover page
 
-    'discover_title_search' => 'Search by category',
+    'discover_title_search' => 'Search by tag',
     'discover_title_search_description' => 'Search for products you like. Discover inspiration from over 300 categories that we update every day.',
-    'discover_title_search_input' => 'Search by category',
+    'discover_title_search_input' => 'Search by tag',
     'discover_title_product_hot_week' => 'Hit products of the week',
     'discover_title_product_hot_week_description' => 'Discover inspiration from daily rankings, ranked by real data',
 

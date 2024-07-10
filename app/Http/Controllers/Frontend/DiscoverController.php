@@ -130,20 +130,28 @@ class DiscoverController extends Controller
         ->where('conf_categorysub_img1','<>',null)
         ->get();
 
+        $fav_tag =  DB::table('vw_erp_producttag')
+        ->select('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+        ->groupBy('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+        ->get();
+        // dd($fav_tag);
        
-        return view('frontend.discover.discover-detail' , compact('pdsale','categ','categories'));
+        return view('frontend.discover.discover-detail' , compact('pdsale','categ','categories','fav_tag'));
     }
 
     public function searchCategory (Request $request){
 
         $keyword = $request->search;
 
-        $categ = Category::where('conf_category_active',1)
-        ->where('conf_category_name_th' , 'LIKE' , '%'.$keyword.'%')
-        ->orWhere('conf_category_name_en' , 'LIKE' , '%'.$keyword.'%')
+
+        $fav_tag =  DB::table('vw_erp_producttag')
+        ->select('ms_product_tag_id','ms_product_tag_name','ms_product_tag_nameen','ms_product_tag_remark','ms_product_tag_remarken','ms_product_tag_img1')
+        ->where('ms_product_tag_name','LIKE','%'.$keyword.'%')
+        ->orWhere('ms_product_tag_nameen','LIKE','%'.$keyword.'%')
         ->get();
 
-        return response()->json(['category' => $categ]);
+
+        return response()->json(['category' => $fav_tag]);
 
 
     }
