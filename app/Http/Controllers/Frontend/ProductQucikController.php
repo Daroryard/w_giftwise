@@ -37,7 +37,6 @@ class ProductQucikController extends Controller
         ->where('conf_categorysub_img1','<>',null)
         ->get();
 
-      
 
         return view('frontend.product-quick.product-quick',compact('pd','pd1','pd2','pd3','img1','img2','categories'));
     }
@@ -87,13 +86,18 @@ class ProductQucikController extends Controller
 
         $price_min = substr($request->price_min,1);
         $price_max = substr($request->price_max,1);
+        $price_min = str_replace('.', '', $price_min);
+        $price_max = str_replace('.', '', $price_max);
+        $price_min = str_replace(',', '', $price_min);
+        $price_max = str_replace(',', '', $price_max);
+
         $product_qty = $request->check_order;
         $check_date = $request->check_date;
         $check_category = $request->check_category;
         $check_color = $request->check_color;
 
 
-
+        $ck = 0;
 
 
         try {
@@ -112,16 +116,23 @@ class ProductQucikController extends Controller
                     $pd = SubProduct::where('conf_subproduct_price1','>=',$price_min)
                     ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                     ->where('conf_subproduct_price1','<=',$price_max)
-                    ->where('conf_subproduct_quota', '=', 0)
+                    ->where('conf_subproduct_days', '!=', null)
+                    ->where('conf_subproduct_quota', '!=', null)
                     ->get();
+
+                    $ck = 1;
 
                 }else{
 
                     $pd = SubProduct::where('conf_subproduct_price1','>=',$price_min)
                     ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                     ->where('conf_subproduct_price1','<=',$price_max)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->whereIN('conf_color_name_th',$check_color)
                     ->get();
+
+                    $ck = 2;
+
 
                 }
 
@@ -132,6 +143,7 @@ class ProductQucikController extends Controller
                     $pd = SubProduct::where('conf_subproduct_price1','>=',$price_min)
                     ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                     ->where('conf_subproduct_price1','<=',$price_max)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                     ->get();
 
@@ -140,6 +152,7 @@ class ProductQucikController extends Controller
                     $pd = SubProduct::where('conf_subproduct_price1','>=',$price_min)
                     ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                     ->where('conf_subproduct_price1','<=',$price_max)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                     ->whereIN('conf_color_name_th',$check_color)
                     ->get();
@@ -161,6 +174,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price1','<=',$price_max)
                         ->where('conf_subproduct_stcqty', '>', 0)
                         ->where('conf_subproduct_quota', '=', 0)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -171,6 +185,7 @@ class ProductQucikController extends Controller
                         ->whereIN('conf_color_name_th',$check_color)
                         ->where('conf_subproduct_stcqty', '>', 0)
                         ->where('conf_subproduct_quota', '=', 0)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -185,6 +200,7 @@ class ProductQucikController extends Controller
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->where('conf_subproduct_stcqty', '>', 0)
                         ->where('conf_subproduct_quota', '=', 0)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -196,6 +212,7 @@ class ProductQucikController extends Controller
                         ->whereIN('conf_color_name_th',$check_color)
                         ->where('conf_subproduct_stcqty', '>', 0)
                         ->where('conf_subproduct_quota', '=', 0)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -214,6 +231,7 @@ class ProductQucikController extends Controller
                     ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                     ->where('conf_subproduct_price1','<=',$price_max)
                     ->where('conf_subproduct_days', '<=', $check_date)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->get();
 
                 }else{
@@ -223,6 +241,7 @@ class ProductQucikController extends Controller
                     ->where('conf_subproduct_price1','<=',$price_max)
                     ->where('conf_subproduct_days', '<=', $check_date)
                     ->whereIN('conf_color_name_th',$check_color)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->get();
 
                 }
@@ -236,6 +255,7 @@ class ProductQucikController extends Controller
                     ->where('conf_subproduct_price1','<=',$price_max)
                     ->where('conf_subproduct_days' , '<=', $check_date)
                     ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->get();
 
                 }else{
@@ -246,6 +266,7 @@ class ProductQucikController extends Controller
                     ->where('conf_subproduct_days', '<=', $check_date)
                     ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                     ->whereIN('conf_color_name_th',$check_color)
+                    ->where('conf_subproduct_days', '!=', null)
                     ->get();
 
                 }
@@ -266,6 +287,7 @@ class ProductQucikController extends Controller
                         ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                         ->where('conf_subproduct_price1','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -275,6 +297,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price1','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -288,6 +311,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price1','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -298,6 +322,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -315,6 +340,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price1','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }else{
@@ -325,6 +351,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }
@@ -339,6 +366,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }else{
@@ -350,6 +378,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }
@@ -373,6 +402,7 @@ class ProductQucikController extends Controller
                         ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                         ->where('conf_subproduct_price2','<=',$price_max)
                         ->where('conf_subproduct_quota', '>=', $product_qty)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -382,6 +412,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price2','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -395,6 +426,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price2','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -405,6 +437,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -422,6 +455,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price2','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }else{
@@ -432,6 +466,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }
@@ -446,6 +481,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }else{
@@ -457,6 +493,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }
@@ -483,6 +520,7 @@ class ProductQucikController extends Controller
                         ->join('conf_mainproduct','conf_mainproduct.conf_mainproduct_id','=','conf_subproduct.conf_mainproduct_id')
                         ->where('conf_subproduct_price5','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -492,6 +530,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price5','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -505,6 +544,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price5','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }else{
@@ -515,6 +555,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
     
                     }
@@ -532,6 +573,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_price5','<=',$price_max)
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }else{
@@ -542,6 +584,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }
@@ -556,6 +599,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_quota', '<=', $product_qty)
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }else{
@@ -567,6 +611,7 @@ class ProductQucikController extends Controller
                         ->where('conf_subproduct_days','<=' , $check_date)
                         ->whereIN('conf_mainproduct.conf_category_id',$check_category)
                         ->whereIN('conf_color_name_th',$check_color)
+                        ->where('conf_subproduct_days', '!=', null)
                         ->get();
 
                     }
@@ -591,7 +636,13 @@ class ProductQucikController extends Controller
 
 
         return response()->json([
-            'pd' => $pd
+            'pd' => $pd,
+            'price_min' => $price_min,
+            'price_max' => $price_max,
+            'product_qty' => $product_qty,
+            'check_date' => $check_date,
+            'check_category' => $check_category,
+            'check_color' => $check_color
         ]);
   
         
@@ -662,9 +713,11 @@ class ProductQucikController extends Controller
         $pd1 = MainProduct::where('conf_mainproduct_days','<=',7)
         ->where('conf_mainproduct_days','>=',3)
         ->inRandomOrder()->get();
+        // dd($pd1);
         $pd2 = MainProduct::where('conf_mainproduct_days','<=',14)
         ->where('conf_mainproduct_days','>=',7)
         ->inRandomOrder()->get();
+
         $pd3 = MainProduct::where('conf_mainproduct_days','<=',30)
         ->where('conf_mainproduct_days','>=',14)
         ->inRandomOrder()->get();
