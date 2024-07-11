@@ -366,6 +366,7 @@
         size : 14px !important;
         color: #000 !important;
     }
+
 </style>
 
 @endsection
@@ -573,9 +574,9 @@
                                                     <div class="row margin-res">
                                                         @foreach ($pd as $key => $item)
                                                         @if($key < 4)
-                                                        <div class="col-xl-3 col-6 col-grid-box-ready">
+                                                        <div class="col-xl-3 col-6 col-grid-box-ready active-hov">
                                                         @else
-                                                        <div class="col-xl-3 col-6 col-grid-box-ready" style="display:none">
+                                                        <div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:none">
                                                         @endif
                                                             <div class="product-box">
                                                                 <div class="img-wrapper">
@@ -608,9 +609,9 @@
                                                                             @endif
                                                                         </a>
                                                                         <h4>{{$item->price}}</h4>
-                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->timeline_qty,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
                                                                         <br>
-                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->timeline_day,0)}} {{ __('validation.unit_day') }}</small>
+                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -642,9 +643,9 @@
                                                     <div class="row margin-res">
                                                         @foreach ($pd1 as $key => $item)
                                                         @if($key < 4)
-                                                        <div class="col-xl-3 col-6 col-grid-box-7days">
+                                                        <div class="col-xl-3 col-6 col-grid-box-7days active-hov">
                                                         @else
-                                                        <div class="col-xl-3 col-6 col-grid-box-7days" style="display:none">
+                                                        <div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:none">
                                                         @endif
                                                             <div class="product-box">
                                                                 <div class="img-wrapper">
@@ -676,9 +677,9 @@
                                                                             @endif
                                                                         </a>
                                                                         <h4>{{$item->price}}</h4>
-                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->timeline_qty,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
                                                                         <br>
-                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->timeline_day,0)}} {{ __('validation.unit_day') }}</small>
+                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -696,7 +697,7 @@
                                     </div>
                                     <div class="col-sm-12">
 
-                                        <div class="top-banner-wrapper">
+                                        <div class="top-banner-wrapper" onclick="window.location.href='/{{ app()->getLocale() }}/contact'">
                                             <img src="{{asset($img2->conf_productquick_img)}}" class="img-fluid lazyload" alt="" style="width: 100%;">
                                         </div>
                                     </div>
@@ -719,9 +720,9 @@
                                                 <div class="row margin-res">
                                                     @foreach ($pd2 as $key => $item)
                                                     @if($key < 4)
-                                                    <div class="col-xl-3 col-6 col-grid-box-14days">
+                                                    <div class="col-xl-3 col-6 col-grid-box-14days active-hov">
                                                     @else
-                                                    <div class="col-xl-3 col-6 col-grid-box-14days" style="display:none">
+                                                    <div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:none">
                                                     @endif
                                                         <div class="product-box">
                                                             <div class="img-wrapper">
@@ -754,9 +755,9 @@
                                                                         @endif
                                                                     </a>
                                                                     <h4>{{$item->price}}</h4>
-                                                                    <small>{{ __('validation.product_production_min') }} {{number_format($item->timeline_qty,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                    <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
                                                                     <br>
-                                                                    <small>{{ __('validation.product_delivery_in') }} {{number_format($item->timeline_day,0)}} {{ __('validation.unit_day') }}</small>
+                                                                    <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -789,9 +790,9 @@
                                                 <div class="row margin-res">
                                                     @foreach ($pd3 as $key => $item)
                                                     @if($key < 4)
-                                                    <div class="col-xl-3 col-6 col-grid-box-30days">
+                                                    <div class="col-xl-3 col-6 col-grid-box-30days active-hov">
                                                     @else
-                                                    <div class="col-xl-3 col-6 col-grid-box-30days" style="display:none">
+                                                    <div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:none">
                                                     @endif
                                                         <div class="product-box">
                                                             <div class="img-wrapper">
@@ -824,9 +825,9 @@
                                                                         @endif
                                                                     </a>
                                                                     <h4>{{$item->price}}</h4>
-                                                                    <small>{{ __('validation.product_production_min') }} {{number_format($item->timeline_qty,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                    <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
                                                                     <br>
-                                                                    <small>{{ __('validation.product_delivery_in') }} {{number_format($item->timeline_day,0)}} {{ __('validation.unit_day') }}</small>
+                                                                    <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -991,6 +992,8 @@
         setTimeout
             (
                 function() {
+
+
                     $.ajax({
                         type: "POST",
                         url: "{{ route('product-quick.filter') }}",
@@ -1005,7 +1008,6 @@
                             _token: "{{ csrf_token() }}"
                         },
                         success: function(data) {
-                            // console.log(data);
 
                             let unique = [...new Map(data.pd.map(item => [item['conf_mainproduct_id'], item])).values()];
 
@@ -1024,9 +1026,15 @@
                                 }else{
                                     value.conf_mainproduct_name_th = value.conf_mainproduct_name_en.substring(0, 50);
                                 }
+                                let count_0 = 0;
+                                let count_7 = 0;
+                                let count_14 = 0;
+                                let count_30 = 0;
 
 
-                                if (parseInt(value.conf_subproduct_days) <= 7) {
+
+
+                                if (parseInt(value.conf_subproduct_days) <= 7 && parseInt(value.conf_subproduct_days) > 0) {
 
                                     let tag = '';
                                     if (value.tag != null) {
@@ -1037,10 +1045,12 @@
 
                                     let div_7 = '';
 
-                                    if(unique.length < 4){
-                                        div_7 = '<div class="col-xl-3 col-6 col-grid-box-7days" style="display:block;">';
+                                    count_7++;
+
+                                    if(count_7 < 4){
+                                        div_7 = '<div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:block;">';
                                     }else{
-                                        div_7 = '<div class="col-xl-3 col-6 col-grid-box-7days" style="display:none;">';
+                                        div_7 = '<div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:none;">';
                                     }
                                     sec_7 += `
                                                             ${div_7}
@@ -1071,7 +1081,7 @@
                                                         </div>`
 
 
-                                } else if (parseInt(value.conf_subproduct_days) <= 14) {
+                                } else if (parseInt(value.conf_subproduct_days) <= 14 && parseInt(value.conf_subproduct_days) > 7) {
 
                                     let tag = '';
                                     if (value.tag != null) {
@@ -1082,10 +1092,12 @@
 
                                     let div_14 = '';
 
-                                    if(unique.length < 4){
-                                        div_14 = '<div class="col-xl-3 col-6 col-grid-box-14days" style="display:block;">';
+                                    count_14++;
+
+                                    if(count_14 < 4){
+                                        div_14 = '<div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:block;">';
                                     }else{
-                                        div_14 = '<div class="col-xl-3 col-6 col-grid-box-14days" style="display:none;">';
+                                        div_14 = '<div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:none;">';
                                     }
 
                                     sec_14 += `
@@ -1115,7 +1127,7 @@
                                                             </div>
                                                         </div>`
 
-                                } else if (parseInt(value.conf_subproduct_days) <= 30) {
+                                } else if (parseInt(value.conf_subproduct_days) <= 30 && parseInt(value.conf_subproduct_days) > 14) {
 
                                     let tag = '';
                                     if (value.tag != null) {
@@ -1127,10 +1139,12 @@
                                     
                                     let div_30 = '';
 
-                                    if(unique.length < 4){
-                                        div_30 = '<div class="col-xl-3 col-6 col-grid-box-30days" style="display:block;">';
+                                    count_30++;
+
+                                    if(count_30 < 4){
+                                        div_30 = '<div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:block;">';
                                     }else{
-                                        div_30 = '<div class="col-xl-3 col-6 col-grid-box-30days" style="display:none;">';
+                                        div_30 = '<div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:none;">';
                                     }
 
                                     sec_30 += `
@@ -1171,10 +1185,12 @@
 
                                     let div_ready = '';
 
-                                    if(unique.length < 4){
-                                        div_ready = '<div class="col-xl-3 col-6 col-grid-box-ready" style="display:block;">';
+                                    count_0++;
+
+                                    if(count_0 < 4){
+                                        div_ready = '<div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:block;">';
                                     }else{
-                                        div_ready = '<div class="col-xl-3 col-6 col-grid-box-ready" style="display:none;">';
+                                        div_ready = '<div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:none;">';
                                     }
                                 
                                     sec_ready += `
@@ -1226,7 +1242,7 @@
                                 }
 
 
-                                    $('#sec-filter').html(`
+                                    $('#sec-filter').append(`
                                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -1266,7 +1282,7 @@
                                     }
 
 
-                                    $('#sec-filter').html(`
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -1305,7 +1321,7 @@
                                         button_14 = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-14days">{{ __('validation.product_view_more') }}</a></div>`;
                                     }
 
-                                    $('#sec-filter').html(`
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -1344,7 +1360,7 @@
                                         button_30 = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-30days">{{ __('validation.product_view_more') }}</a></div>`;
                                     }
 
-                                    $('#sec-filter').html(`
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -1375,6 +1391,8 @@
 
 
                                 $('.loading').attr('hidden', 'hidden');
+
+
 
 
                                 sec_ready = '';
