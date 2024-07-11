@@ -16,7 +16,9 @@ use App\Models\Category;
 class ProductController extends Controller
 {
     public function detail($id,$ref){
+
         $hd = MainProduct::find($ref);
+        // dd($hd);
 
         if(!$hd){
             abort(403);

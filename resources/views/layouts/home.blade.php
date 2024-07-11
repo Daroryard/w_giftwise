@@ -471,12 +471,22 @@
     margin: 10px;
   }
 
-
   .slick-active-hov:hover {
     border: 1px solid #F0F0F0;
     border-radius:10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  .active-hov{
+    border: 1px solid #FFF;
+  }
+
+  .active-hov:hover{
+    border: 1px solid #F0F0F0;
+    border-radius:10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+
 
 
 </style>
