@@ -314,7 +314,7 @@ table, th, td {
 
 }
 
-input[type="checkbox"][id^="my-checkbox"] {
+    input[type="checkbox"][id^="my-checkbox"] {
         display: none;
     }
 
@@ -325,7 +325,6 @@ input[type="checkbox"][id^="my-checkbox"] {
         margin: 0px;
         cursor: pointer;
     }
-
     label:before {
         background-color: white;
         color: white;
@@ -376,6 +375,33 @@ input[type="checkbox"][id^="my-checkbox"] {
   color : #FFAB40;
 
 }
+
+.sec-finder{
+    background-color: rgb(248,249,250);
+    padding: 50px;
+}
+.text-input-fin{
+        color: black;
+        margin: auto;
+    }
+    .bt-search {
+        width: 100%;
+    }
+
+@media (max-width: 767px) {
+    .sec-finder{
+        padding: 0px;
+    }
+    .text-input-fin{
+        font-size: 14px;     
+        color: black;
+    }
+    .bt-search {
+        width: 70%;
+    }
+   
+ 
+}
 </style>
 @endsection
 
@@ -410,7 +436,7 @@ input[type="checkbox"][id^="my-checkbox"] {
                 </div>
                 </div>    
     </div>
-    <div class="row" style="background-color: rgb(248,249,250);padding: 50px;">
+    <div class="row sec-finder">
         <div class="col-md-12 mt-3">
             <p class=" m-0 px-5 py-3"><span class="text-dark fs-2 fw-bold  Set">GIFT </span><span class="fs-2 fw-bold  Set" style="color : #00C2C7;">FINDER</span></p>
         </div>
@@ -420,33 +446,39 @@ input[type="checkbox"][id^="my-checkbox"] {
         <div class="col-md-12">
             <div id="price" class=" m-0 px-5 py-1 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="price" value="0-50">
-                    {{ __('validation.finder_price_50') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="price" value="0-50">
+                {{ __('validation.finder_price_50') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
+                <p class="text-input-fin">
                     <input type="radio" class="btn btn-secondary  checkbox" name="price" value="50-100">
-                    {{ __('validation.finder_price_50_100') }}
+                    {{ __('validation.finder_price_50_100') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="price" value="100-200">
-                    {{ __('validation.finder_price_100_200') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="price" value="100-200">
+                   {{ __('validation.finder_price_100_200') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="price" value="200-300">
-                    {{ __('validation.finder_price_200_300') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="price" value="200-300">
+                   {{ __('validation.finder_price_200_300') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="price" value="300-500">
-                    {{ __('validation.finder_price_300_500') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="price" value="300-500">
+                    {{ __('validation.finder_price_300_500') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="price" value="0-5000">
-                    {{ __('validation.finder_price_more_than_500') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="price" value="0-5000">
+                    {{ __('validation.finder_price_more_than_500') }}</p>
                 </label>
                 <label class="checkbox-label fs-6 mr-2 mb-2 btn-price" style="padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;">
                     <div class="input-group">
-                        <span class="input-group-text">{{ __('validation.finder_input_qty') }} :</span>
-                        <input type="number" class="form-control" aria-label="Input field" id="price-input" min="1">
+                        <span class="input-group-text">{{ __('validation.finder_price_qty') }} :</span>
+                        <input type="number" class="form-control" aria-label="Input field" id="price-input" min="1" >
                     </div>
                 </label>
             </div>
@@ -460,24 +492,29 @@ input[type="checkbox"][id^="my-checkbox"] {
         <div class="col-md-12">
             <div id="price" class=" m-0 px-5 py-1 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="50">
-                    {{ __('validation.finder_qty_50') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="50">
+                    {{ __('validation.finder_qty_50') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px; color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="100">
-                    {{ __('validation.finder_qty_100') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="100">
+                    {{ __('validation.finder_qty_100') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px; color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="300">
-                    {{ __('validation.finder_qty_300') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="300">
+                    {{ __('validation.finder_qty_300') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px; color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="500">
-                    {{ __('validation.finder_qty_500') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="500">
+                    {{ __('validation.finder_qty_500') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px; color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="1000">
-                    {{ __('validation.finder_qty_1000') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="qty" value="1000">
+                    {{ __('validation.finder_qty_1000') }}</p>
                 </label>
                 <label class="checkbox-label fs-6 mr-2 mb-2 btn-price" style="padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;">
                     <div class="input-group">
@@ -493,24 +530,29 @@ input[type="checkbox"][id^="my-checkbox"] {
         <div class="col-md-12">
             <div id="price" class=" m-0 px-5 py-1 btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="ready">
-                    {{ __('validation.finder_timeline_ready') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="ready">
+                    {{ __('validation.finder_timeline_ready') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="7">
-                    {{ __('validation.finder_timeline_within_7') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="7">
+                    {{ __('validation.finder_timeline_within_7') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="14">
-                    {{ __('validation.finder_timeline_within_14') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="14">
+                    {{ __('validation.finder_timeline_within_14') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="21">
-                    {{ __('validation.finder_timeline_within_21') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="21">
+                    {{ __('validation.finder_timeline_within_21') }}</p>
                 </label>
                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label fs-6 mr-2 mb-1 btn-price" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px">
-                    <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="30">
-                    {{ __('validation.finder_timeline_within_30') }}
+                <p class="text-input-fin">
+                <input type="radio" class="btn btn-secondary  checkbox" name="timeline" value="30">
+                    {{ __('validation.finder_timeline_within_30') }}</p>
                 </label>
                 <label class="checkbox-label fs-6 mr-2 mb-2 btn-price" style="padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;">
                     <div class="input-group">
@@ -522,7 +564,9 @@ input[type="checkbox"][id^="my-checkbox"] {
         </div>
         <div class="col-md-3 offset-md-4 mb-5">
             <div class="d-grid gap-2">
-                <button type="button" class="btn btn-block rounded-2 text-white mt-3" style="background-color: #00C2C7" onclick="findData()">{{ __('validation.finder_button_search') }}</button>
+                <center>
+                <button type="button" class="btn btn-block rounded-2 text-white mt-3 bt-search" style="background-color: #00C2C7" onclick="findData()">{{ __('validation.finder_button_search') }}</button>
+                </center>
             </div>
         </div>
     </div>
@@ -538,10 +582,10 @@ input[type="checkbox"][id^="my-checkbox"] {
                 style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px" onclick="downLoadList()">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('validation.finder_button_select_download') }} (0)
                 </label>
-                <!-- <label class="btn btn-outline-secondary  rounded-3 border border-1 border-secondary checkbox-label fs-6 mr-2 mb-1 btn-download download-all"
+                <label class="btn btn-outline-secondary  rounded-3 border border-1 border-secondary checkbox-label fs-6 mr-2 mb-1 btn-download download-all"
                  style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;margin-right:7px" onclick="downloadAll()">
                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('validation.finder_button_select_download_all') }}
-                </label> -->
+                </label>
                 <label class="checkbox-label fs-6 mr-2 mb-1" style="padding-left: 18px; padding-right: 18px; padding-top: 10px; padding-bottom: 10px;color: #344054;">
                     <a href="javascript:void(0)" class="text-secondary" data-bs-toggle="modal" data-bs-target="#preview" onclick="loadData()"><i class="fas fa-exclamation-circle"></i> {{ __('validation.finder_button_select_sample') }}</a>
                 </label>
@@ -595,7 +639,15 @@ input[type="checkbox"][id^="my-checkbox"] {
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 sec-load-more" style="display:none;">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-product">{{ __('validation.product_view_more') }}</a></div>
+                        </div>                    
+                    </div>
+            </div> 
         </div>
+        
     </section>
     </form>
     <!-- section End -->
@@ -624,6 +676,36 @@ input[type="checkbox"][id^="my-checkbox"] {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    $(document).ready(function() {
+
+        $(".loadMore-product").on('click', function(e) {
+
+            if ($(".product-finder:hidden").length === 0) {
+                $(".loadMore-product").text('no more product');
+            } else {
+                $(".product-finder:hidden").slice(0, 6).slideDown().css('display', 'block');
+
+            }
+        });
+
+
+        $('input[type=radio][name=price]').change(function() {
+            $('#price-input').val('');
+        });
+
+        $('input[type=radio][name=qty]').change(function() {
+            $('#qty-input').val('');
+        });
+
+        $('input[type=radio][name=timeline]').change(function() {
+            $('#timeline-input').val('');
+        });
+
+
+
+
+
+    });
 
     findData = () => {
 
@@ -725,8 +807,6 @@ input[type="checkbox"][id^="my-checkbox"] {
                 dataType: "json",
                 success: function(response) {
 
-                    // console.log(response);
-
                     $('#listpro').html('')
 
                     let html_pro = '';
@@ -771,11 +851,17 @@ input[type="checkbox"][id^="my-checkbox"] {
                             img_show = value.conf_subproduct_img1;
                         }
 
-                        // console.log(tag);
+                     
+                        let css_pro = '';
 
+                        if(index >= 12){
+                            css_pro = 'style="display:none;"';
+                        }else{
+                            css_pro = 'style="display:block;"';
+                        }
 
-                        html_pro += `<div class="col-lg-2 col-6 col-grid-box">
-               <input type="checkbox" id="my-checkbox${index}" name="check_product[]" value="${value.conf_mainproduct_id}" class="d-none" onclick="countProduct()">
+                        html_pro += `<div class="col-lg-2 col-6 col-grid-box product-finder" ${css_pro}>
+                                            <input type="checkbox" id="my-checkbox${index}" name="check_product[]" value="${value.conf_mainproduct_id}" class="d-none" onclick="countProduct()">
                                                     <label class="product-box" for="my-checkbox${index}">
                                                         <div class="img-wrapper mb-1">
                                                             <div class="front">
@@ -800,7 +886,7 @@ input[type="checkbox"][id^="my-checkbox"] {
                                                     </label>
                                                 </div>`
 
-                                                tag = '';
+                        tag = '';
                     });
 
 
@@ -808,11 +894,11 @@ input[type="checkbox"][id^="my-checkbox"] {
                         $('#listpro').html(html_pro)
                         $('#rs_count').html('Found ' + count + ' products')
                         $('.loading').attr('hidden', 'hidden');
+                        $('.sec-load-more').css('display', 'block');
                     }, 1000);
                 },
                 error: function(response) {
 
-                    // console.log(response);
 
 
                 }
@@ -1137,7 +1223,11 @@ ${ele_sub}
 
         $('#form-download').submit();
 
+        setTimeout(() => {
 
+            Swal.close();
+
+        }, 3000);
 
         }
 
@@ -1146,35 +1236,46 @@ ${ele_sub}
         }
 
 
-        // downloadAll = () =>{
+        downloadAll = () =>{
 
-        //     $('input[name="check_product[]"]').prop('checked', true);
+            $('input[name="check_product[]"]').prop('checked', true);
+
+            if($('input[name="check_product[]"]:checked').length == 0){
+
+                Swal.fire({
+            icon: 'error',
+            title: 'กรุณาเลือกสินค้า',
+            showConfirmButton: false,
+            timer: 1500
+        })
+
+            }else{
 
 
-        //     setTimeout(() => {
-        //         downLoadList();
-        //         Swal.fire({
-        //         title: 'Please wait...',
-        //         html: 'Downloading all products',
-        //         timerProgressBar: true,
-        //         didOpen: () => {
-        //             Swal.showLoading()
-        //         },
-        //         willClose: () => {
-        //             clearInterval(timerInterval)
-        //         }
-        //         }).then((result) => {
-        //         if (
-        //             /* Read more about handling dismissals below */
-        //             result.dismiss === Swal.DismissReason.timer
-        //         ) {
-        //             // console.log('I was closed by the timer')
-        //         }
-        //         })
+            setTimeout(() => {
+                downLoadList();
 
-        //     }, 1000);
+                // please wait  
+                Swal.fire({
+                    title: 'Please wait...',
+                    html: 'Downloading all products',
+                    timerProgressBar: true,
+                    buttons: false,
+                    showConfirmButton: false,
+
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                })
+
+                    
+            
+            }, 1000);
+
+
+        }
 
         
 
-        // }
+        }
 </script>

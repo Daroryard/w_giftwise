@@ -381,7 +381,6 @@
 
     .inline-content img {
         margin-right: 5px;
-        /* ระยะห่างระหว่างรูปภาพกับข้อความ */
     }
 
     .text-we {

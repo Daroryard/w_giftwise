@@ -108,12 +108,16 @@
         padding-left: 15px !important;
         padding-right: 15px !important;
     }
-.product-center {
-  display: flex !important;
-  justify-content: center !important;  /* Horizontally centers the items */
-  align-items: center !important;      /* Vertically centers the items (optional) */
-}
-@media (max-width: 767px) {
+
+    .product-center {
+        display: flex !important;
+        justify-content: center !important;
+        /* Horizontally centers the items */
+        align-items: center !important;
+        /* Vertically centers the items (optional) */
+    }
+
+    @media (max-width: 767px) {
         .mega-menu {
             position: static;
             display: block;
@@ -128,53 +132,373 @@
             width: 96%;
             /* Adjust to your preference for mobile devices */
         }
+       .text-high {
+            font-size: 12px;
+        }
+       
     }
-.slick-slide {
-	/* transform: scale(0.8); */
-	transition: all 0.4s ease-in-out;
-	/* padding: 40px 0; */
-}
+
+    .slick-slide {
+        /* transform: scale(0.8); */
+        transition: all 0.4s ease-in-out;
+        /* padding: 40px 0; */
+    }
 
 
-.slick-slide img {
-	max-width: 100%;
-	transition: all 0.4s ease-in-out;
-}
+    .slick-slide img {
+        max-width: 100%;
+        transition: all 0.4s ease-in-out;
+    }
 
-.slick-center {
-	transform: scale(1.1);
-}
-.badge {
+    .slick-center {
+        transform: scale(1.1);
+    }
+
+    .badge {
         background-color: #E8FEFF;
         color: #00C2C7;
     }
 
-.slick-next:before {
-    font-family: 'slick';
-    font-size: 20px;
-    line-height: 1;
-    opacity: .75;
-    color: black;
-    background: none !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+    .slick-next:before {
+        font-family: 'slick';
+        font-size: 20px;
+        line-height: 1;
+        opacity: .75;
+        color: black;
+        background: none !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-.slick-prev:before {
-    font-family: 'slick';
-    font-size: 20px;
-    line-height: 1;
-    opacity: .75;
-    color: black;
-    background: none !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-p {
-    size : 14px !important;
-    color: #000 !important;
-   }
+    .slick-prev:before {
+        font-family: 'slick';
+        font-size: 20px;
+        line-height: 1;
+        opacity: .75;
+        color: black;
+        background: none !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
+    p {
+        size: 14px !important;
+        color: #000 !important;
+    }
+
+    .p-current {
+        color: #00C2C7 !important;
+    }
+
+    .range-item {
+        position: relative;
+    }
+
+    .range-item:not(:last-child) {
+        margin-bottom: 24px;
+    }
+
+    .range-item .range-input {
+        margin-top: 6px;
+    }
+
+    .range-item .range-input input {
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .range-item ul {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: calc(100% + 34.4px);
+        margin: 0 -17px;
+    }
+
+    .range-item ul .list-inline-item:not(:last-child) {
+        margin-right: 0;
+    }
+
+    .range-item ul .list-inline-item span {
+        position: relative;
+        min-width: 58px;
+        text-align: center;
+        display: block;
+        font-size: 14px;
+        padding-top: 4px;
+        word-break: break-word;
+        color: #b1b1b1;
+    }
+
+    .range-item .range-line {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 8px;
+        width: calc(100% - 14px);
+        background-color: #ddd;
+        z-index: 0;
+        margin: 0 7px;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+
+    .range-item .range-input.disable-range+ul .list-inline-item span::before {
+        background-color: #b1b1b1;
+    }
+
+    .range-item .range-input.disable-range .range-line .active-line {
+        background-color: #b1b1b1;
+    }
+
+    .range-item .range-input.disable-range+ul .list-inline-item.active span::before {
+        background-color: #777777;
+    }
+
+    .range-item .range-input .dot-line {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% - 24px);
+        left: 0;
+        z-index: 1;
+    }
+
+    .range-item .range-input .active-dot {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        cursor: pointer;
+        background-color: #ddd;
+        height: 24px;
+        width: 24px;
+        border: 4px solid green;
+        z-index: 11;
+        left: 0%;
+        border-radius: 50%;
+        border: 4px solid #00C2C7;
+    }
+
+    .range-item .range-input .range-line .active-line {
+        position: absolute;
+        left: 0;
+        width: 0;
+        height: 100%;
+        transition: all 0.1s ease;
+        background-color: #00C2C7;
+    }
+
+    .range-item ul .list-inline-item span::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: #696969;
+    }
+
+    .range-item ul .list-inline-item.active span::before {
+        background-color: white;
+    }
+
+    .range-item .range-input input:disabled~.dot-line .active-dot {
+        background-color: #d9d9d9;
+        border: 4px solid #b1b1b1;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        -webkit-appearance: none;
+        /* Override default look */
+        appearance: none;
+        margin-top: -8px;
+        /* Centers thumb on the track */
+        background-color: #0000;
+        height: 15px;
+        width: 15px;
+        border: 4px solid #0000;
+        z-index: 11;
+        box-shadow: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        /* Override default look */
+        appearance: none;
+        margin-top: -8px;
+        /* Centers thumb on the track */
+        background-color: #0000;
+        height: 24px;
+        width: 24px;
+        border: 4px solid #0000;
+        box-shadow: none;
+        z-index: 11;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]::-moz-range-progress {
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]::-ms-track {
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]::-moz-range-track {
+        background-color: #f0f0f000;
+    }
+
+    /* IE*/
+    input[type="range"]::-ms-fill-lower {
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]::-ms-fill-upper {
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]:focus::-webkit-slider-thumb {
+        box-shadow: none !important;
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]:focus::-moz-range-thumb {
+        box-shadow: none !important;
+        background-color: #f0f0f000;
+    }
+
+    input[type="range"]:focus::-ms-thumb {
+        background-color: #f0f0f000;
+        box-shadow: none !important;
+    }
+
+    input[type="range"]:disabled::-webkit-slider-thumb {
+        background-color: #0000;
+        border: 4px solid #0000;
+    }
+
+    input[type="range"]:disabled::-moz-range-thumb {
+        background-color: #0000;
+        border: 4px solid #0000;
+    }
+
+    .container__img-holder {
+        max-width: 280px;
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 20px;
+        margin-left: 16px;
+        cursor: pointer;
+    }
+
+    .container .container__img-holder:nth-child(3n+1) {
+        margin-left: 0;
+    }
+
+    .container__img-holder img {
+        width: 100%;
+        height: 220px;
+        display: block;
+    }
+
+
+    /* Popup Styling */
+    .img-popup {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(255, 255, 255, .5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+
+    .img-popup img {
+        max-width: 900px;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(-100px);
+        -webkit-transform: translateY(-100px);
+        -moz-transform: translateY(-100px);
+        -ms-transform: translateY(-100px);
+        -o-transform: translateY(-100px);
+    }
+
+    .close-btn {
+        width: 35px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close-btn .bar {
+        height: 4px;
+        background: #333;
+    }
+
+    .close-btn .bar:nth-child(1) {
+        transform: rotate(45deg);
+    }
+
+    .close-btn .bar:nth-child(2) {
+        transform: translateY(-4px) rotate(-45deg);
+    }
+
+    .opened {
+        display: flex;
+    }
+
+    .opened img {
+        animation: animatepopup 1s ease-in-out .8s;
+        -webkit-animation: animatepopup .3s ease-in-out forwards;
+    }
+
+    @keyframes animatepopup {
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+        }
+
+    }
+
+    @media screen and (max-width: 880px) {
+
+        .container .container__img-holder:nth-child(3n+1) {
+            margin-left: 16px;
+        }
+
+    }
+
+    .img-high {
+        cursor: pointer;
+        max-width: 330.67px;
+        max-height: 323px;
+    }
+    img {
+        border-radius: 10px;
+    }
 </style>
 @endsection
 
@@ -184,9 +508,19 @@ p {
     <div class="collection-wrapper">
         <div class="section-content-product-filter">
             <div class="row">
+                <div class="col-md-12" style="margin-bottom:15px">
+                    @if(app()->getLocale() == 'th')
+                    <h6><span onclick="window.location.href='/{{app()->getLocale()}}/product-quick'">สินค้าทั้งหมด</span> > <span onclick="window.location.href='/{{app()->getLocale()}}/quickcategorysub/{{$hd->conf_category_id}}/-'">{{ $hd->conf_categorysub_name_th }}</span> > <span class="p-current">{{ $hd->conf_mainproduct_name_th}}</span></h6>
+                    @else
+                    <h6><span onclick="window.location.href='/{{app()->getLocale()}}/product-quick'">All Products</span> > <span onclick="window.location.href='/{{app()->getLocale()}}/quickcategorysub/{{$hd->conf_category_id}}/-'">{{ $hd->conf_categorysub_name_en }}</span> > <span class="p-current">{{ $hd->conf_mainproduct_name_en}}</span></h6>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-1 col-sm-2 col-xs-12">
                     <div class="row">
                         <div class="col-12 p-0">
+
                             <div class="slider-right-nav img-nav">
                                 @if($hd->conf_mainproduct_img1 != null)
                                 <div><img id="slider-right-nav-1" src="{{ $hd->conf_mainproduct_img1 }}" alt="" class="img-fluid lazyload"></div>
@@ -260,19 +594,52 @@ p {
                             </div>
                             <div class="row">
                                 <div class="col-8 col-md-10  mt-3">
-                                    <h3>{{ __('validation.product_detail_price_rang') }}<h3>
+                                    <h3>{{ __('validation.product_detail_price_rang') }}
+                                        <h3>
                                 </div>
                                 <div class="col-4 col-md-2  mt-3">
                                     <input type="number" class="form-control rounded-2" id="range-value" value="0">
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <div class="form-group">
-                                        <input type="range" class="form-range" id="rangeInput" min="0" max="1000" value="0">
+                                        <div class="range-item">
+                                            <div class="range-input d-flex position-relative">
+                                                <input type="range" class="form-range" id="rangeInput" min="0" max="1000" value="0">
+
+                                                <div class="range-line">
+                                                    <span class="active-line"></span>
+                                                </div>
+                                                <div class="dot-line">
+                                                    <span class="active-dot"></span>
+                                                </div>
+                                            </div>
+                                            <ul class="list-inline list-unstyled">
+                                                <li class="list-inline-item">
+                                                    <span>0</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span>200</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span>400</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span>600</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span>800</span>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <span>1000</span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="">
+                                    <!-- <div class="">
                                         <span class="label-value left-item" data-value="0">0</span>
                                         <span class="label-value right-item" data-value="1000">1000</span>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <button type="button" class="btn btn-block rounded-2 text-white mt-3" id="btn-check-stock" style="background-color: #00C2C7;width:100%;height:40px;">{{ __('validation.product_detail_button_check_stock') }}</button>
@@ -383,60 +750,60 @@ p {
                         <div class="material-border"></div>
                     </li>
                 </ul>
-                
+
                 <div class="tab-content nav-material" id="top-tabContent">
-                <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                            <div class="row">
+                    <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                        <div class="row">
                             <div class="col-md-12 mt-5">
-                            <div class="slider">
-                    @if($hd->conf_mainproduct_img5 != null)           
-                    <div class="item">
-                        <img src="{{ $hd->conf_mainproduct_img5 }}" style="width:330.67px;height:323px" alt="" />
-                        <p>
-                                        {{ $hd->conf_highlight_th1 }}
-                                    </p>
-                    </div>
-                    @endif
-                    @if($hd->conf_mainproduct_img6 != null)
-                    <div class="item">            
-                    <img src="{{ $hd->conf_mainproduct_img6 }}" style="width:330.67px;height:323px" alt="" />
-                    <p>
-                                        {{ $hd->conf_highlight_th2 }}
-                                    </p>
-                    </div>
-                    @endif
-                    @if($hd->conf_mainproduct_img7 != null)
-                    <div class="item">
-                    <img src="{{ $hd->conf_mainproduct_img7 }}" style="width:330.67px;height:323px" alt="" />
-                    <p>
-                                        {{ $hd->conf_highlight_th3 }}
-                                    </p>
-                    </div>
-                    @endif
-                    @if($hd->conf_mainproduct_img8 != null)
-                    <div class="item">
-                    <img src="{{ $hd->conf_mainproduct_img8 }}" style="width:330.67px;height:323px" alt="" />
-                    <p>
-                                        {{ $hd->conf_highlight_th4 }}
-                                    </p>
-                    </div>
-                    @endif                             
-                    </div>                              
-                    </div>
-                    </div>
+                                <div class="slider">
+                                    @if($hd->conf_mainproduct_img5 != null)
+                                    <div class="item container__img-holder">
+                                        <img src="{{ $hd->conf_mainproduct_img5 }}" class="img-high" alt="" />
+                                        <p class="text-high">
+                                            {{ $hd->conf_highlight_th1 }}
+                                        </p>
+                                    </div>
+                                    @endif
+                                    @if($hd->conf_mainproduct_img6 != null)
+                                    <div class="item container__img-holder">
+                                        <img src="{{ $hd->conf_mainproduct_img6 }}" class="img-high" alt="" />
+                                        <p class="text-high">
+                                            {{ $hd->conf_highlight_th2 }}
+                                        </p>
+                                    </div>
+                                    @endif
+                                    @if($hd->conf_mainproduct_img7 != null)
+                                    <div class="item container__img-holder">
+                                        <img src="{{ $hd->conf_mainproduct_img7 }}" class="img-high" alt="" />
+                                        <p class="text-high">
+                                            {{ $hd->conf_highlight_th3 }}
+                                        </p>
+                                    </div>
+                                    @endif
+                                    @if($hd->conf_mainproduct_img8 != null)
+                                    <div class="item container__img-holder">
+                                        <img src="{{ $hd->conf_mainproduct_img8 }}" class="img-high" alt="" />
+                                        <p class="text-high">
+                                            {{ $hd->conf_highlight_th4 }}
+                                        </p>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
                         <div class="single-product-tables">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td> 
+                                        <td>
                                             @if(app()->getLocale() == 'th')
                                             {{ $hd->conf_mainproduct_spec_th }}
                                             @else
                                             {{ $hd->conf_mainproduct_spec_en }}
                                             @endif
-                                           
+
                                     </tr>
                                     <!-- <tr>
                                         <td>สี @if (!empty($item->subProducts))
@@ -479,51 +846,49 @@ p {
                 <h3>{{ __('validation.product_detail_section_sample') }} ({{ $project_count_total }})</h3>
             </div>
             <hr>
-            
-            <div class="col-md-12 text-secondary mt-1">     
-            <ul class="nav nav-tabs nav-material" id="top-tab-project" role="tablist">
-                @foreach ($projectGroup as $key => $item)
+
+            <div class="col-md-12 text-secondary mt-1">
+                <ul class="nav nav-tabs nav-material" id="top-tab-project" role="tablist">
+                    @foreach ($projectGroup as $key => $item)
                     <li class="nav-item"><a class="nav-link" id="top-{{$item->typescreen_name_th}}" data-toggle="tab" href="#{{$item->typescreen_name_th}}" role="tab" aria-selected="true" onclick="proJect('{{$item->typescreen_name_th}}','{{$ref}}')">
-                        @if(app()->getLocale() == 'th')
-                        {{ $item->typescreen_name_th }} ({{ $item->count }})
-                        @else
-                        {{ $item->typescreen_name_en }} ({{ $item->count }})
-                        @endif
-                    </a>
+                            @if(app()->getLocale() == 'th')
+                            {{ $item->typescreen_name_th }} ({{ $item->count }})
+                            @else
+                            {{ $item->typescreen_name_en }} ({{ $item->count }})
+                            @endif
+                        </a>
                         <div class="material-border"></div>
-                    </li>            
-                @endforeach
-                </ul>        
+                    </li>
+                    @endforeach
+                </ul>
             </div>
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-12">
+        
                         <div class="row" id="project-result">
-                        @foreach ($project as $key => $item)
-                        <div class="col-6 col-md-2 mt-5">
+                            @foreach ($project as $key => $item)
+                            @if($key >= 12)
+                            <div class="col-6 col-md-2 mt-5 project-customer" style="display:none;">
+                                @else
+                                 <div class="col-6 col-md-2 mt-5 project-customer"  style="display:block;">
+                                    @endif
                                 <img class="img-fluid" src="{{ $item->conf_projectlist_img1 }}" alt="" style="max-width: 192px; max-height: 184px;">
                             </div>
-                        @endforeach
-                        </div>
-                    </div> 
-                </div>
-                </div>
-                {{-- <div class="row">
-                        @for ($i = 0; $i < 10; $i++)
-                            <div class="col-6 col-md-2 mt-5">
-                                <img class="img-fluid" src="https://placehold.co/192x184" alt="">
-                            </div>
-                        @endfor
-                    </div> --}}
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <button type="button" class="text-secondary btn btn-block rounded-2 text-white mt-3" style="display:none;">แสดงเพิ่มเติม <i class="fa fa-angle-down"></i></button>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-project">{{ __('validation.product_view_more') }}</a></div>
+                        </div>                    
+                    </div>
+            </div>        
         </div>
+    </div>
     </div>
 </section>
 
@@ -542,122 +907,106 @@ p {
 
                 <h3 class="inline-h4">
 
-                    @if($review_avg < 0.5)
+                    @if($review_avg < 0.5) @elseif($review_avg> 0.5 && $review_avg < 1.0) <i class="fa fa-star-half-o"></i>
 
-                    @elseif($review_avg > 0.5 && $review_avg < 1.0)
+                            @elseif($review_avg >= 1.0 && $review_avg < 1.5) <i class="fa fa-star"></i>
 
-                    <i class="fa fa-star-half-o"></i>
+                                @elseif($review_avg >= 1.5 && $review_avg < 2.0) <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
 
-                    @elseif($review_avg >= 1.0 && $review_avg < 1.5)
+                                    @elseif($review_avg >= 2.0 && $review_avg < 2.5) <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
 
-                    <i class="fa fa-star"></i>
+                                        @elseif($review_avg >= 2.5 && $review_avg < 3.0) <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-o"></i>
 
-                    @elseif($review_avg >= 1.5 && $review_avg < 2.0)
+                                            @elseif($review_avg >= 3.0 && $review_avg < 3.5) <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
 
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
+                                                @elseif($review_avg >= 3.5 && $review_avg < 4.0) <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
 
-                    @elseif($review_avg >= 2.0 && $review_avg < 2.5)
-
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-
-                    @elseif($review_avg >= 2.5 && $review_avg < 3.0)
-
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-
-                    @elseif($review_avg >= 3.0 && $review_avg < 3.5)
-
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-
-                    @elseif($review_avg >= 3.5 && $review_avg < 4.0)
-
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-
-                    @elseif($review_avg >= 4.0 && $review_avg < $review_avg)
-
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                                                    @elseif($review_avg >= 4.0 && $review_avg < $review_avg) <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
 
 
-                    @elseif($review_avg >= $review_avg && $review_avg < 4.6)
-
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
+                                                        @elseif($review_avg >= $review_avg && $review_avg < 4.6) <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star-half-o"></i>
 
 
-                    @elseif(4.6 >= 5.0)
+                                                            @elseif(4.6 >= 5.0)
 
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
 
-                    @endif
+                                                            @endif
 
                 </h3>
             </div>
-                    @if($review->count() > 0)
-                    <p class="text-secondary mt-2">จาก {{ $countreviw }} รีวิว</p>
-                    @else
-                    <p class="text-secondary mt-2">0 รีวิว</p>
-                    @endif
-                    <hr>
+            @if($review->count() > 0)
+            <p class="text-secondary mt-2">จาก {{ $countreviw }} รีวิว</p>
+            @else
+            <p class="text-secondary mt-2">0 รีวิว</p>
+            @endif
+            <hr>
             <div class="col-md-12">
                 <div class="row">
-                @if($count > 0)
+                    @if($count > 0)
                     @foreach ($arr_img as $key => $item)
-                   
+
                     @if($key >= 12)
-                        <div class="col-6 col-md-4 col-lg-3 col-xl-2 mt-3 review-customer" style="display:none;" onclick="showReview('{{ $item['id'] }}')">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 mt-3 review-customer" style="display:none;" onclick="showReview('{{ $item['id'] }}')">
                         @else
                         <div class="col-6 col-md-4 col-lg-3 col-xl-2 mt-3 review-customer" style="display:block;" onclick="showReview('{{ $item['id'] }}')">
-                        @endif     
-                        <div class="card review-card">
-                            <img src="{{ $item['img'] }}" class="card-img-top img-fluid" alt="Reviewer Image" style="max-width: 258px;height: 258px;">
-                            <div class="card-body">
-                                <p class="card-text">
+                            @endif
+                            <div class="card review-card">
+                                <img src="{{ $item['img'] }}" class="card-img-top img-fluid" alt="Reviewer Image" style="max-width: 258px;height: 258px;">
+                                <div class="card-body">
+                                    <p class="card-text">
 
-                                    <span class="text-secondary">
-                                        @for($i = 0; $i < $item['star']; $i++)                                       
-                                        &#9733;
-                                        @endfor                                                             
-                                        {{ $item['star'] }}</span>
-                                    <!-- 4-star rating -->
-                                </p>
-                                <p class="card-text review-caption">
-                                    {{ $item['remark'] }}
-                                </p>                  
+                                        <span class="text-secondary">
+                                            @for($i = 0; $i < $item['star']; $i++) &#9733; @endfor {{ $item['star'] }}</span>
+                                                <!-- 4-star rating -->
+                                    </p>
+                                    <p class="card-text review-caption">
+                                        {{ $item['remark'] }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
                     </div>
-                    @endforeach
-                @endif
-            </div>
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 mt-3">
-                        <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-review">{{ __('validation.product_view_more') }}</a></div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-review">{{ __('validation.product_view_more') }}</a></div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                            <div>
+                                <center>
+                                    <a href="/{{ app()->getLocale() }}/customer/-/-" style="color: #009A9E;">{{ __('validation.product_detail_section_review_title') }} <img src="{{ asset('assets/frontend/images/icon/customer-more.png') }}" alt=""></a>
+                                </center>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
 </section>
 
 <section>
@@ -672,59 +1021,52 @@ p {
                     <div class="row">
                         @foreach ($pdsale as $key => $item)
                         @if($key >= 12)
-                        <div class="col-sm-4 col-md-4 col-lg-3 col-xl-2 product-relevants" style="display:none;">
-                        @else
-                        <div class="col-sm-4 col-md-4 col-lg-3 col-xl-2 product-relevants" style="display:block;">
-                        @endif
-                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                                <img src="{{ $item->conf_mainproduct_img1 }}" width="230.4" height="225" />
-                            </a>
-                            <div class="product-details mt-2">
-                                <span class="product-tag">
-                                    @if(!empty($item->saleProductTags))
-                                    @foreach ($item->saleProductTags as $tag)
-                                    @if(app()->getLocale() == 'th')
-                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
-                                    @else
-                                    <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
-                                    @endif
-                                    @endforeach
-                                    @endif
-                                </span>
-                                @if(app()->getLocale() == 'th')
-                                <p>{{ Str::limit($item->conf_mainproduct_name_th, 50) }}</p>
-                                @else
-                                <p>{{ Str::limit($item->conf_mainproduct_name_en, 50) }}</p>
+                        <div class="col-sm-4 col-md-4 col-lg-3 col-xl-2 product-relevants active-hov" style="display:none;">
+                            @else
+                            <div class="col-sm-4 col-md-4 col-lg-3 col-xl-2 product-relevants active-hov" style="display:block;">
                                 @endif
-                                <p class="product-price">{{ $item->price }}</p>
-                                <p class="product-min-quantity text-secondary">สั่งขั้นต่ำ
-                                    {{ number_format($item->timeline_qty, 0) }} ชิ้น
-                                </p>
-                                <p class="product-estimate-date text-secondary">ส่งภายใน
-                                    {{ number_format($item->timeline_day, 0) }} วัน
-                                </p>
+                                <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                                    <img src="{{ $item->conf_mainproduct_img1 }}" width="230.4" height="225" />
+                                </a>
+                                <div class="product-details mt-2">
+                                    <span class="product-tag">
+                                        @if(!empty($item->saleProductTags))
+                                        @foreach ($item->saleProductTags as $tag)
+                                        @if(app()->getLocale() == 'th')
+                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                        @else
+                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                        @endif
+                                        @endforeach
+                                        @endif
+                                    </span>
+                                    @if(app()->getLocale() == 'th')
+                                    <p>{{ Str::limit($item->conf_mainproduct_name_th, 50) }}</p>
+                                    @else
+                                    <p>{{ Str::limit($item->conf_mainproduct_name_en, 50) }}</p>
+                                    @endif
+                                    <p class="product-price">{{ $item->price }}</p>
+                                    <p class="product-min-quantity text-secondary">สั่งขั้นต่ำ
+                                        {{ number_format($item->timeline_qty, 0) }} ชิ้น
+                                    </p>
+                                    <p class="product-estimate-date text-secondary">ส่งภายใน
+                                        {{ number_format($item->timeline_day, 0) }} วัน
+                                    </p>
+                                </div>
                             </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 mt-3">
-                    <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-relevants">{{ __('validation.product_view_more') }}</a></div>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                    <div>
-                        <center>
-                        <a href="/{{ app()->getLocale() }}/customer/-/-" style="color: #009A9E;">ดูรูปลูกค้าของเรา  <img src="{{ asset('assets/frontend/images/icon/customer-more.png') }}" alt=""></a> 
-                        </center>
-                    </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-relevants">{{ __('validation.product_view_more') }}</a></div>
+                        </div>                    
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 </div>
@@ -733,31 +1075,39 @@ p {
 
 <div class="modal fade bd-example-modal theme-modal" id="dataReview" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body modal1" style="background-image:none !important;border-radius: 10px;">
-          <div class="container-fluid p-0">
-            <div class="row">
+        <div class="modal-content">
+            <div class="modal-body modal1" style="background-image:none !important;border-radius: 10px;">
+                <div class="container-fluid p-0">
+                    <div class="row">
 
-                <div class="col-6" id="m-img-review">
-                </div>
-                <div class="col-6">
-                <p style="font-size: 16px; margin-top:15px" id="m-mss-review">
-                </p>
-                <div class="rate">
-         
-                </div>
-                <div id="m-review">
-               
-                </div>
-               
+                        <div class="col-6" id="m-img-review">
+                        </div>
+                        <div class="col-6">
+                            <p style="font-size: 16px; margin-top:15px" id="m-mss-review">
+                            </p>
+                            <div class="rate">
 
-            
+                            </div>
+                            <div id="m-review">
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<div class="img-popup">
+    <img src="" alt="Popup Image">
+    <div class="close-btn">
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
 </div>
 @endsection
 
@@ -786,42 +1136,106 @@ p {
 <script src="{{ asset('assets/frontend/multikart/js/script.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
+
+
+        $(".loadMore-project").on('click', function(e) {
+
+            if ($(".project-customer:hidden").length === 0) {
+                $(".loadMore-project").text('no more projects');
+            } else {
+                $(".project-customer:hidden").slice(0, 6).slideDown().css('display', 'block');
+
+            }
+        });
+
+        $(".loadMore-relevants").on('click', function(e) {
+
+            if ($(".product-relevants:hidden").length === 0) {
+                $(".loadMore-relevants").text('no more products');
+            } else {
+                $(".product-relevants:hidden").slice(0, 6).slideDown().css('display', 'block');
+
+            }
+        });
+
+        $(".loadMore-review").on('click', function(e) {
+
+            if ($(".review-customer:hidden").length === 0) {
+                $(".loadMore-review").text('no more products');
+            } else {
+                $(".review-customer:hidden").slice(0, 6).slideDown().css('display', 'block');
+
+            }
+        });
+
+        var imgPopup = $('.img-popup');
+        var imgCont = $('.container__img-holder');
+        var popupImage = $('.img-popup img');
+        var closeBtn = $('.close-btn');
+
+        imgCont.on('click', function() {
+            var img_src = $(this).children('img').attr('src');
+            imgPopup.children('img').attr('src', img_src);
+            imgPopup.addClass('opened');
+        });
+
+        $(imgPopup, closeBtn).on('click', function() {
+            imgPopup.removeClass('opened');
+            imgPopup.children('img').attr('src', '');
+        });
+
+        popupImage.on('click', function(e) {
+            e.stopPropagation();
+        });
 
 
 
-$(".loadMore-relevants").on('click', function(e) {
-    
-    if ($(".product-relevants:hidden").length === 0) {
-        $(".loadMore-relevants").text('no more products');
-    }else{
-        $(".product-relevants:hidden").slice(0, 6).slideDown().css('display', 'block');
+        SliderFun = (ele) => {
+            for (let i = 0; i < ele.length; i++) {
+                const element = ele[i];
 
-    }
-});
-
-$(".loadMore-review").on('click', function(e) {
-
-    if ($(".review-customer:hidden").length === 0) {
-        $(".loadMore-review").text('no more products');
-    }else{
-        $(".review-customer:hidden").slice(0, 6).slideDown().css('display', 'block');
-
-    }
-});
+                const values = element.value;
+                const dataValue = element.getAttribute("max");
+                const fullValue = Math.round((values * 100) / dataValue);
+                element.nextSibling.parentNode.querySelector(".active-line").style.width =
+                    fullValue + "%";
+                if (element.nextSibling.parentNode.querySelector(".active-dot")) {
+                    element.nextSibling.parentNode.querySelector(".active-dot").style.left =
+                        fullValue + "%";
+                }
 
 
+                $('#range-value').val(values);
+                const vals = values / 3;
+                const ulList = element.parentNode.parentElement.querySelectorAll("ul li");
+                for (let ids = 0; ids < ulList.length; ids++) {
+                    if (ids < vals || ids == vals) {
+                        ulList[ids].classList.add("active");
+                    } else {
+                        ulList[ids].classList.remove("active");
+                    }
+                }
+                // }
+            }
+        }
+        SliderFun($(".range-input input"));
+
+        $(".range-input input").on("input", function() {
+            SliderFun($(this));
+        });
 
 
 
 
-            $(".slider").slick({
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          autoplay: true,
-          centerPadding: "0",      
+
+        $(".slider").slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            autoplay: true,
+            centerPadding: "0",
         });
     });
 
@@ -831,12 +1245,11 @@ $(".loadMore-review").on('click', function(e) {
     var rangeChange = true;
     var productList;
 
-    $('#range-value').change(function() {
-        rangeChange = false;
-        rangeInput.value = $(this).val();
-    });
+    // $('#range-value').change(function() {
+    //     rangeChange = false;
+    //     rangeInput.value = $(this).val();
+    // });
 
-    // Update the range input's step when clicking on a label
     labelValues.forEach((label) => {
         label.addEventListener("click", () => {
             var step = parseInt(label.getAttribute("data-value"), 10);
@@ -896,11 +1309,11 @@ $(".loadMore-review").on('click', function(e) {
 
                     $.each(unique_color, function(key, value) {
 
-                        if(checklang == 'th'){
+                        if (checklang == 'th') {
                             value.conf_subproduct_name_th = value.conf_subproduct_name_th
                             value.conf_color_name_th = value.conf_color_name_th
                             value.conf_size_name_th = value.conf_size_name_th
-                        }else{
+                        } else {
                             value.conf_subproduct_name_th = value.conf_subproduct_name_en
                             value.conf_color_name_th = value.conf_color_name_en
                             value.conf_size_name_th = value.conf_size_name_en
@@ -932,10 +1345,10 @@ $(".loadMore-review").on('click', function(e) {
                     let unique_size = [...new Map(response.product.map(item => [item.conf_size_name_th, item])).values()];
 
                     $.each(unique_size, function(key, value) {
-                        
-                        if(checklang == 'th'){
+
+                        if (checklang == 'th') {
                             value.conf_size_name_th = value.conf_size_name_th
-                        }else{
+                        } else {
                             value.conf_size_name_th = value.conf_size_name_en
                         }
 
@@ -956,9 +1369,9 @@ $(".loadMore-review").on('click', function(e) {
                     var addon = `<h4 class="font-weight-bold mt-2 mb-3">ตัวเลือกสกรีน</h4>`;
                     $.each(unique_screen, function(key, value) {
 
-                        if(checklang == 'th'){
+                        if (checklang == 'th') {
                             value.conf_subproduct_addno_name_th = value.conf_subproduct_addno_name_th
-                        }else{
+                        } else {
                             value.conf_subproduct_addno_name_th = value.conf_subproduct_addno_name_en
                         }
 
@@ -986,9 +1399,9 @@ $(".loadMore-review").on('click', function(e) {
                     var timeline = `<h4 class="font-weight-bold mt-2 mb-3">ระยะเวลาผลิต</h4>`;
                     $.each(unique_timeline, function(key, value) {
 
-                        if(checklang == 'th'){
+                        if (checklang == 'th') {
                             value.conf_subproduct_addno_name_th = value.conf_subproduct_addno_name_th
-                        }else{
+                        } else {
                             value.conf_subproduct_addno_name_th = value.conf_subproduct_addno_name_en
                         }
 
@@ -1015,9 +1428,9 @@ $(".loadMore-review").on('click', function(e) {
                     var pack = `<h4 class="font-weight-bold mt-2 mb-3">Packaging</h4>`;
                     $.each(unique_pack, function(key, value) {
 
-                        if(checklang == 'th'){
+                        if (checklang == 'th') {
                             value.conf_subproduct_addno_name_th = value.conf_subproduct_addno_name_th
-                        }else{
+                        } else {
                             value.conf_subproduct_addno_name_th = value.conf_subproduct_addno_name_en
                         }
 
@@ -1060,63 +1473,63 @@ $(".loadMore-review").on('click', function(e) {
 
     $('#btn-add-qt').click(function() {
 
-    if($('#timeline input[type=radio]:checked').length == 0 || $('#timeline input[type=radio]:checked').length == 0){
-        var timeline = {
-                    id: 0,
-                    name: 'ผลิตปกติ',
-                    price: 0,
-                    by: 'order',
-                    day: 0
-        }
-    }else{
-        var timeline = {
-                    id: $('#timeline input[type=radio]:checked').val(),
-                    name: $('#timeline input[type=radio]:checked').data('name'),
-                    price: $('#timeline input[type=radio]:checked').data('price'),
-                    by: 'order',
-                    day: $('#timeline input[type=radio]:checked').data('day')
-        }
-    }
-
-    if($('#packaging input[type=radio]:checked').length == 0 || $('#packaging input[type=radio]:checked').length == 0){
-        var packaging = {
-                    id: 0,
-                    name: 'ไม่รวม packaging',
-                    price: 0,
-                    by: 'piece',
-                    day: 0
-        }
-    }else{
-        var packaging = {
-                    id: $('#packaging input[type=radio]:checked').val(),
-                    name: $('#packaging input[type=radio]:checked').data('name'),
-                    price: $('#packaging input[type=radio]:checked').data('price'),
-                    by: 'piece',
-                    day: $('#packaging input[type=radio]:checked').data('day')
-        }
-    }
-
-    if($('#addons input[type=radio]:checked').length == 0 || $('#addons input[type=radio]:checked').length == 0){
-        var addon = {
-                    id: 0,
-                    name: 'ไม่สกรีน',
-                    price: 0,
-                    by: 'piece',
-                    day: 0
-        }
-    }else{
-        var addon = {
-                    id: $('#addons input[type=radio]:checked').val(),
-                    name: $('#addons input[type=radio]:checked').data('name'),
-                    price: $('#addons input[type=radio]:checked').data('price'),
-                    by: 'piece',
-                    day: $('#addons input[type=radio]:checked').data('day')
+        if ($('#timeline input[type=radio]:checked').length == 0 || $('#timeline input[type=radio]:checked').length == 0) {
+            var timeline = {
+                id: 0,
+                name: 'ผลิตปกติ',
+                price: 0,
+                by: 'order',
+                day: 0
+            }
+        } else {
+            var timeline = {
+                id: $('#timeline input[type=radio]:checked').val(),
+                name: $('#timeline input[type=radio]:checked').data('name'),
+                price: $('#timeline input[type=radio]:checked').data('price'),
+                by: 'order',
+                day: $('#timeline input[type=radio]:checked').data('day')
+            }
         }
 
-    }
+        if ($('#packaging input[type=radio]:checked').length == 0 || $('#packaging input[type=radio]:checked').length == 0) {
+            var packaging = {
+                id: 0,
+                name: 'ไม่รวม packaging',
+                price: 0,
+                by: 'piece',
+                day: 0
+            }
+        } else {
+            var packaging = {
+                id: $('#packaging input[type=radio]:checked').val(),
+                name: $('#packaging input[type=radio]:checked').data('name'),
+                price: $('#packaging input[type=radio]:checked').data('price'),
+                by: 'piece',
+                day: $('#packaging input[type=radio]:checked').data('day')
+            }
+        }
+
+        if ($('#addons input[type=radio]:checked').length == 0 || $('#addons input[type=radio]:checked').length == 0) {
+            var addon = {
+                id: 0,
+                name: 'ไม่สกรีน',
+                price: 0,
+                by: 'piece',
+                day: 0
+            }
+        } else {
+            var addon = {
+                id: $('#addons input[type=radio]:checked').val(),
+                name: $('#addons input[type=radio]:checked').data('name'),
+                price: $('#addons input[type=radio]:checked').data('price'),
+                by: 'piece',
+                day: $('#addons input[type=radio]:checked').data('day')
+            }
+
+        }
 
 
-        if ($('input[name="product"]:checked').length != 0 && $('input[name="size"]:checked').length != 0){
+        if ($('input[name="product"]:checked').length != 0 && $('input[name="size"]:checked').length != 0) {
 
             var subproduct = {
                 id: $('#checkbox-container input[type=radio]:checked').val(),
@@ -1128,7 +1541,7 @@ $(".loadMore-review").on('click', function(e) {
                 size: $('#checkbox-container input[type=radio]:checked').data('size'),
             }
 
-        
+
             var qty = $('#range-value').val();
 
 
@@ -1216,8 +1629,8 @@ $(".loadMore-review").on('click', function(e) {
 
                 }
             })
-          
-        }  else {
+
+        } else {
 
             Swal.fire({
                 icon: 'error',
@@ -1254,7 +1667,7 @@ $(".loadMore-review").on('click', function(e) {
             $('#checkbox-container').html(
                 `<div class="alert alert-danger" role="alert" align="center">กรุณากดปุ่มเช็คสต็อกและราคาอีกครั้ง</div>`
             );
-        } else if ($('input[name="product"]:checked').length == 0 && $('input[name="size"]:checked').length != 0){
+        } else if ($('input[name="product"]:checked').length == 0 && $('input[name="size"]:checked').length != 0) {
 
             Swal.fire({
                 icon: 'error',
@@ -1285,7 +1698,7 @@ $(".loadMore-review").on('click', function(e) {
 
 
 
-        }else if($('input[name="size"]:checked').length == 0 && $('input[name="product"]:checked').length == 0){
+        } else if ($('input[name="size"]:checked').length == 0 && $('input[name="product"]:checked').length == 0) {
 
             Swal.fire({
                 icon: 'error',
@@ -1304,8 +1717,8 @@ $(".loadMore-review").on('click', function(e) {
 
             calculateTotalPrice();
         }
-        
-    
+
+
 
     });
 
@@ -1420,17 +1833,17 @@ $(".loadMore-review").on('click', function(e) {
         }
 
 
-        
+
         $.ajax({
             url: "{{ route('check.leadtime') }}",
             type: "POST",
             data: {
                 _token: "{{ csrf_token() }}",
                 qty: $('#range-value').val(),
-                subid : $('input[name="product"]:checked').val(),
-                screen_day : $('input[name="addon"]:checked').data('day'),
-                timeline_day : $('input[name="timeline"]:checked').data('day'),
-                packaging_day : $('input[name="packing"]:checked').data('day'),
+                subid: $('input[name="product"]:checked').val(),
+                screen_day: $('input[name="addon"]:checked').data('day'),
+                timeline_day: $('input[name="timeline"]:checked').data('day'),
+                packaging_day: $('input[name="packing"]:checked').data('day'),
             },
             dataType: "json",
             success: function(response) {
@@ -1439,9 +1852,9 @@ $(".loadMore-review").on('click', function(e) {
 
                 $('.production-days').text(response.total_day);
 
-                $('.price-sku').text('฿'+ totalpricesku.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                $('.price-sku').text('฿' + totalpricesku.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 $('#product-price-sku').val(totalpricesku);
-             
+
 
             }
         });
@@ -1596,44 +2009,44 @@ $(".loadMore-review").on('click', function(e) {
 
         setTimeout(function() {
 
-        $.ajax({
-            url: "{{ route('product.getsize') }}",
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                color: color,
-                ref: ref,
-                subid: $('#checkbox-container input[type=radio]:checked').val()
-            },
-            dataType: "json",
-            success: function(response) {
-                // console.log(response);
+            $.ajax({
+                url: "{{ route('product.getsize') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    color: color,
+                    ref: ref,
+                    subid: $('#checkbox-container input[type=radio]:checked').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    // console.log(response);
 
-                var size = `<h4 class="font-weight-bold mt-2 mb-3">ขนาดไซส์</h4>`;
+                    var size = `<h4 class="font-weight-bold mt-2 mb-3">ขนาดไซส์</h4>`;
 
-                $.each(response.size, function(key, value) {
-                    size += `<label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label mr-2 mb-2 btn-addon" style="color: #344054;" onclick="filterAddno('${color}','${ref}','{{ $hd->conf_mainproduct_id }}','${value.conf_size_id}')">
+                    $.each(response.size, function(key, value) {
+                        size += `<label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label mr-2 mb-2 btn-addon" style="color: #344054;" onclick="filterAddno('${color}','${ref}','{{ $hd->conf_mainproduct_id }}','${value.conf_size_id}')">
                             <input type="radio" class="btn btn-secondary  input-option" name="size" data-name="${value.conf_size_name_th}" data-price="${value.conf_subproduct_price1}" data-day="${value.conf_subproduct_days}" value="${value.conf_subproduct_id}">
                             ${value.conf_size_name_th} <span style="color : #D0D5DD;">${value.conf_subproduct_price1 == ".00" ? "" : "(+" + value.conf_subproduct_price1.replace('.00','') + " บาท/ชิ้น)"}</span>
                         </label>`;
-                });
+                    });
 
-                $('#checkbox-container-size').html(size);
+                    $('#checkbox-container-size').html(size);
 
 
-                if(response.getimg.conf_subproduct_img1 && response.getimg.conf_subproduct_img2 && response.getimg.conf_subproduct_img3 && response.getimg.conf_subproduct_img4){
-        
-                    $('.img-nav').html(
-                        `               
+                    if (response.getimg.conf_subproduct_img1 && response.getimg.conf_subproduct_img2 && response.getimg.conf_subproduct_img3 && response.getimg.conf_subproduct_img4) {
+
+                        $('.img-nav').html(
+                            `               
                                         <div><img id="slider-right-nav-1" src="${response.getimg.conf_subproduct_img1}" alt="" class="img-fluid  lazyload"></div>
                                         <div><img id="slider-right-nav-2" src="${response.getimg.conf_subproduct_img2}" alt="" class="img-fluid  lazyload"></div>
                                         <div><img id="slider-right-nav-3" src="${response.getimg.conf_subproduct_img3}" alt="" class="img-fluid  lazyload"></div>
                                         <div><img id="slider-right-nav-4" src="${response.getimg.conf_subproduct_img4}" alt="" class="img-fluid  lazyload"></div>       
                     `)
 
-                    
-                    $('.img-slick').html(
-                        `               
+
+                        $('.img-slick').html(
+                            `               
                                 <div><img id="product-right-slick-1" src="${response.getimg.conf_subproduct_img1}" alt="" class="img-fluid  lazyload image_zoom_cls-0"></div>
                                 <div><img id="product-right-slick-2" src="${response.getimg.conf_subproduct_img2}" alt="" class="img-fluid  lazyload image_zoom_cls-1"></div>
                                 <div><img id="product-right-slick-3" src="${response.getimg.conf_subproduct_img3}" alt="" class="img-fluid  lazyload image_zoom_cls-2"></div>
@@ -1641,19 +2054,19 @@ $(".loadMore-review").on('click', function(e) {
                     `)
 
 
+                    }
+
+
+
+
+                    $('.loading').attr('hidden', 'hidden');
+
                 }
+            })
 
 
 
-
-                $('.loading').attr('hidden', 'hidden');
-
-            }
-        })
-
-
-
-    }, 500);
+        }, 500);
 
 
     }
@@ -1762,9 +2175,9 @@ $(".loadMore-review").on('click', function(e) {
 
 
     reloadColor = () => {
-     
+
         var qty = $('#range-value').val();
-   
+
         $.ajax({
             url: "{{ url('check-stock') }}",
             type: "POST",
@@ -1874,96 +2287,7 @@ $(".loadMore-review").on('click', function(e) {
 
     $('#btn-qt').click(function() {
 
-if($('#timeline input[type=radio]:checked').length == 0 || $('#timeline input[type=radio]:checked').length == 0){
-    var timeline = {
-                id: 0,
-                name: 'ผลิตปกติ',
-                price: 0,
-                by: 'order',
-                day: 0
-    }
-}else{
-    var timeline = {
-                id: $('#timeline input[type=radio]:checked').val(),
-                name: $('#timeline input[type=radio]:checked').data('name'),
-                price: $('#timeline input[type=radio]:checked').data('price'),
-                by: 'order',
-                day: $('#timeline input[type=radio]:checked').data('day')
-    }
-}
-
-if($('#packaging input[type=radio]:checked').length == 0 || $('#packaging input[type=radio]:checked').length == 0){
-    var packaging = {
-                id: 0,
-                name: 'ไม่รวม packaging',
-                price: 0,
-                by: 'piece',
-                day: 0
-    }
-}else{
-    var packaging = {
-                id: $('#packaging input[type=radio]:checked').val(),
-                name: $('#packaging input[type=radio]:checked').data('name'),
-                price: $('#packaging input[type=radio]:checked').data('price'),
-                by: 'piece',
-                day: $('#packaging input[type=radio]:checked').data('day')
-    }
-}
-
-if($('#addons input[type=radio]:checked').length == 0 || $('#addons input[type=radio]:checked').length == 0){
-    var addon = {
-                id: 0,
-                name: 'ไม่สกรีน',
-                price: 0,
-                by: 'piece',
-                day: 0
-    }
-}else{
-    var addon = {
-                id: $('#addons input[type=radio]:checked').val(),
-                name: $('#addons input[type=radio]:checked').data('name'),
-                price: $('#addons input[type=radio]:checked').data('price'),
-                by: 'piece',
-                day: $('#addons input[type=radio]:checked').data('day')
-    }
-
-}
-
-
-    if ($('input[name="product"]:checked').length != 0 && $('input[name="size"]:checked').length != 0){
-
-        var subproduct = {
-            id: $('#checkbox-container input[type=radio]:checked').val(),
-            name: $('#checkbox-container input[type=radio]:checked').data('name'),
-            price: $('#product-price-sku').val(),
-            day: $('#checkbox-container input[type=radio]:checked').data('day'),
-            color: $('#checkbox-container input[type=radio]:checked').data('color'),
-            qty: $('#range-value').val(),
-            size: $('#checkbox-container input[type=radio]:checked').data('size'),
-        }
-
-    
-        var qty = $('#range-value').val();
-
-
-        if (qty == 0 || subproduct == null) {
-            Swal.fire({
-                icon: 'error',
-                text: 'กรุณาเลือกจำนวนสินค้าและตัวเลือกสินค้าให้ครบถ้วน',
-                showConfirmButton: false,
-                timer: 1500
-            })
-            return false;
-        } else if (addon.id == null || addon.id == 0 || addon.id === undefined) {
-            var addon = {
-                id: 0,
-                name: 'ไม่สกรีน',
-                price: 0,
-                by: 'piece',
-                day: 0
-            }
-
-        } else if (timeline.id == null || timeline.id == 0 || timeline.id === undefined) {
+        if ($('#timeline input[type=radio]:checked').length == 0 || $('#timeline input[type=radio]:checked').length == 0) {
             var timeline = {
                 id: 0,
                 name: 'ผลิตปกติ',
@@ -1971,8 +2295,17 @@ if($('#addons input[type=radio]:checked').length == 0 || $('#addons input[type=r
                 by: 'order',
                 day: 0
             }
+        } else {
+            var timeline = {
+                id: $('#timeline input[type=radio]:checked').val(),
+                name: $('#timeline input[type=radio]:checked').data('name'),
+                price: $('#timeline input[type=radio]:checked').data('price'),
+                by: 'order',
+                day: $('#timeline input[type=radio]:checked').data('day')
+            }
+        }
 
-        } else if (packaging.id == null || packaging.id == 0 || packaging.id === undefined) {
+        if ($('#packaging input[type=radio]:checked').length == 0 || $('#packaging input[type=radio]:checked').length == 0) {
             var packaging = {
                 id: 0,
                 name: 'ไม่รวม packaging',
@@ -1980,218 +2313,298 @@ if($('#addons input[type=radio]:checked').length == 0 || $('#addons input[type=r
                 by: 'piece',
                 day: 0
             }
+        } else {
+            var packaging = {
+                id: $('#packaging input[type=radio]:checked').val(),
+                name: $('#packaging input[type=radio]:checked').data('name'),
+                price: $('#packaging input[type=radio]:checked').data('price'),
+                by: 'piece',
+                day: $('#packaging input[type=radio]:checked').data('day')
+            }
+        }
+
+        if ($('#addons input[type=radio]:checked').length == 0 || $('#addons input[type=radio]:checked').length == 0) {
+            var addon = {
+                id: 0,
+                name: 'ไม่สกรีน',
+                price: 0,
+                by: 'piece',
+                day: 0
+            }
+        } else {
+            var addon = {
+                id: $('#addons input[type=radio]:checked').val(),
+                name: $('#addons input[type=radio]:checked').data('name'),
+                price: $('#addons input[type=radio]:checked').data('price'),
+                by: 'piece',
+                day: $('#addons input[type=radio]:checked').data('day')
+            }
+
         }
 
 
+        if ($('input[name="product"]:checked').length != 0 && $('input[name="size"]:checked').length != 0) {
+
+            var subproduct = {
+                id: $('#checkbox-container input[type=radio]:checked').val(),
+                name: $('#checkbox-container input[type=radio]:checked').data('name'),
+                price: $('#product-price-sku').val(),
+                day: $('#checkbox-container input[type=radio]:checked').data('day'),
+                color: $('#checkbox-container input[type=radio]:checked').data('color'),
+                qty: $('#range-value').val(),
+                size: $('#checkbox-container input[type=radio]:checked').data('size'),
+            }
+
+
+            var qty = $('#range-value').val();
+
+
+            if (qty == 0 || subproduct == null) {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'กรุณาเลือกจำนวนสินค้าและตัวเลือกสินค้าให้ครบถ้วน',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                return false;
+            } else if (addon.id == null || addon.id == 0 || addon.id === undefined) {
+                var addon = {
+                    id: 0,
+                    name: 'ไม่สกรีน',
+                    price: 0,
+                    by: 'piece',
+                    day: 0
+                }
+
+            } else if (timeline.id == null || timeline.id == 0 || timeline.id === undefined) {
+                var timeline = {
+                    id: 0,
+                    name: 'ผลิตปกติ',
+                    price: 0,
+                    by: 'order',
+                    day: 0
+                }
+
+            } else if (packaging.id == null || packaging.id == 0 || packaging.id === undefined) {
+                var packaging = {
+                    id: 0,
+                    name: 'ไม่รวม packaging',
+                    price: 0,
+                    by: 'piece',
+                    day: 0
+                }
+            }
+
+
+            $.ajax({
+                url: "{{ route('quotation.store') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    subproduct: subproduct,
+                    addon: addon,
+                    timeline: timeline,
+                    packaging: packaging,
+                    total: totalPrice,
+                    rangePrice: rangePrice,
+                    qty: qty,
+                    id: "{{ $hd->conf_mainproduct_id }}",
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    if (response.status == true) {
+                        $('#count-qt').text(response.sku_cart);
+                        $('#count-qt').show();
+
+                        window.location.href = "{{ route('quotation.index') }}";
+
+                    } else if (response.status == false) {
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'เกิดข้อผิดพลาด',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else if (response.status == 'duplicate') {
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'มีใบเสนอราคานี้อยู่แล้ว',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+
+
+                }
+            })
+
+        } else {
+
+            Swal.fire({
+                icon: 'error',
+                text: 'กรุณาเลือกสีสินค้าและขนาดสินค้า',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return false;
+
+
+
+        }
+
+    })
+
+
+    // $(document).ready(function() {
+    // Initialize the total price
+    var totalPrice = 0.00;
+    var price = 0.00;
+
+    // Handle checkbox clicks
+    $(document).on('change', '.input-option', function() {
+        if (rangeChange == false) {
+            totalPrice = 0.00;
+            $('#range-value').val(0);
+            $('#rangeInput').val(0);
+            $('#addons').hide();
+            $('#timeline').hide();
+            $('#packaging').hide();
+            $('#order-result').hide();
+            $(this).remove()
+            $('#resul')
+            $('#checkbox-container').html(
+                `<div class="alert alert-danger" role="alert" align="center">กรุณากดปุ่มเช็คสต็อกและราคาอีกครั้ง</div>`
+            );
+        } else if ($('input[name="product"]:checked').length == 0 && $('input[name="size"]:checked').length != 0) {
+
+            Swal.fire({
+                icon: 'error',
+                text: 'กรุณาเลือกสีสินค้า',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+
+            $('input[name="size"]').prop('checked', false);
+            $('input[name="addon"]').prop('checked', false);
+            $('input[name="timeline"]').prop('checked', false);
+            $('input[name="packing"]').prop('checked', false);
+
+        } else if ($('input[name="size"]:checked').length != 0 && $('input[name="product"]:checked').length == 0) {
+
+            Swal.fire({
+                icon: 'error',
+                text: 'กรุณาเลือกสีสินค้า',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+            $('input[name="product"]').prop('checked', false);
+            $('input[name="addon"]').prop('checked', false);
+            $('input[name="timeline"]').prop('checked', false);
+            $('input[name="packing"]').prop('checked', false);
+
+
+
+        } else if ($('input[name="size"]:checked').length == 0 && $('input[name="product"]:checked').length == 0) {
+
+            Swal.fire({
+                icon: 'error',
+                text: 'กรุณาเลือกสินค้าและขนาดสินค้า',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+            $('input[name="product"]').prop('checked', false);
+            $('input[name="size"]').prop('checked', false);
+            $('input[name="addon"]').prop('checked', false);
+            $('input[name="timeline"]').prop('checked', false);
+            $('input[name="packing"]').prop('checked', false);
+
+        } else {
+
+            calculateTotalPrice();
+        }
+
+
+
+    });
+
+    proJect = (type, id) => {
+
         $.ajax({
-            url: "{{ route('quotation.store') }}",
+            url: "{{ url('/detail/project-list') }}",
             type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                subproduct: subproduct,
-                addon: addon,
-                timeline: timeline,
-                packaging: packaging,
-                total: totalPrice,
-                rangePrice: rangePrice,
-                qty: qty,
-                id: "{{ $hd->conf_mainproduct_id }}",
-            },
             dataType: "json",
+            data: {
+                'type': type,
+                'id': id,
+                '_token': "{{ csrf_token() }}"
+            },
             success: function(response) {
 
-                if (response.status == true) {
-                    $('#count-qt').text(response.sku_cart);
-                    $('#count-qt').show();
+                let html = '';
 
-                    window.location.href = "{{ route('quotation.index') }}";
-                  
-                } else if (response.status == false) {
-                    Swal.fire({
-                        icon: 'error',
-                        text: 'เกิดข้อผิดพลาด',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                } else if (response.status == 'duplicate') {
-                    Swal.fire({
-                        icon: 'error',
-                        text: 'มีใบเสนอราคานี้อยู่แล้ว',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
+                $.each(response, function(key, value) {
+                    html += `
+                <div class="col-6 col-md-2 mt-5">
+                                <img class="img-fluid" src="${value.conf_projectlist_img1}" alt="" style="max-width: 192px; max-height: 184px;">
+                </div>`;
+                });
+
+                $('#project-result').html(html);
 
 
             }
         })
-      
-    }  else {
-
-        Swal.fire({
-            icon: 'error',
-            text: 'กรุณาเลือกสีสินค้าและขนาดสินค้า',
-            showConfirmButton: false,
-            timer: 1500
-        })
-        return false;
-
-
-
-    }
-
-})
-
-
-// $(document).ready(function() {
-// Initialize the total price
-var totalPrice = 0.00;
-var price = 0.00;
-
-// Handle checkbox clicks
-$(document).on('change', '.input-option', function() {
-    if (rangeChange == false) {
-        totalPrice = 0.00;
-        $('#range-value').val(0);
-        $('#rangeInput').val(0);
-        $('#addons').hide();
-        $('#timeline').hide();
-        $('#packaging').hide();
-        $('#order-result').hide();
-        $(this).remove()
-        $('#resul')
-        $('#checkbox-container').html(
-            `<div class="alert alert-danger" role="alert" align="center">กรุณากดปุ่มเช็คสต็อกและราคาอีกครั้ง</div>`
-        );
-    } else if ($('input[name="product"]:checked').length == 0 && $('input[name="size"]:checked').length != 0){
-
-        Swal.fire({
-            icon: 'error',
-            text: 'กรุณาเลือกสีสินค้า',
-            showConfirmButton: false,
-            timer: 1500
-        })
-
-
-        $('input[name="size"]').prop('checked', false);
-        $('input[name="addon"]').prop('checked', false);
-        $('input[name="timeline"]').prop('checked', false);
-        $('input[name="packing"]').prop('checked', false);
-
-    } else if ($('input[name="size"]:checked').length != 0 && $('input[name="product"]:checked').length == 0) {
-
-        Swal.fire({
-            icon: 'error',
-            text: 'กรุณาเลือกสีสินค้า',
-            showConfirmButton: false,
-            timer: 1500
-        })
-
-        $('input[name="product"]').prop('checked', false);
-        $('input[name="addon"]').prop('checked', false);
-        $('input[name="timeline"]').prop('checked', false);
-        $('input[name="packing"]').prop('checked', false);
-
-
-
-    }else if($('input[name="size"]:checked').length == 0 && $('input[name="product"]:checked').length == 0){
-
-        Swal.fire({
-            icon: 'error',
-            text: 'กรุณาเลือกสินค้าและขนาดสินค้า',
-            showConfirmButton: false,
-            timer: 1500
-        })
-
-        $('input[name="product"]').prop('checked', false);
-        $('input[name="size"]').prop('checked', false);
-        $('input[name="addon"]').prop('checked', false);
-        $('input[name="timeline"]').prop('checked', false);
-        $('input[name="packing"]').prop('checked', false);
-
-    } else {
-
-        calculateTotalPrice();
-    }
-    
-
-
-});
-
-proJect = (type,id) => {
-
-    $.ajax({
-        url: "{{ url('/detail/project-list') }}",
-        type: "POST",
-        dataType: "json",
-        data: {
-            'type': type,
-            'id': id,
-            '_token': "{{ csrf_token() }}"
-        },
-        success: function(response) {
-
-            let html = '';
-
-            $.each(response, function(key, value) {
-                html += `
-                <div class="col-6 col-md-2 mt-5">
-                                <img class="img-fluid" src="${value.conf_projectlist_img1}" alt="" style="max-width: 192px; max-height: 184px;">
-                </div>`;
-            });
-
-            $('#project-result').html(html);
-
-          
-        }
-    })
     }
     showReview = (ref) => {
 
         $.ajax({
-        url: "{{ url('customer/get-modal-review') }}",
-        type: "POST",
-        data: {
-            ref: ref,
-            _token: "{{ csrf_token() }}",
-        },
-        dataType: "json",
-        success: function(data) {
+            url: "{{ url('customer/get-modal-review') }}",
+            type: "POST",
+            data: {
+                ref: ref,
+                _token: "{{ csrf_token() }}",
+            },
+            dataType: "json",
+            success: function(data) {
 
-          if(data.review == null) {
+                if (data.review == null) {
 
-            Swal.fire({
-                icon: 'info',
-                text: 'No data found!',
-            });
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'No data found!',
+                    });
 
-          }else{
+                } else {
 
-            let start = '';
+                    let start = '';
 
-            for(let i = 0; i < data.review.docu_review_qty; i++) {
-                start += '<i class="fa fa-star" style="color: #FFD700;"></i>';
-            }
+                    for (let i = 0; i < data.review.docu_review_qty; i++) {
+                        start += '<i class="fa fa-star" style="color: #FFD700;"></i>';
+                    }
 
-            let product_name = '';
-            let lg = '{{ app()->getLocale() }}';
+                    let product_name = '';
+                    let lg = '{{ app()->getLocale() }}';
 
-            if(lg == 'th') {
-                product_name = data.review.conf_mainproduct_name_th;
-            } else {
-                product_name = data.review.conf_mainproduct_name_en;
-            }
+                    if (lg == 'th') {
+                        product_name = data.review.conf_mainproduct_name_th;
+                    } else {
+                        product_name = data.review.conf_mainproduct_name_en;
+                    }
 
-            $('#m-img-review').html(`<img src="${data.review.docu_review_img1}" class="img-fluid" style="width: 100%;">`);
-            $('#m-mss-review').html(`${data.review.docu_review_remeak}`);
-            $('.rate').html(`${start} <small>${data.review.docu_review_qty}</small>`);
+                    $('#m-img-review').html(`<img src="${data.review.docu_review_img1}" class="img-fluid" style="width: 100%;">`);
+                    $('#m-mss-review').html(`${data.review.docu_review_remeak}`);
+                    $('.rate').html(`${start} <small>${data.review.docu_review_qty}</small>`);
 
-            if(data.review.conf_mainproduct_price == null) {
+                    if (data.review.conf_mainproduct_price == null) {
 
-             
-            }else{
 
-              $('#m-review').html(`<a href="/{{ app()->getLocale() }}/product/${data.review.conf_mainproduct_id}/-">
+                    } else {
+
+                        $('#m-review').html(`<a href="/{{ app()->getLocale() }}/product/${data.review.conf_mainproduct_id}/-">
                 <div style="margin-top: 50px;border: 1px solid #ccc;border-radius: 5px;padding: 15px;text-decoration: none;">
                 <div class="row">
                     <div class="col-4">
@@ -2208,21 +2621,20 @@ proJect = (type,id) => {
                 </div>
                 </a>
                 `)
+                    }
+
+
+
+
+
+                    setTimeout(function() {
+                        $('#dataReview').modal('show');
+                    }, 500);
+
+                }
             }
-
-         
-
-
-    
-setTimeout(function() {
-    $('#dataReview').modal('show');
-}, 500);
-
-          }
-        }
-    });
+        });
 
     }
-    
 </script>
 @endsection

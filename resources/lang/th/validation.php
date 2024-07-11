@@ -136,7 +136,7 @@ return [
     'finder_price_200_300' => '200 - 300 บาท',
     'finder_price_300_500' => '300 - 500 บาท',
     'finder_price_more_than_500' => 'มากกว่า 500 บาท',
-    'finder_input_qty' => 'ระบุราคาที่ต้องการ',
+    'finder_price_qty' => 'ระบุราคาที่ต้องการ',
 
     'finder_qty_50' => 'ต่ำกว่า 50 ชิ้น',
     'finder_qty_100' => '100 ชิ้น',
@@ -290,6 +290,8 @@ return [
     'product_detail_section_sample' => 'ตัวอย่างโปรเจคลูกค้า',
     'product_detail_section_review' => 'รีวิวจากลูกค้า',
     'product_detail_section_relevant' => 'สินค้าที่เกี่ยวข้อง',
+
+    'product_detail_section_review_title' => 'ดูรูปลูกค้าของเรา',
 
     
 

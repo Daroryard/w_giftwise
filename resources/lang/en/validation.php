@@ -144,7 +144,7 @@ return [
        'finder_price_200_300' => '200 - 300 baht',
        'finder_price_300_500' => '300 - 500 baht',
        'finder_price_more_than_500' => 'More than 500 baht',
-       'finder_input_qty' => 'Enter the price you want',
+       'finder_price_qty' => 'Enter the price you want',
 
        'finder_qty_50' => 'Less than 50 pieces',
        'finder_qty_100' => '100 pieces',
@@ -299,7 +299,9 @@ return [
     'product_detail_section_sample' => 'Sample of customer projects',
     'product_detail_section_review' => 'Customer reviews',
     'product_detail_section_relevant' => 'Related products',
-    
+
+    'product_detail_section_review_title' => 'Customer reviews',
+
  
 
     //cart
