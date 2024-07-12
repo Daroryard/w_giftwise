@@ -204,8 +204,11 @@ return [
 
     'contact_alert_input_contact_name ' => 'กรุณากรอกชื่อผู้ติดต่อ',
     'contact_alert_input_contact_company' => 'กรุณากรอกชื่อบริษัทของคุณ',
-    'contact_alert_input_contact_tel' => 'กรุณากรอกเบอร์โทรศัพท์',
+    'contact_alert_input_contact_tel' => 'กรุณากรอกหมายเลขโทรศัพท์',
+    'contact_alert_input_contact_tel_format' => 'กรุณากรอกหมายเลขโทรศัพท์ให้ถูกต้อง',
+
     'contact_alert_input_contact_email' => 'กรุณากรอกอีเมลบริษัท',
+    'contact_alert_input_contact_email_format' => 'กรุณากรอกอีเมลให้ถูกต้อง',
 
 
     // end Contact page

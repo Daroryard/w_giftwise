@@ -211,9 +211,10 @@ return [
     'contact_alert_input_contact_name' => 'Please enter your contact name',
     'contact_alert_input_contact_company' => 'Please enter your company name',
     'contact_alert_input_contact_tel' => 'Please enter your phone number',
+    'contact_alert_input_contact_tel_format' => 'Please enter a valid phone number',
+
     'contact_alert_input_contact_email' => 'Please enter your company email',
-
-
+    'contact_alert_input_contact_email_format' => 'Please enter a valid email address',
 
     // end Contact page
 
