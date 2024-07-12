@@ -406,10 +406,36 @@
         }
 
     }
-    .absolute-contain{
-        background-color:#969492 !important;
+
+    .absolute-contain {
+        background-color: #969492 !important;
 
     }
+    .image-container {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 50px; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100px; 
+    padding: 10px 0; 
+    margin-bottom:20px;
+}
+
+.image-wrapper {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper img {
+    width: 74px;
+    height: 48px;
+    object-fit: cover;
+}
 </style>
 @endsection
 @section('content')
@@ -583,9 +609,9 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                <a href="/{{ app()->getLocale() }}/discover">
-                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
-                </a>
+                    <a href="/{{ app()->getLocale() }}/discover">
+                        <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                    </a>
                 </div>
                 <div class="col-md-12">
                     <div class="new-product-slider">
@@ -704,9 +730,10 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                <a href="/{{ app()->getLocale() }}/discover">
-                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
-                </a>                </div>
+                    <a href="/{{ app()->getLocale() }}/discover">
+                        <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                    </a>
+                </div>
                 <div class="col-md-12">
                     <div class="new-product-slider">
                         @foreach ($pdsale2 as $item)
@@ -749,9 +776,10 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                <a href="/{{ app()->getLocale() }}/discover">
-                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
-                </a>                </div>
+                    <a href="/{{ app()->getLocale() }}/discover">
+                        <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                    </a>
+                </div>
                 <div class="col-md-12">
                     <div class="new-product-slider">
                         @foreach ($pdsale3 as $item)
@@ -798,7 +826,7 @@
                 <div class="col-md-12" width="332">
                     <div class="new-product-slider" style="text-align:-webkit-center">
                         @foreach ($pjlist as $item)
-                    
+
                         <div class="product-box product-wrap">
                             <div class="img-wrapper">
                                 <div class="front">
@@ -859,9 +887,10 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                <a href="/{{ app()->getLocale() }}/discover">
-                    <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
-                </a>                </div>
+                    <a href="/{{ app()->getLocale() }}/discover">
+                        <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                    </a>
+                </div>
                 <div class="col-md-12 mb-3">
                     <div class="new-product-slider mb-3">
                         @foreach ($pdsale4 as $item)
@@ -911,7 +940,7 @@
                         <span class="h4">Total Premiums & Promotion Solution</span>
                     </p>
                     <br>
-                   
+
                 </div>
                 <div class="col-lg-4 service-block1">
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -995,15 +1024,16 @@
                         </p>
                     </div>
                     <div class="col-md-2">
-                    <a href="/{{ app()->getLocale() }}/discover">
-                        <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
-                    </a>                    </div>
+                        <a href="/{{ app()->getLocale() }}/discover">
+                            <p class="text-end text-secondary fs-6 fw-semibold Set col-12 m-0 px-3 py-2">{{ __('validation.home_all') }}</p>
+                        </a>
+                    </div>
                     @foreach ($fav_tag as $item)
                     <div class="col-md-3">
                         <a href="/{{ app()->getLocale() }}/product-quick-tag/{{$item->ms_product_tag_id}}/-" class="absolute-contain">
                             <div class="collection-banner p-left text-left">
-                            @if($item->ms_product_tag_img1 == null)
-                                    <img src="https://erp.giftwise.co.th/assets/images/categorys/IMG_20231121034623_73sQ0.jpg" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
+                                @if($item->ms_product_tag_img1 == null)
+                                <img src="https://erp.giftwise.co.th/assets/images/categorys/IMG_20231121034623_73sQ0.jpg" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
                                 @else
                                 <img src="{{$item->ms_product_tag_img1}}" alt="" class="img-fluid lazyload bg-img" style="border-radius: 10px;">
                                 @endif
@@ -1067,59 +1097,21 @@
                 <div class="col-md-12 text-center service-block2">
                     <h5>{{__('validation.home_group_service')}}</h5>
                 </div>
-                <div class="col-md-12 text-center service-block2">
-                    <div class="new-product-slider mb-3">
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image1.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image2.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image3.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image4.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image5.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image6.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image7.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image8.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="logo-block">
-                                <a href="#"><img src="{{ asset('assets/frontend/images/image9.png') }}" alt="" width="100"></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-12 image-container">
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image1.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image2.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image3.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image4.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image5.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image6.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image7.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image8.png') }}" alt=""></div>
+                    <div class="image-wrapper"><img src="{{ asset('assets/frontend/images/image9.png') }}" alt=""></div>
                 </div>
             </div>
         </section>
         {{-- </div> --}}
-        <br>
+  
 
         <div class="container">
             <div class="checkout-page">
@@ -1240,7 +1232,7 @@
 
 
 <script>
-    playList = (ref,th,en) => {
+    playList = (ref, th, en) => {
 
         $.ajax({
             url: "{{ url('/get-play-list') }}",
@@ -1253,14 +1245,14 @@
             },
             dataType: "json",
             success: function(res) {
-             
+
                 let html = '';
 
                 $.each(res.data, function(index, value) {
 
                     if (value.conf_mainproduct_img1 != null) {
                         html += `<img src="${value.conf_mainproduct_img1}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;">`;
-                    }  
+                    }
                 });
 
 
@@ -1268,13 +1260,13 @@
                 $('.playlist').html(`<div style="margin: 5px;">
                         ${html}
                     </div>`).hide().fadeIn(1000);
-          
+
 
                 $('.arrow-ck').html(``);
 
                 setTimeout(function() {
 
-                $('.arrow-staff-'+ref).html(`<i class="fas fa-chevron-right text-white"></i>`);
+                    $('.arrow-staff-' + ref).html(`<i class="fas fa-chevron-right text-white"></i>`);
 
                 }, 1000);
 

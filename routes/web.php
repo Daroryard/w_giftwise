@@ -26,7 +26,6 @@ Route::group(['prefix' => '{locale?}', 'where' => ['locale' => 'en|th'], 'middle
     Route::post('check-stock', [App\Http\Controllers\Frontend\ProductController::class, 'checkStock'])->name('product.checkstock');
     Route::post('get-addon', [App\Http\Controllers\Frontend\ProductController::class, 'getAddon'])->name('product.getaddon');
     Route::get('/contact' , [App\Http\Controllers\Frontend\ContactController::class , 'contact'])->name('contact');
-    Route::post('/contact-store' , [App\Http\Controllers\Frontend\ContactController::class , 'contactStore']);
     Route::get('/finder' , [App\Http\Controllers\Frontend\FinderController::class , 'finder']);
     Route::get('/product-quick' , [App\Http\Controllers\Frontend\ProductQucikController::class , 'productQuick']);
     Route::get('/userflow' , [App\Http\Controllers\Frontend\UserflowController::class , 'userflow']);
@@ -156,6 +155,10 @@ Route::post('/search-product',  [App\Http\Controllers\Frontend\QuickDataControll
 Route::post('/subscribe', [App\Http\Controllers\Frontend\HomeController::class, 'subscribe'])->name('subscribe');
 Route::post('/check-subscrib', [App\Http\Controllers\Frontend\HomeController::class, 'checkSubscribe'])->name('check-subscrib');
 Route::post('/get-play-list', [App\Http\Controllers\Frontend\HomeController::class, 'getPlayList']);
+
+//contact
+Route::post('/contact-store' , [App\Http\Controllers\Frontend\ContactController::class , 'contactStore']);
+
 
 //Customer Backend
 Route::post('customer/saverating' , [App\Http\Controllers\Frontend\CustomersController::class , 'saveRating']);

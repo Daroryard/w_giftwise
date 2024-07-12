@@ -581,13 +581,16 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">{{__('validation.contact_title_input_contact_tel')}}</label>
-                                                    <input maxlength="20" type="text" required="required" class="form-control inradius" placeholder="{{__('validation.contact_title_input_contact_tel')}}" id="con_tel" />
+                                                    <input maxlength="20" type="text" required="required" class="form-control inradius" placeholder="{{__('validation.contact_title_input_contact_tel')}}" id="con_tel" onkeyup="checkFormat(this.value)" />
                                                     <span class="noti-con-tel" style="color:red;" hidden>{{__('validation.contact_alert_input_contact_tel')}}</span>
+                                                    <span class="noti-con-tel-format" style="color:red;" hidden>{{__('validation.contact_alert_input_contact_tel_format')}}</span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">{{__('validation.contact_title_input_contact_email')}}</label>
-                                                    <input maxlength="50" type="text" required="required" class="form-control inradius" placeholder="{{__('validation.contact_title_input_contact_email')}}" id="con_email" />
+                                                    <input maxlength="50" type="text" required="required" class="form-control inradius" placeholder="{{__('validation.contact_title_input_contact_email')}}" id="con_email" onkeyup="checkFormatMail(this.value)"/>
                                                     <span class="noti-con-email" style="color:red;" hidden>{{__('validation.contact_alert_input_contact_email')}}</span>
+                                                    <span class="noti-con-email-format" style="color:red;" hidden>{{__('validation.contact_alert_input_contact_email_format')}}</span>
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">{{__('validation.contact_title_input_contact_detail')}}</label>
@@ -864,6 +867,7 @@
             $('.noti-con-email').attr('hidden', true);
             $('#con_email').removeClass('border border-danger');
 
+            // console.log(con_pj_name);
 
         $.ajax({
             url: "{{ url('/contact-store') }}",
@@ -887,7 +891,7 @@
             dataType: "json",
             success:function(response){
 
-
+                console.log(response);
 
                 if(response.status == 'success'){
                   $('.el-suc').html(`
@@ -935,5 +939,27 @@
 
 
     });
+
+    checkFormat = (tel) => {
+        let reg = /^[0-9]+$/;
+        if (reg.test(tel) == false) {
+            $('.noti-con-tel-format').removeAttr('hidden');
+            $('#con_tel').addClass('border border-danger');
+        } else {
+            $('.noti-con-tel-format').attr('hidden', true);
+            $('#con_tel').removeClass('border border-danger');
+        }
+    }
+
+    checkFormatMail = (email) => {
+        let reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (reg.test(email) == false) {
+            $('.noti-con-email-format').removeAttr('hidden');
+            $('#con_email').addClass('border border-danger');
+        } else {
+            $('.noti-con-email-format').attr('hidden', true);
+            $('#con_email').removeClass('border border-danger');
+        }
+    }
 </script>
 @endsection

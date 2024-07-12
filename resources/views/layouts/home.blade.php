@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/multikart/css/fontawesome.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/multikart/css/themify-icons.css') }}">
   <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
 
 </head>
 <style>
@@ -641,8 +642,11 @@
                       <div class="file-drop-area">
                         <span class="fake-btn" style="color:#00C2C7">SELECT FILE</span>
                         <span class="file-msg">Select a file or drag and drop here<br>JPG, PNG or PDF, file size no more than 10MB</span>
-                        <input class="file-input" type="file" id="quick_file" accept="image/*,.pdf" multiple onchange="quickQuoFile(this)">
+                        <input class="file-input" type="file" id="quick_file" accept="image/*,.pdf" onchange="quickQuoFile(this)">
                         <div class="item-delete"></div>
+                      </div>
+                      <div class="file-list" style="margin-top: 5px;">
+             
                       </div>
                       <input type="checkbox" name="shipping-option" class="mr-input" id="quick_account_option"> &ensp; <label for="quick_account_option">{{ __('validation.modal_request_quotation_checkbox') }}</label>
                       <button type="button" class="btn btn-solid form-control mr-input bt-q-quotation" style="background-color:#00C2C7;color:#fff" onclick="quickQueAdd()">{{ __('validation.modal_request_quotation_send') }}</button>
@@ -820,7 +824,9 @@
       </div>
     </div>
   </footer>
+
   <script src="{{ asset('assets/frontend/js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
 
   @yield('script')
 
@@ -856,7 +862,7 @@
     })
 
   })
-  // Drag & Drop file upload
+
   const $fileInput = $('.file-input');
   const $droparea = $('.file-drop-area');
   const $delete = $('.item-delete');
@@ -869,22 +875,22 @@
     $droparea.removeClass('is-active');
   });
 
-  $fileInput.on('change', function() {
-    let filesCount = $(this)[0].files.length;
-    let $textContainer = $(this).prev();
+  // $fileInput.on('change', function() {
+  //   let filesCount = $(this)[0].files.length;
+  //   let $textContainer = $(this).prev();
 
-    if (filesCount === 1) {
-      let fileName = $(this).val().split('\\').pop();
-      $textContainer.text(fileName);
-      $('.item-delete').css('display', 'inline-block');
-    } else if (filesCount === 0) {
-      $textContainer.text('or drop files here');
-      $('.item-delete').css('display', 'none');
-    } else {
-      $textContainer.text(filesCount + ' files selected');
-      $('.item-delete').css('display', 'inline-block');
-    }
-  });
+  //   if (filesCount === 1) {
+  //     let fileName = $(this).val().split('\\').pop();
+  //     // $textContainer.text(fileName);
+  //     $('.item-delete').css('display', 'inline-block');
+  //   } else if (filesCount === 0) {
+  //     $textContainer.text('or drop files here');
+  //     $('.item-delete').css('display', 'none');
+  //   } else {
+  //     $textContainer.text(filesCount + ' files selected');
+  //     $('.item-delete').css('display', 'inline-block');
+  //   }
+  // });
 
 
   $delete.on('click', function() {
@@ -912,7 +918,7 @@
                                           <span class="error al_q_email" style="color:red"></span>
                                           <input type="text" class="form-control mr-input" id="quick_company" placeholder="ชื่อบริษัท" required="required">
                                           <span class="error al_q_company" style="color:red"></span>
-                                          <input type="text" class="form-control mr-input" id="quick_tel" placeholder="เบอร์โทรศัพท์" required="required">
+                                          <input type="text" class="form-control mr-input" id="quick_tel" placeholder="เบอร์โทรศัพท์" required="required" format="tel" onkeyup="checkFormatM(this.value)">
                                           <span class="error al_q_tel" style="color:red"></span>
                                           <input type="text" class="form-control mr-input" id="quick_companyemail" placeholder="อีเมลบริษัท" required="required">
                                           <span class="error al_q_companyemail" style="color:red"></span>
@@ -926,6 +932,8 @@
                                               <input class="file-input" type="file" id="quick_file" accept="image/*,.pdf" multiple onchange="quickQuoFile(this)">
                                               <div class="item-delete"></div>
                                           </div>
+                                         
+                          
                                           <input type="checkbox" name="shipping-option" class="mr-input" id="quick_account_option" > &ensp; <label for="quick_account_option">ต้องการให้ทีมงานเราติดต่อกลับไปเพื่อช่วยออกแบบและดูแลโปรเจกต์นี้</label>
                                           <button type="button" class="btn btn-solid form-control mr-input bt-q-quotation" style="background-color:#00C2C7;color:#fff" onclick="quickQueAdd()">ขอใบเสนอราคา</button>
 
@@ -951,13 +959,66 @@
 
       $('#quick_file').val('');
 
+    }else{
+
+      let filelist = $('.file-list');
+
+      for (let i = 0; i < e.files.length; i++) {
+
+        let file = e.files[i];
+
+        let reader = new FileReader();
+
+        let filename = limitString(file.name, 10);
+
+        reader.onload = function(e) {
+
+          let span = `<span style="background-color: #F2F2F2; color: white; padding: 5px; border-radius: 5px; display: inline-flex; align-items: center; width:100%;font-size: 12px !important" class="file-${i}">
+                        <img src="{{ asset('assets/frontend/images/home/icon_file.png') }}" alt="file" style="max-width: 50px; margin: 5px;">
+                        <p style="margin: 5px;">${filename}</p>
+                        <p onclick="previewFile('${e.target.result}')" style="margin: 5px;color:#00C2C7 !important">Preview</p>
+                        <p style="margin: 5px;">${(file.size / 1024).toFixed(2)} KB</p>
+                        <img src="{{ asset('assets/frontend/images/home/icon_close.png') }}" alt="file" style="max-width: 40px; margin: 5px;" onclick="deleteFile(this)">
+                    </span>`;
+
+          filelist.append(span);
+
+        }
+
+        reader.readAsDataURL(file);
+
+      }
     }
+  }
+
+  limitString = (str, n) => {
+    return (str.length > n) ? str.substr(0, n - 1) + '...' : str;
+  }
+
+  deleteFile = (file) => {
+
+    let span = $(file).parent();
+    let input = $('#quick_file');
+
+    input.val('');
+
+    span.remove();
+   
+
 
   }
 
-
-
-
+  previewFile = (dataUrl) => {
+    fetch(dataUrl)
+        .then(res => res.blob())
+        .then(blob => {
+            const blobUrl = URL.createObjectURL(blob);
+            
+            window.open(blobUrl, '_blank');
+            
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+        });
+}
 
   quickQueAdd = () => {
 
@@ -980,8 +1041,18 @@
       $('#quick_email').css('border', '1px solid red');
       $('.al_q_email').text('กรุณากรอกอีเมล');
     } else {
-      $('#quick_email').css('border', '1px solid #ced4da');
-      $('.al_q_email').text('');
+
+      let reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (reg.test(email) == false) {
+        $('#quick_email').css('border', '1px solid red');
+        $('.al_q_email').text('กรุณากรอกอีเมลให้ถูกต้อง');
+        return false;
+      } else {
+        $('#quick_email').css('border', '1px solid #ced4da');
+        $('.al_q_email').text('');
+
+      }
+      
     }
 
     if (company == '') {
@@ -996,16 +1067,39 @@
       $('#quick_tel').css('border', '1px solid red');
       $('.al_q_tel').text('กรุณากรอกเบอร์โทรศัพท์');
     } else {
-      $('#quick_tel').css('border', '1px solid #ced4da');
-      $('.al_q_tel').text('');
+   
+      let reg = /^[0-9]+$/;
+      if (reg.test(tel) == false) {
+        $('#quick_tel').css('border', '1px solid red');
+        $('.al_q_tel').text('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง');
+
+        return false;
+
+      } else {
+        $('#quick_tel').css('border', '1px solid #ced4da');
+        $('.al_q_tel').text('');
+      }
+
+
     }
 
     if (companyemail == '') {
       $('#quick_companyemail').css('border', '1px solid red');
       $('.al_q_companyemail').text('กรุณากรอกอีเมลบริษัท');
     } else {
-      $('#quick_companyemail').css('border', '1px solid #ced4da');
-      $('.al_q_companyemail').text('');
+
+      //check format email
+      let reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (reg.test(companyemail) == false) {
+        $('#quick_companyemail').css('border', '1px solid red');
+        $('.al_q_companyemail').text('กรุณากรอกอีเมลบริษัทให้ถูกต้อง');
+        return false;
+      } else {
+        $('#quick_companyemail').css('border', '1px solid #ced4da');
+        $('.al_q_companyemail').text('');
+      }
+
+
     }
 
 
@@ -1070,6 +1164,10 @@
     formData.append('file', $('#quick_file')[0].files[0]);
     formData.append('account_option', $('#quick_account_option').is(':checked') ? 1 : 0);
     formData.append('_token', "{{ csrf_token() }}");
+
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
 
     $.ajax({
       url: "{{ route('quickdata.quotation') }}",
@@ -1192,6 +1290,7 @@
 
 
               $('.loading').attr('hidden', 'hidden');
+              
             }, 500);
 
 
@@ -1246,7 +1345,7 @@
         },
         dataType: "json",
         success: function(response) {
-          console.log(response);
+          // console.log(response);
 
           if (response.status == 'success') {
             $('#m_customer_login').modal('hide');
@@ -1274,15 +1373,15 @@
           }
         },
         error: function(response) {
-          console.log(response);
-          // toastr.warning(
-          //   'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
-          //   'เกิดข้อผิดพลาด', {
-          //     closeButton: true,
-          //     "positionClass": "toast-top-center"
+          // console.log(response);
+          toastr.warning(
+            'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+            'เกิดข้อผิดพลาด', {
+              closeButton: true,
+              "positionClass": "toast-top-center"
 
-          //   }
-          // );
+            }
+          );
         }
       })
 
@@ -1307,4 +1406,5 @@
     $('.fa-caret-down').toggleClass('fa-caret-up');
 
   });
+
 </script>
