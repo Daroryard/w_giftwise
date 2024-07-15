@@ -262,6 +262,7 @@
     .product-details {
         /* background-color: #fff; */
         padding: 5px;
+        margin-top: 3px !important;
     }
 
     .product-tag {
@@ -408,7 +409,7 @@
     }
 
     .absolute-contain {
-        background-color: #969492 !important;
+        background-color: #AFADAB !important;
 
     }
     .image-container {

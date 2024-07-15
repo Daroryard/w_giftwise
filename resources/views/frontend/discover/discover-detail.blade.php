@@ -146,6 +146,10 @@
 .absolute_banner .collection-banner {
     overflow: unset;
 }
+.absolute-contain {
+        background-color: #AFADAB !important;
+
+    }
 .collection-banner {
     position: relative;
     overflow: hidden;
@@ -269,7 +273,30 @@
             width: 96%;
             /* Adjust to your preference for mobile devices */
         }
+        
+        .inline-content {
+            display: block;
+        }
+
+        .inline-content img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-we {
+            font-size: 12px;
+            color: #fff !important;
+        }
     }
+
+
+    .text-we {
+        color: #fff !important;
+        font-size: 12px;
+    }
+
+
 
     /* Customize Next and Previous Buttons */
     .custom-nav-btn {
@@ -365,6 +392,12 @@ p {
     size : 14px !important;
     color: #000 !important;
    }
+   
+   img {
+    
+    border-radius:10px;
+
+   }
 </style>
 @endsection
 @section('content')
@@ -443,11 +476,13 @@ p {
             <div class="col-md-12 mb-3">
                 <div class="new-product-slider mb-3">
                     @foreach ($pdsale as $item)
-                    <div>
-                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                    <div class="active-hov">
+                        <center>
+                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
                             <img src={{$item->conf_mainproduct_img1}} width="230.4" height="225" />
                         </a>
-                        <div class="product-details">
+                        </center>
+                        <div class="product-details mt-3">
                             <span class="product-tag">
                                 @if(!empty($item->saleProductTags))
                                 @foreach ($item->saleProductTags as $tag)
@@ -494,9 +529,9 @@ p {
                     @endif
                     <div class="absolute-contain">
                     @if(app()->getLocale() == 'th')
-                        <h6>{{$item->ms_product_tag_name}}</h6>
+                        <p class="text-we">{{$item->ms_product_tag_name}}</p>
                     @else
-                        <h6>{{$item->ms_product_tag_nameen}}</h6>
+                        <p class="text-we">{{$item->ms_product_tag_nameen}}</p>
                     @endif
                         <small style="font-size: .8em !important">
                         @if(app()->getLocale() == 'th')

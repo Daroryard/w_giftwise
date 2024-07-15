@@ -40,18 +40,31 @@ class HomeController extends Controller
         ->orderBy('qty','DESC')
         ->inRandomOrder()->take(50)->get();
 
+        $pdsale1 = $pdsale1->unique('conf_mainproduct_id');
+
         $pdsale2 = SaleProduct::where('conf_mainproduct_name_th','not like','ค่า%')
         ->where('conf_mainproduct_img1','<>',null)
+        ->where('qty','>',0)
+        ->where('price','<>','0')
+        ->where('price','<>','0.00')
+        ->where('price','<>','-')
         ->orderBy('qty','ASC')->inRandomOrder()->take(50)->get();
+
+        $pdsale2 = $pdsale2->unique('conf_mainproduct_id');
+
 
         $pdsale3 = SaleProduct::where('conf_mainproduct_name_th','not like','ค่า%')
         ->where('conf_mainproduct_img1','<>',null)
         ->inRandomOrder()->get();
 
+        $pdsale3 = $pdsale3->unique('conf_mainproduct_id');
+
         $pdsale4 = SaleProduct::where('conf_mainproduct_name_th','not like','ค่า%')
         ->where('conf_mainproduct_img1','<>',null)
         ->orderBy('timeline_day','ASC')
         ->inRandomOrder()->take(50)->get(); 
+
+        $pdsale4 = $pdsale4->unique('conf_mainproduct_id');
 
         $pick1 =DB::table('conf_homestaffpick')->where('conf_homestaffpick_listno',1)->first(); 
         $pick2 =DB::table('conf_homestaffpick')->where('conf_homestaffpick_listno',2)->first(); 
