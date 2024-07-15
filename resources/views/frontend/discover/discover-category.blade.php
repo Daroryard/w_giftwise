@@ -365,6 +365,17 @@ p {
     size : 14px !important;
     color: #000 !important;
    }
+.bg-cate{
+    background-image: url("{{ asset('assets/frontend/images/discover/bg-category.png') }}");
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+img {
+    
+    border-radius:10px;
+
+   }
 </style>
 @endsection
 @section('content')
@@ -402,9 +413,8 @@ p {
                 </div>    
     </div>
     </div><br><br>
-    <div class="container">
+    <div class="container bg-cate">
     <div class="row" style="height: 170px;
-    background: black;
     color: #fff;
      padding-top: 50px;
     ">
@@ -419,19 +429,21 @@ p {
     <div class="section-content-discovery">
     <div class="row">
         <div class="row mb-3">
-            <div class="col-md-12">
+            <div class="col-md-12 m-3">
             @foreach($sub_category as $sub)
                <button class="btn bt-sub-{{ $sub->conf_categorysub_id }}" style="background:#F2F4F7;border-radius: 20px;" onclick="filterSub('{{ $sub->conf_categorysub_id }}')">{{ $sub->conf_categorysub_name_th }}</button>
             @endforeach
             </div>
             <br>
             @foreach ($pd as $item)
-            <div class="col-md-15 col-sm-3 mb-4 product-all sub-filter-{{ $item->conf_categorysub_id }}">
+            <div class="col-md-15 col-sm-3 mb-4 product-all sub-filter-{{ $item->conf_categorysub_id }} active-hov">
                 <div class="product-item">
-                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                        <center>
+                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
                             <img src={{$item->conf_mainproduct_img1}} width="230.4" height="225" />
                         </a>
-                        <div class="product-details">
+                        </center>
+                        <div class="product-details mt-3">
                             <span class="product-tag">
                                 @if(!empty($item->mainProductTags))
                                 @foreach ($item->mainProductTags as $tag)

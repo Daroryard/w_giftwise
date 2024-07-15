@@ -51,6 +51,12 @@
     max-width: 1680px !important;
     margin: auto !important;
   }
+  @media (max-width: 768px) {
+    .section-content-footer {
+      max-width: 100% !important;
+      padding: 16px;
+    }
+  }
 
   .section-content-product-detail {
     max-width: 1480px !important;
@@ -480,6 +486,7 @@
 
   .active-hov{
     border: 1px solid #FFF;
+
   }
 
   .active-hov:hover{
@@ -487,6 +494,7 @@
     border-radius:10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    }
+
 
 
 

@@ -361,24 +361,26 @@
 
     .stepwizard-row {
         display: table-row;
+        
     }
 
     .stepwizard {
-        display: table;
-        width: 100%;
-        position: relative;
-    }
+    display: table;
+    width: 100%;
+    position: relative;
+}
 
     .stepwizard-step button[disabled] {
-        /*opacity: 1 !important;
-    filter: alpha(opacity=100) !important;*/
+        /* /* opacity: 1 !important; */
+    /* filter: alpha(opacity=100) !important;*/ 
     }
 
     .stepwizard .btn.disabled,
     .stepwizard .btn[disabled],
     .stepwizard fieldset[disabled] .btn {
         opacity: 1 !important;
-        color: #bbb;
+        color: red;
+
     }
 
     .stepwizard-row:before {
@@ -387,8 +389,8 @@
         position: absolute;
         content: " ";
         width: 100%;
-        height: 1px;
-        background-color: #ccc;
+        height: 5px;
+        background-color: #EFFBFB;
         z-index: 0;
     }
 
@@ -423,7 +425,7 @@
     }
 
     .colorstep {
-        background-color: #00C2C7;
+        background-color: #EFFBFB;
         color: #fff;
         border: none
     }
@@ -431,6 +433,9 @@
     .inradius {
         border-radius: 10px !important;
     }
+    /* a:link {
+    color: #00C2C7 !important;
+    } */
 </style>
 @endsection
 @section('content')
@@ -475,11 +480,11 @@
                                     <div class="stepwizard">
                                         <div class="stepwizard-row setup-panel">
                                             <div class="stepwizard-step col-xs-3">
-                                                <a href="#step-1" type="button" class="first-s btn-circle colorstep">1</a>
+                                                <a href="#step-1" type="button" class="first-s btn-circle colorstep st1" style="color:#00C2C7">1</a>
                                                 <p><small>{{__('validation.contact_step1')}}</small></p>
                                             </div>
                                             <div class="stepwizard-step col-xs-3">
-                                                <a href="#step-2" type="button" class=" btn-default btn-circle colorstep" disabled="disabled">2</a>
+                                                <a href="#step-2" type="button" class=" btn-default btn-circle colorstep st2" disabled="disabled" style="color:#00C2C7">2</a>
                                                 <p><small>{{__('validation.contact_step2')}}</small></p>
                                             </div>
                                         </div>
@@ -600,7 +605,7 @@
                                                     <input type="checkbox" id="con_help" name="con_help"> &ensp;
                                                     <label for="ft_quo_option">{{__('validation.contact_title_input_contact_checkbox')}}</label>
                                                 </div>
-                                                <button class="btn form-control btn-send" style="background-color:#00C2C7;color:#fff;border-radius: 10px;" type="button">{{__('validation.contact_title_button_send')}}</button>
+                                                <button class="btn form-control btn-send" style="background-color:#00C2C7;color:#fff;border-radius: 10px;height:50px" type="button">{{__('validation.contact_title_button_send')}}</button>
                                             </div>
                                         </div>
 
@@ -673,7 +678,7 @@
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                 curInputs = curStep.find("input[type='text'],input[type='url']"),
                 isValid = true;
-
+               
             let con_pj_name = $('#con_pj_name').val();
             let con_pj_ob_name = $('#con_pj_ob_name').val();
             let con_pj_them = $('#con_pj_them').val();
@@ -738,6 +743,13 @@
 
                 $('.noti-pj-time').attr('hidden', true);
                 $('#con_pj_time').removeClass('border border-danger');
+
+
+                $('.st1').html(`<p style="color:#00C2C7">✔</p>`);
+                                
+                // $('#step-1').addClass('display: none;');
+
+
 
                 nextStepWizard.removeAttr('disabled').trigger('click');
 
@@ -891,7 +903,6 @@
             dataType: "json",
             success:function(response){
 
-                console.log(response);
 
                 if(response.status == 'success'){
                   $('.el-suc').html(`
