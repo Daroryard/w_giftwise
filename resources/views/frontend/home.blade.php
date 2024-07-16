@@ -146,7 +146,7 @@
     /* Custom CSS for sub-menus */
     .sub-menu {
         display: block;
-        position: absolute;
+        position: static;
         top: 0;
         left: 100%;
         min-width: 200px;
