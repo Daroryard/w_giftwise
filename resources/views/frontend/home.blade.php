@@ -143,41 +143,82 @@
         color: #00C2C7;
     }
 
-    /* Custom CSS for sub-menus */
-    .sub-menu {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 100%;
-        min-width: 200px;
-        z-index: 1;
-    }
+/* Custom CSS for sub-menus */
+.sub-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    min-width: 200px;
+    z-index: 1;
+    transition: all 0.3s ease; /* เพิ่ม transition เพื่อให้การแสดงผลนุ่มนวลขึ้น */
+}
 
-    /* Custom CSS for mega menu */
-    .mega-menu {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 100%;
-        min-width: 200px;
-        z-index: 1;
-        background-color: #fff;
-        border: 1px solid #ccc;
-    }
+/* Custom CSS for mega menu */
+.mega-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    min-width: 200px;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease; /* เพิ่ม transition เพื่อให้การแสดงผลนุ่มนวลขึ้น */
+}
 
-    .nav-item:hover .mega-menu,
-    .nav-item:focus-within .mega-menu {
-        display: block;
-    }
+/* ปรับปรุงการแสดงผลเมื่อ hover */
+.nav-item:hover > .mega-menu,
+.nav-item:hover > .sub-menu,
+.nav-item:focus-within > .mega-menu,
+.nav-item:focus-within > .sub-menu {
+    display: block;
+}
+
+/* เพิ่มพื้นที่สำหรับการเคลื่อนเมาส์ไปยังเมนูย่อย */
+.nav-item {
+    position: relative;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px; /* เพิ่มพื้นที่ทางขวาของเมนูหลัก */
+    width: 20px;
+    height: 100%;
+}
+
+/* ทำให้เมนูย่อยอยู่นานขึ้นเมื่อเมาส์ออกจากเมนูหลัก */
+.nav-item:hover > .mega-menu,
+.nav-item:hover > .sub-menu {
+    display: block;
+    animation: fadeIn 0.3s, fadeOut 0.3s 1s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; display: none; }
+}
+
 
     /* Custom CSS for vertical mega menu on small screens */
     @media (max-width: 767px) {
         .mega-menu {
-            position: static;
-            display: block;
-            width: 100%;
-        }
+        position: static;
+        display: block;
+        width: 100%;
+    }
 
+        .nav-item::after {
+            display: none; /* ไม่จำเป็นบนหน้าจอขนาดเล็ก */
+        }
+        
         .nav-item .nav-link {
             padding: 0.5rem 1rem;
         }
@@ -496,57 +537,43 @@
                             @endforeach
                     </nav> -->
 
-                        <ul id="sub-menu" class="sm pixelstrap sm-vertical">
-                            @foreach ($catmanu as $key => $item)
-                            <li>
-                                @if (app()->getLocale() == 'th')
+                    <ul id="sub-menu" class="sm pixelstrap sm-vertical">
+    @foreach ($catmanu as $key => $item)
+    <li>
+        @if (app()->getLocale() == 'th')
+        <a href="#">{{$item->conf_category_name_th}}</a>
+        @else
+        <a href="#">{{$item->conf_category_name_en}}</a>
+        @endif
 
-                                <a href="#">{{$item->conf_category_name_th}}</a>
-
-                                @else
-
-                                <a href="#">{{$item->conf_category_name_en}}</a>
-
-                                @endif
-
-                                @if(in_array($item->conf_category_id, $arr_cate))
-
-                                <ul class="mega-menu clothing-menu">
-                                    <li>
-                                        <div class="row m-0">
-
-                                            @foreach ($categorie_sub as $key2 => $sub)
-
-                                            @if($item->conf_category_id == $sub->conf_category_id)
-
-                                            <div class="col-xl-4">
-                                                <div class="link-section">
-                                                    @if (app()->getLocale() == 'th')
-                                                    <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
-                                                        <p>{{ $sub->conf_categorysub_name_th }}</p>
-                                                    </a>
-                                                    @else
-                                                    <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
-                                                        <p>{{ $sub->conf_categorysub_name_en }}</p>
-                                                    </a>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            @endif
-
-                                            @endforeach
-
-                                        </div>
-                                    </li>
-                                </ul>
-
-                                @endif
-
-                            </li>
-                            @endforeach
-
-                        </ul>
+        @if(in_array($item->conf_category_id, $arr_cate))
+        <ul class="mega-menu clothing-menu">
+            <li>
+                <div class="row m-0">
+                    @foreach ($categorie_sub as $key2 => $sub)
+                    @if($item->conf_category_id == $sub->conf_category_id)
+                    <div class="col-xl-4">
+                        <div class="link-section">
+                            @if (app()->getLocale() == 'th')
+                            <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
+                                <p>{{ $sub->conf_categorysub_name_th }}</p>
+                            </a>
+                            @else
+                            <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
+                                <p>{{ $sub->conf_categorysub_name_en }}</p>
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </li>
+        </ul>
+        @endif
+    </li>
+    @endforeach
+</ul>
                     </div>
                 </div>
 
