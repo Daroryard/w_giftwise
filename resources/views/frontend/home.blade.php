@@ -218,7 +218,7 @@
         .nav-item::after {
             display: none; /* ไม่จำเป็นบนหน้าจอขนาดเล็ก */
         }
-        
+
         .nav-item .nav-link {
             padding: 0.5rem 1rem;
         }
@@ -478,8 +478,32 @@
     height: 48px;
     object-fit: cover;
 }
+
+.sm-vertical li > ul {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 200px;
+    z-index: 1000;
+}
+
 .sm-vertical li:hover > ul {
-    display: block !important;
+    display: block;
+}
+
+/* เพิ่มพื้นที่สำหรับการเคลื่อนเมาส์ไปยังเมนูย่อย */
+.sm-vertical li {
+    position: relative;
+}
+
+.sm-vertical li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 20px;
+    height: 100%;
 }
 </style>
 @endsection
@@ -538,42 +562,42 @@
                     </nav> -->
 
                     <ul id="sub-menu" class="sm pixelstrap sm-vertical">
-    @foreach ($catmanu as $key => $item)
-    <li>
-        @if (app()->getLocale() == 'th')
-        <a href="#">{{$item->conf_category_name_th}}</a>
-        @else
-        <a href="#">{{$item->conf_category_name_en}}</a>
-        @endif
+                            @foreach ($catmanu as $key => $item)
+                            <li>
+                                @if (app()->getLocale() == 'th')
+                                <a href="#">{{$item->conf_category_name_th}}</a>
+                                @else
+                                <a href="#">{{$item->conf_category_name_en}}</a>
+                                @endif
 
-        @if(in_array($item->conf_category_id, $arr_cate))
-        <ul class="mega-menu clothing-menu">
-            <li>
-                <div class="row m-0">
-                    @foreach ($categorie_sub as $key2 => $sub)
-                    @if($item->conf_category_id == $sub->conf_category_id)
-                    <div class="col-xl-4">
-                        <div class="link-section">
-                            @if (app()->getLocale() == 'th')
-                            <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
-                                <p>{{ $sub->conf_categorysub_name_th }}</p>
-                            </a>
-                            @else
-                            <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
-                                <p>{{ $sub->conf_categorysub_name_en }}</p>
-                            </a>
-                            @endif
-                        </div>
-                    </div>
-                    @endif
-                    @endforeach
-                </div>
-            </li>
-        </ul>
-        @endif
-    </li>
-    @endforeach
-</ul>
+                                @if(in_array($item->conf_category_id, $arr_cate))
+                                <ul class="mega-menu clothing-menu">
+                                    <li>
+                                        <div class="row m-0">
+                                            @foreach ($categorie_sub as $key2 => $sub)
+                                            @if($item->conf_category_id == $sub->conf_category_id)
+                                            <div class="col-xl-4">
+                                                <div class="link-section">
+                                                    @if (app()->getLocale() == 'th')
+                                                    <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
+                                                        <p>{{ $sub->conf_categorysub_name_th }}</p>
+                                                    </a>
+                                                    @else
+                                                    <a href="/{{app()->getLocale()}}/quickcategorysub/{{$sub->conf_category_id}}/-">
+                                                        <p>{{ $sub->conf_categorysub_name_en }}</p>
+                                                    </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            @endif
+                                            @endforeach
+                                        </div>
+                                    </li>
+                                </ul>
+                                @endif
+                            </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
 
@@ -1263,6 +1287,30 @@
 
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.querySelectorAll('.sm-vertical > li');
+    
+    menuItems.forEach(item => {
+        let timeout;
+        
+        item.addEventListener('mouseenter', function() {
+            clearTimeout(timeout);
+            const subMenu = this.querySelector('ul');
+            if (subMenu) {
+                subMenu.style.display = 'block';
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            const subMenu = this.querySelector('ul');
+            if (subMenu) {
+                timeout = setTimeout(() => {
+                    subMenu.style.display = 'none';
+                }, 300); // ปรับเวลาตามต้องการ (มิลลิวินาที)
+            }
+        });
+    });
+});
     playList = (ref, th, en) => {
 
         $.ajax({
