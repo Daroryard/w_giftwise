@@ -143,27 +143,54 @@
         color: #00C2C7;
     }
 
-    /* Custom CSS for sub-menus */
+   /* Custom CSS for sub-menus */
     .sub-menu {
-        display: block;
-        position: static;
+        display: none;
+        position: absolute;
         top: 0;
         left: 100%;
         min-width: 200px;
-        z-index: 100;
+        z-index: 2; /* เพิ่ม z-index */
     }
 
     /* Custom CSS for mega menu */
     .mega-menu {
-        display: block;
-        position: static;
+        display: none;
+        position: absolute;
         top: 0;
         left: 100%;
         min-width: 200px;
-        z-index: 1;
+        z-index: 2; /* เพิ่ม z-index */
         background-color: #fff;
-        border: 1px solid black;
+        border: 1px solid #ccc;
     }
+
+    .carousel-control-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    padding: 0;
+    text-align: center;
+    background: 0 0;
+    border: 0;
+    transition: opacity .15s ease;
+    pointer-events: none; /* เพิ่มบรรทัดนี้ */
+    }
+
+    .carousel-control-prev-icon {
+        pointer-events: auto; /* เพิ่มคลาสและสไตล์นี้ */
+    }
+
+
+
+
+
+
 
     .nav-item:hover .mega-menu,
     .nav-item:focus-within .mega-menu {
