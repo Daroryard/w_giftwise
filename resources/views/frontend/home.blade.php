@@ -478,15 +478,6 @@
     height: 48px;
     object-fit: cover;
 }
-
-.sm-vertical li > ul {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    min-width: 200px;
-    z-index: 1000;
-}
 .sm-vertical li {
     position: relative;
 }
@@ -501,21 +492,22 @@
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-left: -1px; /* ลดช่องว่างระหว่างเมนูหลักและเมนูย่อย */
 }
 
-.sm-vertical li:hover .mega-menu.clothing-menu,
-.sm-vertical .mega-menu.clothing-menu:hover {
-    display: block;
-}
-
-/* เพิ่มพื้นที่สำหรับการเคลื่อนเมาส์ไปยังเมนูย่อย */
-.sm-vertical li::after {
+/* สร้างพื้นที่เชื่อมต่อระหว่างเมนูหลักและเมนูย่อย */
+.sm-vertical li > a::after {
     content: '';
     position: absolute;
     top: 0;
     right: -20px;
     width: 20px;
     height: 100%;
+}
+
+.sm-vertical li:hover .mega-menu.clothing-menu,
+.sm-vertical .mega-menu.clothing-menu:hover {
+    display: block;
 }
 </style>
 @endsection
@@ -1313,11 +1305,11 @@
             });
             
             item.addEventListener('mouseleave', function(e) {
-                if (!megaMenu.contains(e.relatedTarget)) {
-                    timeout = setTimeout(() => {
+                timeout = setTimeout(() => {
+                    if (!megaMenu.matches(':hover')) {
                         megaMenu.style.display = 'none';
-                    }, 300); // ปรับเวลาตามต้องการ (มิลลิวินาที)
-                }
+                    }
+                }, 100);
             });
             
             megaMenu.addEventListener('mouseenter', function() {
@@ -1327,7 +1319,7 @@
             megaMenu.addEventListener('mouseleave', function() {
                 timeout = setTimeout(() => {
                     megaMenu.style.display = 'none';
-                }, 300); // ปรับเวลาตามต้องการ (มิลลิวินาที)
+                }, 100);
             });
         }
     });
