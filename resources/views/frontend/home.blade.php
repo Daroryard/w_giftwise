@@ -487,16 +487,28 @@
     min-width: 200px;
     z-index: 1000;
 }
-
-.sm-vertical li:hover > ul {
-    display: block;
-}
-
-/* เพิ่มพื้นที่สำหรับการเคลื่อนเมาส์ไปยังเมนูย่อย */
 .sm-vertical li {
     position: relative;
 }
 
+.sm-vertical .mega-menu.clothing-menu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 200px;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.sm-vertical li:hover .mega-menu.clothing-menu,
+.sm-vertical .mega-menu.clothing-menu:hover {
+    display: block;
+}
+
+/* เพิ่มพื้นที่สำหรับการเคลื่อนเมาส์ไปยังเมนูย่อย */
 .sm-vertical li::after {
     content: '';
     position: absolute;
@@ -1287,28 +1299,37 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
     const menuItems = document.querySelectorAll('.sm-vertical > li');
     
     menuItems.forEach(item => {
-        let timeout;
-        
-        item.addEventListener('mouseenter', function() {
-            clearTimeout(timeout);
-            const subMenu = this.querySelector('ul');
-            if (subMenu) {
-                subMenu.style.display = 'block';
-            }
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            const subMenu = this.querySelector('ul');
-            if (subMenu) {
+        const megaMenu = item.querySelector('.mega-menu.clothing-menu');
+        if (megaMenu) {
+            let timeout;
+            
+            item.addEventListener('mouseenter', function() {
+                clearTimeout(timeout);
+                megaMenu.style.display = 'block';
+            });
+            
+            item.addEventListener('mouseleave', function(e) {
+                if (!megaMenu.contains(e.relatedTarget)) {
+                    timeout = setTimeout(() => {
+                        megaMenu.style.display = 'none';
+                    }, 300); // ปรับเวลาตามต้องการ (มิลลิวินาที)
+                }
+            });
+            
+            megaMenu.addEventListener('mouseenter', function() {
+                clearTimeout(timeout);
+            });
+            
+            megaMenu.addEventListener('mouseleave', function() {
                 timeout = setTimeout(() => {
-                    subMenu.style.display = 'none';
+                    megaMenu.style.display = 'none';
                 }, 300); // ปรับเวลาตามต้องการ (มิลลิวินาที)
-            }
-        });
+            });
+        }
     });
 });
     playList = (ref, th, en) => {
