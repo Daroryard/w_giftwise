@@ -143,80 +143,39 @@
         color: #00C2C7;
     }
 
-/* Custom CSS for sub-menus */
-.sub-menu {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    min-width: 200px;
-    z-index: 1;
-    transition: all 0.3s ease; /* เพิ่ม transition เพื่อให้การแสดงผลนุ่มนวลขึ้น */
-}
+    /* Custom CSS for sub-menus */
+    .sub-menu {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        min-width: 200px;
+        z-index: 100;
+    }
 
-/* Custom CSS for mega menu */
-.mega-menu {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    min-width: 200px;
-    z-index: 1;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease; /* เพิ่ม transition เพื่อให้การแสดงผลนุ่มนวลขึ้น */
-}
+    /* Custom CSS for mega menu */
+    .mega-menu {
+        display: block;
+        position: static;
+        top: 0;
+        left: 100%;
+        min-width: 200px;
+        z-index: 1;
+        background-color: #fff;
+        border: 1px solid black;
+    }
 
-/* ปรับปรุงการแสดงผลเมื่อ hover */
-.nav-item:hover > .mega-menu,
-.nav-item:hover > .sub-menu,
-.nav-item:focus-within > .mega-menu,
-.nav-item:focus-within > .sub-menu {
-    display: block;
-}
-
-/* เพิ่มพื้นที่สำหรับการเคลื่อนเมาส์ไปยังเมนูย่อย */
-.nav-item {
-    position: relative;
-}
-
-.nav-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -20px; /* เพิ่มพื้นที่ทางขวาของเมนูหลัก */
-    width: 20px;
-    height: 100%;
-}
-
-/* ทำให้เมนูย่อยอยู่นานขึ้นเมื่อเมาส์ออกจากเมนูหลัก */
-.nav-item:hover > .mega-menu,
-.nav-item:hover > .sub-menu {
-    display: block;
-    animation: fadeIn 0.3s, fadeOut 0.3s 1s forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; display: none; }
-}
-
+    .nav-item:hover .mega-menu,
+    .nav-item:focus-within .mega-menu {
+        display: block;
+    }
 
     /* Custom CSS for vertical mega menu on small screens */
     @media (max-width: 767px) {
         .mega-menu {
-        position: static;
-        display: block;
-        width: 100%;
-    }
-
-        .nav-item::after {
-            display: none; /* ไม่จำเป็นบนหน้าจอขนาดเล็ก */
+            position: static;
+            display: block;
+            width: 100%;
         }
 
         .nav-item .nav-link {
@@ -478,37 +437,6 @@
     height: 48px;
     object-fit: cover;
 }
-.sm-vertical li {
-    position: relative;
-}
-
-.sm-vertical .mega-menu.clothing-menu {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    min-width: 200px;
-    z-index: 1000;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-left: -1px; /* ลดช่องว่างระหว่างเมนูหลักและเมนูย่อย */
-}
-
-/* สร้างพื้นที่เชื่อมต่อระหว่างเมนูหลักและเมนูย่อย */
-.sm-vertical li > a::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -20px;
-    width: 20px;
-    height: 100%;
-}
-
-.sm-vertical li:hover .mega-menu.clothing-menu,
-.sm-vertical .mega-menu.clothing-menu:hover {
-    display: block;
-}
 </style>
 @endsection
 @section('content')
@@ -565,21 +493,29 @@
                             @endforeach
                     </nav> -->
 
-                    <ul id="sub-menu" class="sm pixelstrap sm-vertical">
+                        <ul id="sub-menu" class="sm pixelstrap sm-vertical">
                             @foreach ($catmanu as $key => $item)
                             <li>
                                 @if (app()->getLocale() == 'th')
+
                                 <a href="#">{{$item->conf_category_name_th}}</a>
+
                                 @else
+
                                 <a href="#">{{$item->conf_category_name_en}}</a>
+
                                 @endif
 
                                 @if(in_array($item->conf_category_id, $arr_cate))
+
                                 <ul class="mega-menu clothing-menu">
                                     <li>
                                         <div class="row m-0">
+
                                             @foreach ($categorie_sub as $key2 => $sub)
+
                                             @if($item->conf_category_id == $sub->conf_category_id)
+
                                             <div class="col-xl-4">
                                                 <div class="link-section">
                                                     @if (app()->getLocale() == 'th')
@@ -593,14 +529,20 @@
                                                     @endif
                                                 </div>
                                             </div>
+
                                             @endif
+
                                             @endforeach
+
                                         </div>
                                     </li>
                                 </ul>
+
                                 @endif
+
                             </li>
                             @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -1291,39 +1233,6 @@
 
 
 <script>
- document.addEventListener('DOMContentLoaded', function() {
-    const menuItems = document.querySelectorAll('.sm-vertical > li');
-    
-    menuItems.forEach(item => {
-        const megaMenu = item.querySelector('.mega-menu.clothing-menu');
-        if (megaMenu) {
-            let timeout;
-            
-            item.addEventListener('mouseenter', function() {
-                clearTimeout(timeout);
-                megaMenu.style.display = 'block';
-            });
-            
-            item.addEventListener('mouseleave', function(e) {
-                timeout = setTimeout(() => {
-                    if (!megaMenu.matches(':hover')) {
-                        megaMenu.style.display = 'none';
-                    }
-                }, 100);
-            });
-            
-            megaMenu.addEventListener('mouseenter', function() {
-                clearTimeout(timeout);
-            });
-            
-            megaMenu.addEventListener('mouseleave', function() {
-                timeout = setTimeout(() => {
-                    megaMenu.style.display = 'none';
-                }, 100);
-            });
-        }
-    });
-});
     playList = (ref, th, en) => {
 
         $.ajax({
