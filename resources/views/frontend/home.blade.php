@@ -437,6 +437,9 @@
     height: 48px;
     object-fit: cover;
 }
+.sm-vertical li:hover > ul {
+    display: block !important;
+}
 </style>
 @endsection
 @section('content')
