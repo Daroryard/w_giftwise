@@ -48,12 +48,14 @@
   }
 
   .section-content-footer {
-    max-width: 1680px !important;
+    max-width: 1200px !important;
     margin: auto !important;
+
+    
   }
   @media (max-width: 768px) {
     .section-content-footer {
-      max-width: 100% !important;
+      flex-direction: column;
       padding: 16px;
     }
   }

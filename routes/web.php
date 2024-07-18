@@ -186,11 +186,9 @@ Route::get('/customer/product-link/{token}' , [App\Http\Controllers\Frontend\Cus
 
 
 
-
-
-
-
 Route::middleware('cors')->group(function () {
+
+
     Route::resource('api' , App\Http\Controllers\ApiProductController::class);
     Route::get('/api-main' , [App\Http\Controllers\ApiProductController::class , 'ProductMain']);
     Route::get('/api-sub' , [App\Http\Controllers\ApiProductController::class , 'ProductSub']);
@@ -205,7 +203,17 @@ Route::middleware('cors')->group(function () {
     Route::get('/api-ProductCategory/{id}' , [App\Http\Controllers\ApiProductController::class , 'getPdCategory']);
     Route::get('/main-products/{id}' , [App\Http\Controllers\ApiProductController::class , 'mainProducts']);
     Route::get('/main-products-tags', [App\Http\Controllers\ApiProductController::class , 'multiProductsTags']);
+
+
 });
+
+
+// Scripterp
+    Route::get('/orderlist/{date}' , [App\Http\Controllers\Scripterp\ManageERP::class , 'orderList']);
+
+
+
+
 
 
 
