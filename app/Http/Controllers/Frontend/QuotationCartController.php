@@ -378,6 +378,8 @@ class QuotationCartController extends Controller
 
             DB::rollback();
 
+            
+
             return response()->json(['status' => false , 'message' => $e->getMessage()]);
 
         }
