@@ -333,6 +333,13 @@ return [
 
 
 
+        // userflow
+
+        'userflow_product_hot' => '10 Hit models',
+        'userflow_table_price_title' => 'Price and usage comparison table',
+
+        
+
 
 
 
