@@ -506,106 +506,14 @@
                     </div>                    
                 </div>
             </div> --}}
-            <div class="row">
+            <div class="row" onclick="window.location.href='/{{ app()->getLocale() }}/contact'">
                 <div class="col-12">
                     <div class="top-banner-wrapper">
                         <img src="{{ asset('assets/frontend/images/banner.png') }}" class="img-fluid lazyload" alt="" style="width: 100%;">
                     </div>
                 </div>
             </div>
-            <div class="row"> 
-                <span class="h3">
-                {{ __('validation.guide_title_favorite') }} 
-                </span><br>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                        <img src="{{ asset('assets/frontend/images/pic66.png') }}" class="card-img-top img-fluid"
-                        alt="Reviewer Image" style="width: 100%;"><br>
-                        <div class="me-2">
-                            &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                            &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
-                            &nbsp;<span class="badge p-2">ของขวัญ</span>
-                        </div>
-                    <span class="h6">
-                    &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของขวัญให้พนักงานสำหรับองค์กรขนาดใหญ่
-                    </span>
-                    <p class="card-text review-caption">
-                        &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด! แนะนำประเภทสินค้า
-                    </p>
-                    <p class="card-text review-caption">
-                        &nbsp;&nbsp;พร้อมวิธีการจัดทำแบบละเอียด! แนะนำประเภทสินค้า 
-                    </p>
-                    <p class="card-text review-caption">
-                        &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                    </p>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                        <img src="{{ asset('assets/frontend/images/pic77.png') }}" class="card-img-top img-fluid"
-                        alt="Reviewer Image" style="width: 100%; height:100%;">
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <div class="me-2">
-                                &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                                &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
-                            </div><br>
-                            <span class="h6">
-                                &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของ ขวัญให้พนักงานสำหรับองค์กรขนาด ใหญ่
-                            </span><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด!
-                            </p><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                            </p>
-                        </div>                           
-                    </div><br>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                        <img src="{{ asset('assets/frontend/images/pic88.png') }}" class="card-img-top img-fluid"
-                        alt="Reviewer Image" style="width: 100%; height:100%;">
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <div class="me-2">
-                                &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                                &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
-                            </div><br>
-                            <span class="h6">
-                                &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของ ขวัญให้พนักงานสำหรับองค์กรขนาด ใหญ่
-                            </span><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด!
-                            </p><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                            </p>
-                        </div>                           
-                    </div><br>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                        <img src="{{ asset('assets/frontend/images/pic99.png') }}" class="card-img-top img-fluid"
-                        alt="Reviewer Image" style="width: 100%; height:100%;">
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <div class="me-2">
-                                &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                                &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
-                            </div><br>
-                            <span class="h6">
-                                &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของ ขวัญให้พนักงานสำหรับองค์กรขนาด ใหญ่
-                            </span><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด!
-                            </p><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                            </p>
-                        </div>                           
-                    </div>
-                </div>
-            </div><br>
+           
             <div class="row" style="box-sizing: border-box;background: var(--primary-section-bg, #f9fafb);
             padding: 36px 0px 36px 0px;
             display: flex;

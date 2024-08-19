@@ -327,7 +327,10 @@ return [
 
     
 
+    // userflow
 
+    'userflow_product_hot' => '10 โมเดลยอดฮิต',
+    'userflow_table_price_title' => 'ตารางเปรียบเทียบราคาและการใช้งาน',
 
   
 

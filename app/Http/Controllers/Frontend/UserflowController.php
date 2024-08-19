@@ -19,8 +19,24 @@ class UserflowController extends Controller
      */
     public function index()
     {
+
+        $erp_manual = DB::connection('sqlsrv_erp')
+        ->table('ms_product_manual')
+        ->select('ms_product_category_id')
+        ->where('status',1)->get();
+
+
+        $arr = array();
+
+        foreach($erp_manual as $erp){
+            $arr[] = $erp->ms_product_category_id;
+        }
+
+
         $cat = Category::where('conf_category_active',1)
-        ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])->get();
+        ->whereIn('conf_category_id',$arr)->get();
+
+     
        
         return view('frontend.userflow.userflow-detail' , compact('cat'));
 
@@ -107,19 +123,38 @@ class UserflowController extends Controller
 
     public function userflow ()
     {
+
+        $erp_manual = DB::connection('sqlsrv_erp')
+        ->table('ms_product_manual')
+        ->select('ms_product_category_id')
+        ->where('status',1)->get();
+
+
+        $arr = array();
+
+        foreach($erp_manual as $erp){
+            $arr[] = $erp->ms_product_category_id;
+        }
+
+
+
         $cat = Category::where('conf_category_active',1)
-        ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])->get();
+        ->whereIn('conf_category_id',$arr)->get();
+
+     
        
         return view('frontend.userflow.userflow-detail' , compact('cat'));
     }
 
     public function userflowShow ($ref,$id) {
+
         $cat = Category::where('conf_category_active',1)
         ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])->get();
         $categorie_sub = CategorySub::where('conf_categorysub_active', 1)->orderBy('conf_category_id', 'asc')->get();
         $catmanu = Category::where('conf_category_active',1)
         ->whereIn('conf_category_id',[20,21,22,23,24,28,29,30,31,35])->get();
         $arr_cate = array();
+
         foreach($categorie_sub as $cate){
             if(!in_array($cate->conf_category_id, $arr_cate)){
                 $arr_cate[] = $cate->conf_category_id;           
@@ -133,11 +168,40 @@ class UserflowController extends Controller
         ->orderBy('qty','DESC')
         ->inRandomOrder()->take(10)->get();
 
-        $pjlist = DB::table('conf_projectlist')->whereNotNull('conf_projectlist_img1')->inRandomOrder()->take(20)->get();    
-
-
-        // dd($pjlist);
+        $pjlist = DB::table('conf_projectlist')->whereNotNull('conf_projectlist_img1')->inRandomOrder()->take(20)->get();   
         
-        return view('frontend.userflow.userflow-detail-show' , compact('cat','catmanu','arr_cate','categorie_sub','hd','dt','product_hit','pjlist'));
+    
+        $erp_manual = DB::connection('sqlsrv_erp')
+        ->table('ms_product_manual')
+        ->where('ms_product_category_id',$id)
+        ->first();
+
+        // $pick_tag =  DB::table('vw_erp_producttag')
+        // ->select('ms_product_tag_name','ms_product_tag_nameen')
+        // ->groupBy('ms_product_tag_name','ms_product_tag_nameen')
+        // ->inRandomOrder()->take(5)
+        // ->get();
+        // dd($pick_tag);
+
+        $tag_cate = DB::table('conf_mainproduct_tag')
+        ->select('conf_mainproduct_tag.conf_mainproduct_tag_name_th','conf_mainproduct_tag.conf_mainproduct_tag_name_en')
+        ->leftJoin('erp_productlist','conf_mainproduct_id','=','ms_product_id')
+        ->leftJoin('erp_producttag','erp_producttag.ms_product_id','=','conf_mainproduct_tag.conf_mainproduct_id')
+        ->where('erp_productlist.ms_product_category_id',$id)
+        ->groupBy('conf_mainproduct_tag.conf_mainproduct_tag_name_th','conf_mainproduct_tag.conf_mainproduct_tag_name_en')
+        ->get();
+
+
+        $compare_table = DB::connection('sqlsrv_erp')
+        ->table('ms_product_compare_table')
+        ->where('ms_product_category_id',$id)
+        ->where('status',1)
+        ->get();
+
+
+
+        // dd($compare_table);
+        
+        return view('frontend.userflow.userflow-detail-show' , compact('cat','catmanu','arr_cate','categorie_sub','hd','dt','product_hit','pjlist','erp_manual','tag_cate','compare_table'));
     }
 }

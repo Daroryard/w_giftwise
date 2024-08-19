@@ -456,17 +456,9 @@
                 <div class="container-fluid ">
                     <div class="row">
                         <div class="col-md-6 m-0 p-2 align-self-center justify-content-center text-center">
-                            <h3 style="text-align: left;">
-                            <span style="color: #007275;">แก้วพลาสติก</span> ที่เหมาะสมกับการใช้งานของคุณ
-                            </h3>
-                            <p class="card-text review-caption" style="text-align: left;">
-                            พกพาง่ายมีฝาปิดป้องกันสิ่งสกปรกต่างๆดีไซน์ทันสมัยและเรียบง่าย สีสันสดใส <br><br>
-                            ทนทานต่อแรงกระแทกและรอยขีดข่วน ขนาดพอดี จับถนัดมือเหมาะสำหรับเจ้าตัว เล็กที่มักทำ <br><br>
-                            ของตก และทำอาหารหกเลอะเทอะอยู่เสมอ ขณะเรียนรู้ที่จะทานอาหาร ด้วยตัวเอง ซ้อนเก็บได้ <br><br>
-                            ไม่เปลืองที่
-                            </p>                                            
+                            {!! $erp_manual->blog1 !!}                                            
                         </div>
-                        <div class="col-md-6 m-0 p-1"> <img src="{{ asset('assets/frontend/images/pic77.png') }}" width="100%"> </div>
+                        <div class="col-md-6 m-0 p-1"> <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog1_img }}" width="100%"> </div>
                     </div>
                 </div>
             </section>
@@ -474,17 +466,9 @@
             <section class="mb-2 section-content">
                 <div class="container-fluid ">
                     <div class="row">                     
-                        <div class="col-md-6 m-0 p-1"> <img src="{{ asset('assets/frontend/images/pic77.png') }}" width="100%"> </div>
+                        <div class="col-md-6 m-0 p-1"> <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog2_img }}" width="100%"> </div>
                         <div class="col-md-6 m-0 p-2 align-self-center justify-content-center text-center">
-                                <h3 style="text-align: left;">
-                            <span style="color: #007275;">ชนิด/วัสด</span>ของแก้วพลาสติกที่ม
-                            </h3>
-                            <p class="card-text review-caption" style="text-align: left;">
-                            พกพาง่ายมีฝาปิดป้องกันสิ่งสกปรกต่างๆดีไซน์ทันสมัยและเรียบง่าย สีสันสดใส <br><br>
-                            ทนทานต่อแรงกระแทกและรอยขีดข่วน ขนาดพอดี จับถนัดมือเหมาะสำหรับเจ้าตัว เล็กที่มักทำ <br><br>
-                            ของตก และทำอาหารหกเลอะเทอะอยู่เสมอ ขณะเรียนรู้ที่จะทานอาหาร ด้วยตัวเอง ซ้อนเก็บได้ <br><br>
-                            ไม่เปลืองที่
-                            </p>                                            
+                        {!! $erp_manual->blog2 !!}                                                                                        
                         </div>
                     </div>
                 </div>
@@ -495,26 +479,19 @@
                 <div class="container-fluid ">
                     <div class="row">
                         <div class="col-md-6 m-0 p-2 align-self-center justify-content-center text-center">
-                            <h3 style="text-align: left;">
-                            <span style="color: #007275;">ข้อดี - ข้อเสีย</span>ของวัสดุแต่ละชนิด
-                            </h3>
-                            <p class="card-text review-caption" style="text-align: left;">
-                            พกพาง่ายมีฝาปิดป้องกันสิ่งสกปรกต่างๆดีไซน์ทันสมัยและเรียบง่าย สีสันสดใส <br><br>
-                            ทนทานต่อแรงกระแทกและรอยขีดข่วน ขนาดพอดี จับถนัดมือเหมาะสำหรับเจ้าตัว เล็กที่มักทำ <br><br>
-                            ของตก และทำอาหารหกเลอะเทอะอยู่เสมอ ขณะเรียนรู้ที่จะทานอาหาร ด้วยตัวเอง ซ้อนเก็บได้ <br><br>
-                            ไม่เปลืองที่
-                            </p>                                            
+                        {!! $erp_manual->blog3 !!}                                              
                         </div>
-                        <div class="col-md-6 m-0 p-1"> <img src="{{ asset('assets/frontend/images/pic77.png') }}" width="100%"> </div>
+                        <div class="col-md-6 m-0 p-1"> <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog3_img }}" width="100%"> </div>
                     </div>
                 </div>
             </section>
 
+            @if(count($compare_table) > 0)
             <section class="mb-2 section-content">
                 <div class="container-fluid ">
                     <div class="row">
                     <div class="col-md-12">
-                    <span class="h3"> ตารางเปรียบเทียบราคาและการใช้งาน</h2>
+                    <span class="h3"> {{ __('validation.userflow_table_price_title') }}</h2>
                     <hr style="border: 1px solid var(--Primary-Line-and-border, #EAECF0);">
                     <table id="tb" class="table table-bordered nowrap" style="width:100%;font-size: 14px;border-radius: 4px;border: 1px solid var(--Primary-Line-and-border, #EAECF0);background: var(--White, #FFF);">
                         <thead>
@@ -525,39 +502,32 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($compare_table as $key => $val_com)
                             <tr class="text-center">
-                                <td>Polyethylene Terephthalate (PET / PETE)</td>
-                                <td>ใช้งานกันอย่างกว้างขวาง <br> ปลอดภัยส่วนใหญ่จะใช้ในอุตสาหกรรมอาหาร</td>
-                                <td>100 - 350 บาท</td>
+                                <td>{{ $val_com->ms_raw_table }}</td>
+                                <td>{{ $val_com->ms_work_table }}</td>
+                                <td>{{ $val_com->ms_price_table }}</td>
                             </tr>
-                            <tr class="text-center">
-                                <td>Polyethylene (PE)</td>
-                                <td>ปลอดภัยด้วยความแข็งแรง ทนความร้อน <br> ความเย็นได้ และยังเป็นพลาสติกที่ใช้ซ้ำได้</td>
-                                <td>200 - 450 บาท</td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>Polypropylene (PP)</td>
-                                <td>เป็นพลาสติกชนิดที่ใช้มากที่สุดอีกชนิดหนึ่ง <br> มีความเบา ทนต่อความร้อน และแข็งแรง <br> นิยมไปใช้เป็นแพคเกจต่างๆ สามารถใช้กับอาหารได้ <br> สามารถนำไปใช้ในไมโครเวฟได้</td>
-                                <td>300 - 500 บาท</td>
-                            </tr>
+                            @endforeach                       
                         </tbody>
                         </table>                    
                     </div>
                     </div>
                 </div>
             </section>
+            @endif
 
 
             <section class="mb-2 section-content">
                 <div class="container-fluid ">
                     <div class="row">
                     <div class="col-md-12">
-                    <span class="h3">10 โมเดลยอดฮิต</h2>
+                    <span class="h3">{{ __('validation.userflow_product_hot') }}</h2>
                     <hr style="border: 1px solid var(--Primary-Line-and-border, #EAECF0);">
                     <div class="product-wrapper-grid">
                                             <div class="row margin-res mb-4" style="justify-content: center;">
                                             @foreach($product_hit as $key => $val)
-                                                <div class="col-lg-2 col-6 col-grid-box">
+                                                <div class="col-lg-2 col-6 col-grid-box slick-active-hov">
                                                     <div class="product-box">
                                                         <div class="img-wrapper">
                                                             <div class="front">
@@ -648,12 +618,7 @@
                 </div>
             </section>
 
-
-
-
-
-
-            <div class="row">
+            <div class="row" onclick="window.location.href='/{{ app()->getLocale() }}/contact'">
                 <div class="col-12">
                     <div class="top-banner-wrapper">
                         <img src="{{ asset('assets/frontend/images/banner.png') }}" class="img-fluid lazyload" alt="" style="width: 100%;">
@@ -667,88 +632,72 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                        <img src="{{ asset('assets/frontend/images/pic66.png') }}" class="card-img-top img-fluid"
+                        <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog4_img }}" class="card-img-top img-fluid"
                         alt="Reviewer Image" style="width: 100%;"><br>
                         <div class="me-2">
-                            &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                            &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
-                            &nbsp;<span class="badge p-2">ของขวัญ</span>
-                        </div>
-                    <span class="h6">
-                    &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของขวัญให้พนักงานสำหรับองค์กรขนาดใหญ่
-                    </span>
-                    <p class="card-text review-caption">
-                        &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด! แนะนำประเภทสินค้า
-                    </p>
-                    <p class="card-text review-caption">
-                        &nbsp;&nbsp;พร้อมวิธีการจัดทำแบบละเอียด! แนะนำประเภทสินค้า 
-                    </p>
-                    <p class="card-text review-caption">
-                        &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                    </p>
+                            @foreach ($tag_cate as $tag_cate_list)
+                            @if(app()->getLocale() == 'th')
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_th }}</span>
+                            @else
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_en }}</span>
+                            @endif
+                            @endforeach
+                        </div><br>
+                        {!! $erp_manual->blog4 !!}
                 </div>
                 <div class="col-6">
                     <div class="row">
                         <div class="col-12 col-md-4">
-                        <img src="{{ asset('assets/frontend/images/pic77.png') }}" class="card-img-top img-fluid"
+                        <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog5_img }}" class="card-img-top img-fluid"
                         alt="Reviewer Image" style="width: 100%; height:100%;">
                         </div>
                         <div class="col-12 col-md-8">
                             <div class="me-2">
-                                &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                                &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
+                            @foreach ($tag_cate as $tag_cate_list)
+                            @if(app()->getLocale() == 'th')
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_th }}</span>
+                            @else
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_en }}</span>
+                            @endif
+                            @endforeach
                             </div><br>
-                            <span class="h6">
-                                &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของ ขวัญให้พนักงานสำหรับองค์กรขนาด ใหญ่
-                            </span><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด!
-                            </p><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                            </p>
+                            {!! $erp_manual->blog5 !!}
                         </div>                           
                     </div><br>
                     <div class="row">
                         <div class="col-12 col-md-4">
-                        <img src="{{ asset('assets/frontend/images/pic88.png') }}" class="card-img-top img-fluid"
+                        <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog6_img }}" class="card-img-top img-fluid"
                         alt="Reviewer Image" style="width: 100%; height:100%;">
                         </div>
                         <div class="col-12 col-md-8">
                             <div class="me-2">
-                                &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                                &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
+                            @foreach ($tag_cate as $tag_cate_list)
+                            @if(app()->getLocale() == 'th')
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_th }}</span>
+                            @else
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_en }}</span>
+                            @endif
+                            @endforeach
                             </div><br>
-                            <span class="h6">
-                                &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของ ขวัญให้พนักงานสำหรับองค์กรขนาด ใหญ่
-                            </span><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด!
-                            </p><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                            </p>
+                            {!! $erp_manual->blog6 !!}
                         </div>                           
                     </div><br>
                     <div class="row">
                         <div class="col-12 col-md-4">
-                        <img src="{{ asset('assets/frontend/images/pic99.png') }}" class="card-img-top img-fluid"
+                        <img src="https://erp.giftwise.co.th/{{ $erp_manual->blog6_img }}" class="card-img-top img-fluid"
                         alt="Reviewer Image" style="width: 100%; height:100%;">
                         </div>
                         <div class="col-12 col-md-8">
                             <div class="me-2">
-                                &nbsp;<span class="badge p-2">กระบอกน้ำ</span>
-                                &nbsp;<span class="badge p-2">ของใช้ในบ้าน</span>
+                            @foreach ($tag_cate as $tag_cate_list)
+                            @if(app()->getLocale() == 'th')
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_th }}</span>
+                            @else
+                            &nbsp;<span class="badge p-2">{{ $tag_cate_list->conf_mainproduct_tag_name_en }}</span>
+                            @endif
+                            @endforeach
                             </div><br>
-                            <span class="h6">
-                                &nbsp; วิธีเลือกแก้วน้ำ กระบอกน้ำ เพื่อเป็นของ ขวัญให้พนักงานสำหรับองค์กรขนาด ใหญ่
-                            </span><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;แนะนำประเภทสินค้า พร้อมวิธีการจัดทำแบบละเอียด!
-                            </p><br><br>
-                            <p class="card-text review-caption">
-                                &nbsp;&nbsp;30 พฤศจิกายน 2565 
-                            </p>
+                            {!! $erp_manual->blog7 !!}
                         </div>                           
                     </div>
                 </div>
