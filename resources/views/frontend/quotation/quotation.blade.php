@@ -604,7 +604,7 @@
                                                 <span class="error al_fm_tel" style="color:red"></span>
                                                 <input type="text" class="form-control mr-input" id="fm-companyemail" placeholder="อีเมลบริษัท" required="required">
                                                 <span class="error al_fm_companyemail" style="color:red"></span>
-                                                <input type="text" class="form-control mr-input" id="fm-taxid" placeholder="เลขประจำตัวผู้เสียภาษี" required="required">
+                                                <input type="text" class="form-control mr-input" id="fm-taxid" placeholder="เลขประจำตัวผู้เสียภาษี" required="required" maxlength="13">
                                                 <span class="error al_fm_taxid" style="color:red"></span>
                                                 <label for="message_address">ที่อยู่</label>
                                                 <input type="text" class="form-control mr-input" id="fm-address" placeholder="ที่อยู่" required="required">
