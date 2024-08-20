@@ -1269,13 +1269,13 @@
             },
             dataType: "json",
             success: function(res) {
-
+                
                 let html = '';
 
                 $.each(res.data, function(index, value) {
 
                     if (value.conf_mainproduct_img1 != null) {
-                        html += `<img src="${value.conf_mainproduct_img1}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;">`;
+                        html += `<img src="${value.conf_mainproduct_img1}" alt="" class="img-fluid" style="border-radius: 10px;max-width:200px;margin-right:5px;" onclick="window.location.href='/{{app()->getLocale()}}/quickcategorysub/${value.conf_category_id}/-'">`;
                     }
                 });
 
