@@ -34,6 +34,7 @@ class SubProduct extends Model
       'created_at',
       'updated_at',
       'postweb',
+      'stcqty'
     ];
 
     protected $casts = [
@@ -62,5 +63,10 @@ class SubProduct extends Model
 
     public function size(){
         return $this->belongsTo(Size::class, 'conf_size_id', 'conf_size_id');
+    }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class, 'ms_product_code', 'conf_subproduct_code');
     }
 }
