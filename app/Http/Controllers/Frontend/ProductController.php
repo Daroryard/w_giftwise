@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\CategorySub;
 use App\Models\Category;
+use App\Models\Stock;   
 
 class ProductController extends Controller
 {
     public function detail($id,$ref){
 
         $hd = MainProduct::find($ref);
-        // dd($hd);
 
         if(!$hd){
             abort(403);
@@ -130,9 +130,29 @@ class ProductController extends Controller
         ->where('conf_subproduct_active', 1)
         ->get();
 
+
+
+        foreach($product as $key => $value){
+
+            $productCode = strtok($value->conf_subproduct_code, '-');
+
+
+
+            $stock = Stock::where('ms_product_code', 'like', $productCode . '%')
+            ->where('ms_product_color_id', $value->conf_color_id)
+            ->sum('stcqty');
+            $product[$key]->stock = $stock;
+
+        
+
+        }
+
+
         $addons = SubProductAddon::where('conf_mainproduct_id', $request->id)
         ->where('conf_subproduct_addno_active', 1)
         ->get();
+
+
 
         return response()->json([
             'product' => $product,
@@ -151,8 +171,20 @@ class ProductController extends Controller
         $id = $request->ref;
         $subid = $request->subid;
         
-        
         $size = SubProduct::where('conf_mainproduct_id', $id)->where('conf_subproduct_active' , 1)->where('conf_color_id' , $color)->get();
+
+        // size stock 
+        foreach($size as $key => $value){
+
+            $productCode = strtok($value->conf_subproduct_code, '-');
+
+            $stock = Stock::where('ms_product_code', 'like', $productCode . '%')
+            ->where('ms_product_color_id', $value->conf_color_id)
+            ->where('ms_product_size_id', $value->conf_size_id)
+            ->sum('stcqty');
+            $size[$key]->stock = $stock;
+
+        }
 
         $getimg = SubProduct::where('conf_subproduct_id', $subid)
                 ->select('conf_subproduct_img1','conf_subproduct_img2','conf_subproduct_img3','conf_subproduct_img4')

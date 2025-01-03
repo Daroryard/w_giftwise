@@ -1292,6 +1292,7 @@
             },
             dataType: "json",
             success: function(response) {
+                // console.log(response);
 
                 let checklang = "{{ app()->getLocale() }}";
 
@@ -1307,6 +1308,7 @@
 
                     let unique_color = [...new Map(response.product.map(item => [item.conf_color_name_th, item])).values()];
 
+                    let stockqty = 0;
 
                     $.each(unique_color, function(key, value) {
 
@@ -1321,8 +1323,11 @@
                         }
 
 
+                        stockqty = parseFloat(value.stock);
+
+
                         let days = value.conf_subproduct_pcstime * qty;
-                        if (value.conf_subproduct_stcqty != null) {
+                        if (stockqty != null) {
 
                             checkbox += `                                                                               
                                 <label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label mr-2 mb-2 btn-addon" style="color: #344054;" onclick="filterSize('${value.conf_color_id}','${value.conf_mainproduct_id}',this)">
@@ -1336,7 +1341,7 @@
                         }" data-name="${value.conf_subproduct_name_th}" data-color="${value.conf_color_name_th}" data-img1="${value.conf_subproduct_img1}"
                         data-img2="${value.conf_subproduct_img2}" data-img3="${value.conf_subproduct_img3}"
                         data-img4="${value.conf_subproduct_img4}" data-day="${value.conf_subproduct_days}" value="${value.conf_subproduct_id}" data-size="${value.conf_size_name_th}">
-                                                                ${value.conf_color_name_th} <br> (จำนวน ${value.conf_subproduct_stcqty} ชิ้น)
+                                                                ${value.conf_color_name_th} <br> (จำนวน ${stockqty} ชิ้น)
                                                                 </label>`;
                         }
                     });
@@ -1738,6 +1743,7 @@
         var packagingPrice;
 
 
+
         $('#packaging input[type="radio"]:checked').each(function() {
             totalPrice += parseFloat($(this).data('price') * $('#range-value').val());
             textPrice += parseFloat($(this).data('price'));
@@ -1761,6 +1767,8 @@
             timeline = $(this).data('name');
             timelinePrice = $(this).data('price');
         });
+
+        // if 
 
         $('#checkbox-container input[type="checkbox"]:checked').each(function(index) {
             var price = parseFloat($(this).data('price'));
@@ -1825,6 +1833,17 @@
             // }
         });
         // Update the total price display
+
+        if(totalPrice == 0){
+
+            //size price
+
+
+         
+        }
+            
+
+
         $('#total-price').text(textPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         $('#result-price').text(totalPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' บาท');
         if (color.length > 0) {
@@ -2028,7 +2047,9 @@
                     $.each(response.size, function(key, value) {
                         size += `<label class="btn btn-outline-info  rounded-3 border border-1 border-info checkbox-label mr-2 mb-2 btn-addon" style="color: #344054;" onclick="filterAddno('${color}','${ref}','{{ $hd->conf_mainproduct_id }}','${value.conf_size_id}')">
                             <input type="radio" class="btn btn-secondary  input-option" name="size" data-name="${value.conf_size_name_th}" data-price="${value.conf_subproduct_price1}" data-day="${value.conf_subproduct_days}" value="${value.conf_subproduct_id}">
-                            ${value.conf_size_name_th} <span style="color : #D0D5DD;">${value.conf_subproduct_price1 == ".00" ? "" : "(+" + value.conf_subproduct_price1.replace('.00','') + " บาท/ชิ้น)"}</span>
+                            ${value.conf_size_name_th} 
+                            <span style="color : #D0D5DD;">${value.stock == ".00" ? "" : "(จำนวน " + value.stock.replace('.00','') + " ชิ้น)"}</span>
+                            <span style="color : #D0D5DD;">${value.conf_subproduct_price1 == ".00" ? "" : "(+" + value.conf_subproduct_price1.replace('.00','') + " บาท/ชิ้น)"}</span>
                         </label>`;
                     });
 
