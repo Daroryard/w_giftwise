@@ -132,10 +132,11 @@
             width: 96%;
             /* Adjust to your preference for mobile devices */
         }
-       .text-high {
+
+        .text-high {
             font-size: 12px;
         }
-       
+
     }
 
     .slick-slide {
@@ -496,6 +497,7 @@
         max-width: 330.67px;
         max-height: 323px;
     }
+
     img {
         border-radius: 10px;
     }
@@ -865,30 +867,30 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-12">
-        
+
                         <div class="row" id="project-result">
                             @foreach ($project as $key => $item)
                             @if($key >= 12)
                             <div class="col-6 col-md-2 mt-5 project-customer" style="display:none;">
                                 @else
-                                 <div class="col-6 col-md-2 mt-5 project-customer"  style="display:block;">
+                                <div class="col-6 col-md-2 mt-5 project-customer" style="display:block;">
                                     @endif
-                                <img class="img-fluid" src="{{ $item->conf_projectlist_img1 }}" alt="" style="max-width: 192px; max-height: 184px;">
+                                    <img class="img-fluid" src="{{ $item->conf_projectlist_img1 }}" alt="" style="max-width: 192px; max-height: 184px;">
+                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-project">{{ __('validation.product_view_more') }}</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-project">{{ __('validation.product_view_more') }}</a></div>
-                        </div>                    
-                    </div>
-            </div>        
         </div>
-    </div>
     </div>
 </section>
 
@@ -996,12 +998,12 @@
                                 <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-review">{{ __('validation.product_view_more') }}</a></div>
                             </div>
                             <div class="col-md-12 mt-3">
-                            <div>
-                                <center>
-                                    <a href="/{{ app()->getLocale() }}/customer/-/-" style="color: #009A9E;">{{ __('validation.product_detail_section_review_title') }} <img src="{{ asset('assets/frontend/images/icon/customer-more.png') }}" alt=""></a>
-                                </center>
+                                <div>
+                                    <center>
+                                        <a href="/{{ app()->getLocale() }}/customer/-/-" style="color: #009A9E;">{{ __('validation.product_detail_section_review_title') }} <img src="{{ asset('assets/frontend/images/icon/customer-more.png') }}" alt=""></a>
+                                    </center>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -1062,7 +1064,7 @@
                     <div class="row">
                         <div class="col-md-12 mt-3">
                             <div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-relevants">{{ __('validation.product_view_more') }}</a></div>
-                        </div>                    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1292,7 +1294,6 @@
             },
             dataType: "json",
             success: function(response) {
-                // console.log(response);
 
                 let checklang = "{{ app()->getLocale() }}";
 
@@ -1831,17 +1832,17 @@
             // console.log($(this).val());
             // }
             // }
-        });
-        // Update the total price display
 
-        if(totalPrice == 0){
+        });
+
+        if (totalPrice == 0) {
 
             //size price
 
 
-         
+
         }
-            
+
 
 
         $('#total-price').text(textPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -2477,9 +2478,6 @@
 
     })
 
-
-    // $(document).ready(function() {
-    // Initialize the total price
     var totalPrice = 0.00;
     var price = 0.00;
 

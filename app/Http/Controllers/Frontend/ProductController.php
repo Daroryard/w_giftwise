@@ -123,43 +123,43 @@ class ProductController extends Controller
         return view('frontend.product.detail' , compact('pdsale','hd','productsub','review','countreviw','review_avg','projectGroup','project','project_count_total','ref','arr_img','count'));
     }
 
-    public function checkStock(Request $request){
-
-
-        $product = SubProduct::where('conf_mainproduct_id', $request->id)
-        ->where('conf_subproduct_active', 1)
-        ->get();
-
-
-
-        foreach($product as $key => $value){
-
-            $productCode = strtok($value->conf_subproduct_code, '-');
-
-
-
-            $stock = Stock::where('ms_product_code', 'like', $productCode . '%')
-            ->where('ms_product_color_id', $value->conf_color_id)
-            ->sum('stcqty');
-            $product[$key]->stock = $stock;
-
-        
-
+    public function checkStock(Request $request)
+    {
+        $products = SubProduct::where('conf_mainproduct_id', $request->id)
+            ->where('conf_subproduct_active', 1)
+            ->get();
+    
+        $productCodes = $products->map(function($product) {
+            return strtok($product->conf_subproduct_code, '-');
+        })->unique()->toArray();
+    
+        $colorIds = $products->pluck('conf_color_id')->unique()->toArray();
+    
+        $stocks = Stock::whereIn('ms_product_color_id', $colorIds)
+            ->where(function($query) use ($productCodes) {
+                foreach($productCodes as $code) {
+                    $query->orWhere('ms_product_code', 'like', $code . '%');
+                }
+            })
+            ->selectRaw('ms_product_color_id, SUM(stcqty) as total_stock')
+            ->groupBy('ms_product_color_id')
+            ->get()
+            ->keyBy('ms_product_color_id');
+    
+        foreach($products as $product) {
+            $productStock = $stocks->get($product->conf_color_id);
+            $product->stock = $productStock ? $productStock->total_stock : 0;
         }
-
-
+    
         $addons = SubProductAddon::where('conf_mainproduct_id', $request->id)
-        ->where('conf_subproduct_addno_active', 1)
-        ->get();
-
-
-
+            ->where('conf_subproduct_addno_active', 1)
+            ->get();
+    
         return response()->json([
-            'product' => $product,
+            'product' => $products,
             'addons' => $addons
         ]);
     }
-
     public function getAddon(Request $request){
         $addons = SubProductAddon::where('conf_mainproduct_id', $request->id)->where('conf_subproduct_addno_active' , 1)->get();
         return response()->json($addons);
