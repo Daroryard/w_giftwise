@@ -648,11 +648,13 @@
 <script>
 
 $(document).ready(function(){
+
     $.Thailand({
     $district: $('#fm-district'),
     $amphoe: $('#fm-amphoe'), 
     $province: $('#fm-province'), 
-    $zipcode: $('#fm-zipcode'), 
+    $zipcode: $('#fm-zipcode')
+
 });
 
 })
