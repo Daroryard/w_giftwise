@@ -367,33 +367,7 @@
     <div class="card-body">
         <div class="page-content">
             <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
-            <div class="input-group">
-                        <span class="input-group-text me-2">
-                            <i class="fas fa-search text-secondary mt-1"></i>
-                        </span>
-                        <input type="search" class="form-control no-border-input" placeholder="{{ __('validation.top_search_input') }}" onkeyup="search(this.value)" onclick="clearSearch()">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                <div class="d-flex flex">
-                        <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72/-"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71/-"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73/-"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74/-"><span class="badge p-2">Gift Set</span></a>
-                    </div>
-                </div>
-
-                <div id="result-search" hidden>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-7" style="border: 0.2px solid #ccc;border-radius:5px !important">
-                        <ul class="list-group dropdown scroll-list">
-
-                        </ul>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                    </div>
-                </div>
+                @include('layouts.searchbar')
             </div>
 
 
@@ -546,7 +520,7 @@
                             </div>
                             <div class="collection-content col">
                                 <!-- result search -->
-                                <div class="page-main-content"  id="sec-search" >
+                                <div class="page-main-content" id="sec-search">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="top-banner-wrapper">
@@ -555,14 +529,14 @@
                                                     <h3 style="color:#1a1a1a">{{ __('validation.product_result_search') }} {{ $pds_count }} {{ __('validation.product_result_count') }}</h3>
                                                 </div>
                                             </div>
-                                            <div class="collection-product-wrapper">   
-                                            <div class="product-top-filter">
+                                            <div class="collection-product-wrapper">
+                                                <div class="product-top-filter">
                                                     <div class="row">
                                                         <div class="col-xl-12">
                                                             <div class="filter-main-btn"><span class="filter-btn btn btn-theme"><i class="fa fa-filter" aria-hidden="true"></i> Filter</span></div>
                                                         </div>
                                                     </div>
-                                                </div>                                            
+                                                </div>
                                                 <div class="product-wrapper-grid product-load-more">
                                                     <div class="row margin-res">
                                                         @foreach ($pds as $item)
@@ -574,7 +548,7 @@
                                                                     </div>
                                                                     <div class="back">
                                                                         <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{$item->conf_mainproduct_img2}}" class="img-fluid" alt="" style="max-width:228px !important;max-height:228px !important"></a>
-                                                                    </div>                                                                 
+                                                                    </div>
                                                                 </div>
                                                                 <div class="product-detail">
                                                                     <div>
@@ -585,16 +559,16 @@
                                                                             <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
                                                                             @else
                                                                             <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
-                                                                            @endif                                                                        
+                                                                            @endif
                                                                             @endforeach
                                                                             @endif
                                                                         </span>
                                                                         <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                                                                        @if(app()->getLocale() == 'th')
+                                                                            @if(app()->getLocale() == 'th')
                                                                             <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
-                                                                        @else
+                                                                            @else
                                                                             <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
-                                                                        @endif
+                                                                            @endif
                                                                         </a>
                                                                         <h4>{{$item->price}}</h4>
                                                                         <small>{{ __('validation.home_production_min') }} {{number_format($item->timeline_qty,0)}} {{ __('validation.unit_piece') }}</small>
@@ -608,16 +582,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
-                                 
+
 
                                 </div>
 
 
 
-                                <div class="page-main-content"  id="sec-filter" hidden>
-                                  
+                                <div class="page-main-content" id="sec-filter" hidden>
+
                                 </div>
 
 
@@ -659,7 +633,6 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/backend/libs/jquery/jquery.min.js') }}"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
@@ -668,19 +641,18 @@
 
 
 <script>
-
     rangPrice = () => {
-        
-        if($('#sec-search').attr('hidden') != 'hidden'){
-            $('#sec-search').attr('hidden','hidden');
+
+        if ($('#sec-search').attr('hidden') != 'hidden') {
+            $('#sec-search').attr('hidden', 'hidden');
             $('#sec-filter').removeAttr('hidden');
         }
-    
+
 
 
 
         $('.loading').removeAttr('hidden');
-      
+
         if ($('.irs-from').text() != '') {
             price_min = $('.irs-from').text().replace(/,/g, '');
         } else {
@@ -692,7 +664,7 @@
         } else {
             price_max = 0;
         }
-        
+
 
         let check_order = $('input[name="check_order"]:checked').val();
         let check_date = $('input[name="check_date"]:checked').val();
@@ -711,7 +683,7 @@
 
 
         });
-        
+
 
         setTimeout
             (
@@ -722,7 +694,7 @@
                             check_color.push($(this).attr('class').split(' ')[0]);
                         }
                     });
-           
+
 
                 }, 700
             );
@@ -746,35 +718,35 @@
                         },
                         success: function(data) {
 
-                    let unique = [...new Map(data.pd.map(item => [item['conf_mainproduct_id'], item])).values()];
+                            let unique = [...new Map(data.pd.map(item => [item['conf_mainproduct_id'], item])).values()];
 
-                    let sec_ready = '';
-                    let sec_7 = '';
-                    let sec_14 = '';
-                    let sec_30 = '';
+                            let sec_ready = '';
+                            let sec_7 = '';
+                            let sec_14 = '';
+                            let sec_30 = '';
 
-                    $.each(unique, function(index, value) {
-
-
-                        if(parseInt(value.conf_subproduct_days) <= 7){
-
-                            let langcheck = '{{ app()->getLocale() }}';
-
-                            if(langcheck == 'th'){
-                                value.conf_mainproduct_name_th = value.conf_mainproduct_name_th.substring(0, 50);
-                            }else{
-                                value.conf_mainproduct_name_th = value.conf_mainproduct_name_en.substring(0, 50);
-                            }
-
-                            let tag = '';
-                            if(value.tag != null){                           
-                            $.each(value.tag, function(index1, value1) {
-                                tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
-                            });
-                            }
+                            $.each(unique, function(index, value) {
 
 
-                            sec_7 += `
+                                if (parseInt(value.conf_subproduct_days) <= 7) {
+
+                                    let langcheck = '{{ app()->getLocale() }}';
+
+                                    if (langcheck == 'th') {
+                                        value.conf_mainproduct_name_th = value.conf_mainproduct_name_th.substring(0, 50);
+                                    } else {
+                                        value.conf_mainproduct_name_th = value.conf_mainproduct_name_en.substring(0, 50);
+                                    }
+
+                                    let tag = '';
+                                    if (value.tag != null) {
+                                        $.each(value.tag, function(index1, value1) {
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                        });
+                                    }
+
+
+                                    sec_7 += `
                             <div class="col-xl-3 col-6 col-grid-box" style="display: block;">
                                                             <div class="product-box">
                                                                 <div class="img-wrapper">
@@ -801,16 +773,16 @@
                                                             </div>
                                                         </div>`
 
-                        }else if(parseInt(value.conf_subproduct_days) <= 14){
+                                } else if (parseInt(value.conf_subproduct_days) <= 14) {
 
-                            let tag = '';
-                            if(value.tag != null){                           
-                            $.each(value.tag, function(index1, value1) {
-                                tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
-                            });
-                            }
+                                    let tag = '';
+                                    if (value.tag != null) {
+                                        $.each(value.tag, function(index1, value1) {
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                        });
+                                    }
 
-                            sec_14 += `
+                                    sec_14 += `
                             <div class="col-xl-3 col-6 col-grid-box" style="display: block;">
                                                             <div class="product-box">
                                                                 <div class="img-wrapper">
@@ -841,16 +813,16 @@
                                                             </div>
                                                         </div>`
 
-                        }else if(parseInt(value.conf_subproduct_days) <= 30){
+                                } else if (parseInt(value.conf_subproduct_days) <= 30) {
 
-                            let tag = '';
-                            if(value.tag != null){                           
-                            $.each(value.tag, function(index1, value1) {
-                                tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
-                            });
-                            }
+                                    let tag = '';
+                                    if (value.tag != null) {
+                                        $.each(value.tag, function(index1, value1) {
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                        });
+                                    }
 
-                            sec_30 += `
+                                    sec_30 += `
                             <div class="col-xl-3 col-6 col-grid-box" style="display: block;">
                                                             <div class="product-box">
                                                                 <div class="img-wrapper">
@@ -877,16 +849,16 @@
                                                             </div>
                                                         </div>`
 
-                        }else if(value.conf_subproduct_days == 0){
+                                } else if (value.conf_subproduct_days == 0) {
 
-                            let tag = '';
-                            if(value.tag != null){                           
-                            $.each(value.tag, function(index1, value1) {
-                                tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
-                            });
-                            }
+                                    let tag = '';
+                                    if (value.tag != null) {
+                                        $.each(value.tag, function(index1, value1) {
+                                            tag += `<a href="/{{ app()->getLocale() }}/product-quick-tag/${value1.conf_mainproduct_tag_id}/-"><span class="badge">${value1.conf_mainproduct_tag_name_th}</span></a>`;
+                                        });
+                                    }
 
-                            sec_ready += `
+                                    sec_ready += `
                             <div class="col-xl-3 col-6 col-grid-box" style="display: block;">
                                                             <div class="product-box">
                                                                 <div class="img-wrapper">
@@ -913,20 +885,20 @@
                                                             </div>
                                                         </div>`
 
-                        }
-                        
+                                }
 
 
-                    });
 
-                    $('#sec-filter').html('');
-                    
-                    setTimeout(function() {
+                            });
 
-                    if(sec_ready == '' || sec_ready == null || sec_ready.length == 0){
+                            $('#sec-filter').html('');
 
-                    }else{
-                    $('#sec-filter').append(`
+                            setTimeout(function() {
+
+                                if (sec_ready == '' || sec_ready == null || sec_ready.length == 0) {
+
+                                } else {
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -952,13 +924,13 @@
                                             </div>
                                         </div>
                                     </div>
-                    `);               
-                    }
+                    `);
+                                }
 
-                    if(sec_7 == '' || sec_7 == null || sec_7.length == 0){
+                                if (sec_7 == '' || sec_7 == null || sec_7.length == 0) {
 
-                    }else{
-                        $('#sec-filter').append(`
+                                } else {
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -984,13 +956,13 @@
                                             </div>
                                         </div>
                                     </div>
-                    `);               
-                    }
+                    `);
+                                }
 
-                    if(sec_14 == '' || sec_14 == null || sec_14.length == 0){
+                                if (sec_14 == '' || sec_14 == null || sec_14.length == 0) {
 
-                    }else{
-                    $('#sec-filter').append(`
+                                } else {
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -1016,13 +988,13 @@
                                             </div>
                                         </div>
                                     </div>
-                    `);               
-                    }
+                    `);
+                                }
 
-                    if(sec_30 == '' || sec_30 == null || sec_30.length == 0){
+                                if (sec_30 == '' || sec_30 == null || sec_30.length == 0) {
 
-                    }else{
-                    $('#sec-filter').append(`
+                                } else {
+                                    $('#sec-filter').append(`
                     <div class="col-sm-12">
                                         <div class="top-banner-wrapper">
                                             <a href="#"><img src="../assets/images/mega-menu/2.jpg" class="img-fluid blur-up lazyload" alt=""></a>
@@ -1048,20 +1020,20 @@
                                             </div>
                                         </div>
                                     </div>
-                    `);               
-                    }
+                    `);
+                                }
 
 
 
-                    $('.loading').attr('hidden', 'hidden');
+                                $('.loading').attr('hidden', 'hidden');
 
 
-                    sec_ready = '';
-                    sec_7 = '';
-                    sec_14 = '';
-                    sec_30 = '';
+                                sec_ready = '';
+                                sec_7 = '';
+                                sec_14 = '';
+                                sec_30 = '';
 
-                    }, 500);
+                            }, 500);
 
 
                         }

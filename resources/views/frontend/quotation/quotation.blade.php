@@ -17,12 +17,13 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     .qty-box .input-group {
-    width: 80px !important;
-    -webkit-box-flex: unset !important;
-    -ms-flex: unset !important;
-    flex: unset !important;
-}
+        width: 80px !important;
+        -webkit-box-flex: unset !important;
+        -ms-flex: unset !important;
+        flex: unset !important;
+    }
 
     .toast-warning {
         background-color: #FFC107 !important;
@@ -402,229 +403,204 @@
     <div class="card-body">
         <div class="page-content">
             <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
-            <div class="input-group">
-                        <span class="input-group-text me-2">
-                            <i class="fas fa-search text-secondary mt-1"></i>
-                        </span>
-                        <input type="search" class="form-control no-border-input" placeholder="{{ __('validation.top_search_input') }}" onkeyup="search(this.value)" onclick="clearSearch()">            
-                </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                <div class="d-flex flex">
-                        <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72/-"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71/-"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73/-"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74/-"><span class="badge p-2">Gift Set</span></a>
+                @include('layouts.searchbar')
+            </div>
+            <!-- breadcrumb start -->
+            <div class="mt-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="page-title">
+                                <h3 class="text-black">{{ __('validation.cart_title') }} (<small>{{ $sku_cart }}</small>)</h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                        </div>
                     </div>
                 </div>
-
-                <div id="result-search" hidden>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7" style="border: 0.2px solid #ccc;border-radius:5px !important">
-                <ul class="list-group dropdown scroll-list">
-                     
-                </ul>                                    
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                </div>
-                </div> 
             </div>
+            <!-- breadcrumb End -->
 
-             <!-- breadcrumb start -->
-    <div class="mt-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="page-title">
-                        <h3 class="text-black">{{ __('validation.cart_title') }} (<small>{{ $sku_cart }}</small>)</h3>
+            @if($cart_count == 0)
+            <!-- emty cart start -->
+            <section class="cart-section section-b-space" style="margin-bottom: 50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <img src="{{asset('assets/frontend/images/cart/shopping-list 1.png') }}" class="img-fluid">
+                            <br><br>
+                            <h3>{{ __('validation.cart_mess_no_product1') }}</h3>
+                            <p>{{ __('validation.cart_mess_no_product2') }}</p>
+                            <a href="{{ url('/') }}" class="btn btn-solid" style="background: #fff !important;border: 1px solid grey !important;color: #000 !important;">{{ __('validation.cart_button_home') }}</a>
+                            <a href="/{{ app()->getLocale() }}/product-quick" class="btn btn-solid">{{ __('validation.cart_button_idea') }}</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- breadcrumb End -->
+            </section>
+            <!-- emty cart end -->
+            @endif
 
-    @if($cart_count == 0)
-    <!-- emty cart start -->
-    <section class="cart-section section-b-space" style="margin-bottom: 50px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                <img src="{{asset('assets/frontend/images/cart/shopping-list 1.png') }}" class="img-fluid">
-                <br><br>
-                <h3>{{ __('validation.cart_mess_no_product1') }}</h3>
-                    <p>{{ __('validation.cart_mess_no_product2') }}</p>
-                    <a href="{{ url('/') }}" class="btn btn-solid" style="background: #fff !important;border: 1px solid grey !important;color: #000 !important;">{{ __('validation.cart_button_home') }}</a>
-                    <a href="/{{ app()->getLocale() }}/product-quick" class="btn btn-solid">{{ __('validation.cart_button_idea') }}</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- emty cart end -->
-    @endif
-    
-    @if($cart_count > 0)
-    <!--section start-->
-    <section class="cart-section section-b-space">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <table class="table cart-table table-responsive-xs">
-                        <thead>
-                            <tr class="table-head">
-                                <th scope="col"></th>
-                                <th scope="col">{{ __('validation.cart_product') }}</th>
-                                <th scope="col">{{ __('validation.cart_price') }}</th>
-                                <th scope="col">{{ __('validation.cart_qty') }}</th>
-                                <th scope="col">{{ __('validation.cart_total_price') }}</th>
-                                <th scope="col">{{ __('validation.cart_delete') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cart as $item)
-                            <tr>
-                                <td>
-                                    <a href="#"><img src="{{ $item->options->img }}" alt=""></a>
-                                </td>
-                                <td style="text-align: left;">
-                                    {{ $item->name }}<br>
-                                    สี : {{ $item->options->subproduct['color'] }}<br>
-                                    ตัวเลือกสกรีน : {{ $item->options->addon['name'] }}<br>
-                                    ระยะเวลาผลิต : {{ $item->options->totalday }} วันทำการ<br>
-                                    บรรจุภัณฑ์ : {{ $item->options->packaging['name'] }}<br>
+            @if($cart_count > 0)
+            <!--section start-->
+            <section class="cart-section section-b-space">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table cart-table table-responsive-xs">
+                                <thead>
+                                    <tr class="table-head">
+                                        <th scope="col"></th>
+                                        <th scope="col">{{ __('validation.cart_product') }}</th>
+                                        <th scope="col">{{ __('validation.cart_price') }}</th>
+                                        <th scope="col">{{ __('validation.cart_qty') }}</th>
+                                        <th scope="col">{{ __('validation.cart_total_price') }}</th>
+                                        <th scope="col">{{ __('validation.cart_delete') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($cart as $item)
+                                    <tr>
+                                        <td>
+                                            <a href="#"><img src="{{ $item->options->img }}" alt=""></a>
+                                        </td>
+                                        <td style="text-align: left;">
+                                            {{ $item->name }}<br>
+                                            สี : {{ $item->options->subproduct['color'] }}<br>
+                                            ตัวเลือกสกรีน : {{ $item->options->addon['name'] }}<br>
+                                            ระยะเวลาผลิต : {{ $item->options->totalday }} วันทำการ<br>
+                                            บรรจุภัณฑ์ : {{ $item->options->packaging['name'] }}<br>
 
 
-                                    <div class="mobile-cart-content row">
-                                        <div class="col-xs-3">
-                                            <div class="qty-box">
-                                                <div>
-                                                <h2>{{ $item->qty }}</h2>                                                
+                                            <div class="mobile-cart-content row">
+                                                <div class="col-xs-3">
+                                                    <div class="qty-box">
+                                                        <div>
+                                                            <h2>{{ $item->qty }}</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="td-color">{{ number_format($item->options->subproduct['price'],2) }}</h2>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="td-color"><a href="#" class="icon"><i class="ti-close"></i></a>
+                                                    </h2>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <h2 class="td-color">{{ number_format($item->options->subproduct['price'],2) }}</h2>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <h2 class="td-color"><a href="#" class="icon"><i class="ti-close"></i></a>
-                                            </h2>
-                                        </div>
-                                    </div>
 
-                                    
-                                </td>
-                                <td>
-                                    <h2>{{ number_format($item->options->subproduct['price'],2) }}</h2>
-                                </td>
-                                <td>
-                                    <div class="qty-box">
-                                        <center>
-                                        <div><h2>{{ $item->qty }}</h2>                                        
-                                        </div>
-                                        </center>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h2 class="td-color">฿{{ number_format(($item->options->subproduct['price'] * $item->qty),2) }}</h2>
-                                </td>
-                                <td><a href="#" class="icon" onclick="delCart('{{ $item->options->subproduct['id'] }}')"><i class="ti-close"></i></a></td>
 
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        
-                    </table>
-                    <table class="table cart-table table-responsive-xs">
-                        <tfoot>
-                            <tr>
-                                <td style="text-align:left;width:60% !important;" colspan="3"><b>{{ __('validation.cart_ans_list_product') }}</b></td>
-                                <td>{{ __('validation.cart_net_price') }}<br> <h3 style="color:#00C2C7" colspan="2">฿{{ number_format($net_totalprice_cart,2) }}</h3></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                                        </td>
+                                        <td>
+                                            <h2>{{ number_format($item->options->subproduct['price'],2) }}</h2>
+                                        </td>
+                                        <td>
+                                            <div class="qty-box">
+                                                <center>
+                                                    <div>
+                                                        <h2>{{ $item->qty }}</h2>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h2 class="td-color">฿{{ number_format(($item->options->subproduct['price'] * $item->qty),2) }}</h2>
+                                        </td>
+                                        <td><a href="#" class="icon" onclick="delCart('{{ $item->options->subproduct['id'] }}')"><i class="ti-close"></i></a></td>
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+
+                            </table>
+                            <table class="table cart-table table-responsive-xs">
+                                <tfoot>
+                                    <tr>
+                                        <td style="text-align:left;width:60% !important;" colspan="3"><b>{{ __('validation.cart_ans_list_product') }}</b></td>
+                                        <td>{{ __('validation.cart_net_price') }}<br>
+                                            <h3 style="color:#00C2C7" colspan="2">฿{{ number_format($net_totalprice_cart,2) }}</h3>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row cart-buttons mt-3">
+                        <center>
+                            @if($cart_count > 0)
+                            <div class="col-12"><a href="#" class="btn btn-solid bt-send-quo" style="background-color:#00C2C7;color:#fff" data-bs-toggle="modal" data-bs-target="#frm-quo">{{ __('validation.cart_button_quotation') }}</a></div>
+                            @endif
+                        </center>
+                    </div>
                 </div>
-            </div>
-            <div class="row cart-buttons mt-3">
-                <center>
-                @if($cart_count > 0)
-                <div class="col-12"><a href="#" class="btn btn-solid bt-send-quo" style="background-color:#00C2C7;color:#fff" data-bs-toggle="modal" data-bs-target="#frm-quo">{{ __('validation.cart_button_quotation') }}</a></div>
-                @endif
-                </center>
-            </div>
-        </div>
-    </section>
-    <!--section end-->  
-    @endif
-    
+            </section>
+            <!--section end-->
+            @endif
 
 
 
-    
+
+
         </div>
     </div>
 </div>
 
 
 
- <!--modal quick quotation start-->
- <div class="modal fade bd-example-modal theme-modal" id="frm-quo" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog modal modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body modal1">
-                    <div class="container-fluid p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="modal-bg">
+<!--modal quick quotation start-->
+<div class="modal fade bd-example-modal theme-modal" id="frm-quo" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal1">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg">
 
-                                   <!-- button close right -->
-                                   <div class="close-circle mt-5" style="text-align: right;">
-                                        
-                                      <button type="button" class="btn-close close-m" data-bs-dismiss="modal"
-                                         aria-label="Close"></button>
-                                   </div>
-                                   
-                                    <div class="hs-toast-wrapper  hs-toast-fixed-top " id="example"></div>
+                                <!-- button close right -->
+                                <div class="close-circle mt-5" style="text-align: right;">
+
+                                    <button type="button" class="btn-close close-m" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <div class="hs-toast-wrapper  hs-toast-fixed-top " id="example"></div>
 
 
-                                    <div class="offer-content el-q-q">
-                                        <h2 class="mr-input" style="margin-left: 10px;">ขอใบเสนอราคา</h2>
-                                      
-                                            <div class="form-group mx-sm-3">   
-                                                <label for="message_detail">ข้อมูล</label>                                 
-                                                <input type="text" class="form-control mr-input" id="fm-fullname" placeholder="ชื่อผู้ติดต่อ" required="required">
-                                                <span class="error al_fm_fullname" style="color:red"></span>                                            
-                                                <input type="text" class="form-control mr-input" id="fm-company" placeholder="ชื่อบริษัท" required="required">
-                                                <span class="error al_fm_company" style="color:red"></span>
-                                                <input type="text" class="form-control mr-input" id="fm-tel" placeholder="เบอร์โทรศัพท์" required="required">
-                                                <span class="error al_fm_tel" style="color:red"></span>
-                                                <input type="text" class="form-control mr-input" id="fm-companyemail" placeholder="อีเมลบริษัท" required="required">
-                                                <span class="error al_fm_companyemail" style="color:red"></span>
-                                                <input type="text" class="form-control mr-input" id="fm-taxid" placeholder="เลขประจำตัวผู้เสียภาษี" required="required" maxlength="13">
-                                                <span class="error al_fm_taxid" style="color:red"></span>
-                                                <label for="message_address">ที่อยู่</label>
-                                                <input type="text" class="form-control mr-input" id="fm-address" placeholder="ที่อยู่" required="required">
-                                                <span class="error al_fm_address" style="color:red"></span>
-                                                <input type="text" class="form-control mr-input" id="fm-district" placeholder="ตำบล/แขวง" required="required">
-                                                <span class="error al_fm_district" style="color:red"></span>    
-                                                <input type="text" class="form-control mr-input" id="fm-amphoe" placeholder="อำเภอ/เขต" required="required">
-                                                <span class="error al_amphoe" style="color:red"></span>      
-                                                <input type="text" class="form-control mr-input" id="fm-province" placeholder="จังหวัด" required="required">
-                                                <span class="error al_fm_province" style="color:red"></span>
-                                                <input type="text" class="form-control mr-input" id="fm-zipcode" placeholder="รหัสไปรษณีย์" required="required">
-                                                <span class="error al_fm_zipcode" style="color:red"></span>
-                                                <label for="quick_message_remark">รายละเอียดอื่นๆ</label>
-                                                <textarea class="form-control" rows="4" cols="50" id="fm-message" placeholder="รายละเอียดอื่นๆ ที่ต้องการเช่น ขอสินค้าตัวอย่างกับสไลด์นำเสนอไม่เกินวันที่ 30 ก.ค. ใช้งานเดือน ก.ย."></textarea>                                          
-                                                <input type="checkbox" name="shipping-option" class="mr-input" id="fm_account_option"> &ensp; <label for="quick_account_option">ต้องการให้ทีมงานเราติดต่อกลับไปเพื่อช่วยออกแบบและดูแลโปรเจกต์นี้</label>
-                                                <button type="button" class="btn btn-solid form-control mr-input bt-q-quotation" style="background-color:#00C2C7;color:#fff" onclick="saveQuotation()">ขอใบเสนอราคา</button>
+                                <div class="offer-content el-q-q">
+                                    <h2 class="mr-input" style="margin-left: 10px;">ขอใบเสนอราคา</h2>
 
-                                            </div>
-    
+                                    <div class="form-group mx-sm-3">
+                                        <label for="message_detail">ข้อมูล</label>
+                                        <input type="text" class="form-control mr-input" id="fm-fullname" placeholder="ชื่อผู้ติดต่อ" required="required">
+                                        <span class="error al_fm_fullname" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-company" placeholder="ชื่อบริษัท" required="required">
+                                        <span class="error al_fm_company" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-tel" placeholder="เบอร์โทรศัพท์" required="required">
+                                        <span class="error al_fm_tel" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-companyemail" placeholder="อีเมลบริษัท" required="required">
+                                        <span class="error al_fm_companyemail" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-taxid" placeholder="เลขประจำตัวผู้เสียภาษี" required="required" maxlength="13">
+                                        <span class="error al_fm_taxid" style="color:red"></span>
+                                        <label for="message_address">ที่อยู่</label>
+                                        <input type="text" class="form-control mr-input" id="fm-address" placeholder="ที่อยู่" required="required">
+                                        <span class="error al_fm_address" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-district" placeholder="ตำบล/แขวง" required="required">
+                                        <span class="error al_fm_district" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-amphoe" placeholder="อำเภอ/เขต" required="required">
+                                        <span class="error al_amphoe" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-province" placeholder="จังหวัด" required="required">
+                                        <span class="error al_fm_province" style="color:red"></span>
+                                        <input type="text" class="form-control mr-input" id="fm-zipcode" placeholder="รหัสไปรษณีย์" required="required">
+                                        <span class="error al_fm_zipcode" style="color:red"></span>
+                                        <label for="quick_message_remark">รายละเอียดอื่นๆ</label>
+                                        <textarea class="form-control" rows="4" cols="50" id="fm-message" placeholder="รายละเอียดอื่นๆ ที่ต้องการเช่น ขอสินค้าตัวอย่างกับสไลด์นำเสนอไม่เกินวันที่ 30 ก.ค. ใช้งานเดือน ก.ย."></textarea>
+                                        <input type="checkbox" name="shipping-option" class="mr-input" id="fm_account_option"> &ensp; <label for="quick_account_option">ต้องการให้ทีมงานเราติดต่อกลับไปเพื่อช่วยออกแบบและดูแลโปรเจกต์นี้</label>
+                                        <button type="button" class="btn btn-solid form-control mr-input bt-q-quotation" style="background-color:#00C2C7;color:#fff" onclick="saveQuotation()">ขอใบเสนอราคา</button>
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -633,10 +609,10 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 @section('script')
 <script src="{{ asset('assets/backend/libs/jquery/jquery.min.js') }}"></script>
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/multikart/js/script.js') }}"></script>
@@ -646,54 +622,53 @@
 <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
 
 <script>
+    $(document).ready(function() {
 
-$(document).ready(function(){
+        $.Thailand({
+            $district: $('#fm-district'),
+            $amphoe: $('#fm-amphoe'),
+            $province: $('#fm-province'),
+            $zipcode: $('#fm-zipcode')
 
-    $.Thailand({
-    $district: $('#fm-district'),
-    $amphoe: $('#fm-amphoe'), 
-    $province: $('#fm-province'), 
-    $zipcode: $('#fm-zipcode')
+        });
 
-});
+    })
 
-})
+    $('.close-m').click(function() {
 
-$('.close-m').click(function(){
+        $('#frm-quo').modal('hide');
 
-    $('#frm-quo').modal('hide');
-   
-})
+    })
 
-delCart = (ref) => {
+    delCart = (ref) => {
 
-    //confirm swal
+        //confirm swal
 
-    Swal.fire({
-        title: 'คุณต้องการลบสินค้าใช่หรือไม่ ?',
-        text: "คุณต้องการลบสินค้าใช่หรือไม่ ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#00C2C7',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ใช่',
-        cancelButtonText: 'ยกเลิก'
-    }).then((result) => {
-        if (result.isConfirmed) {
+        Swal.fire({
+            title: 'คุณต้องการลบสินค้าใช่หรือไม่ ?',
+            text: "คุณต้องการลบสินค้าใช่หรือไม่ ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#00C2C7',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-        $.ajax({
-        url: "{{ route('cart.delete') }}",
-        type: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            id: ref
-        },
-        dataType:'json',
-        success: function(data) {
+                $.ajax({
+                    url: "{{ route('cart.delete') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id: ref
+                    },
+                    dataType: 'json',
+                    success: function(data) {
 
-            if (data.status == true) {
+                        if (data.status == true) {
 
-                $('.el-q-q').html(`
+                            $('.el-q-q').html(`
            <div id="f-q-q" style="text-align: center;">
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
             <g clip-path="url(#clip0_346_27773)">
@@ -710,175 +685,175 @@ delCart = (ref) => {
             <h3><b>ขอใบเสนอราคาสำเร็จ</b></h3>
             <p style="color:#9699b3">ทีมงาน Giftwise จะรีบติดต่อกลับไปภายใน 3 วัน<br>หากต้องการความช่วยเหลือ กรุณาติดต่อ 080-0000000</p>
             </div>    
-                    `)     
+                    `)
 
 
-                setTimeout(function() {
-                    location.reload();
-                }, 5000);
+                            setTimeout(function() {
+                                location.reload();
+                            }, 5000);
 
 
-            } else {
+                        } else {
 
-                Swal.fire({
-                    icon: 'error',
-                    title: 'สถานะการลบสินค้า',
-                    text: data.msg,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'สถานะการลบสินค้า',
+                                text: data.msg,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
 
+                        }
+                    }
+                });
             }
+        })
+
+
+
+
+    }
+
+    saveQuotation = () => {
+
+        let fm_fullname = $('#fm-fullname').val();
+        let fm_company = $('#fm-company').val();
+        let fm_tel = $('#fm-tel').val();
+        let fm_companyemail = $('#fm-companyemail').val();
+        let fm_message = $('#fm-message').val();
+        let fm_account_option = $('#fm_account_option').val();
+        let fm_taxid = $('#fm-taxid').val();
+        let fm_district = $('#fm-district').val();
+        let fm_amphoe = $('#fm-amphoe').val();
+        let fm_province = $('#fm-province').val();
+        let fm_zipcode = $('#fm-zipcode').val();
+        let fm_address = $('#fm-address').val();
+
+
+
+
+        if (fm_fullname == '') {
+
+            $('#fm-fullname').css('border', '1px solid red');
+            $('.al_fm_fullname').html('กรุณากรอกชื่อผู้ติดต่อ');
+
+        } else {
+            $('.al_fm_fullname').html('');
+            $('#fm-fullname').css('border', '1px solid #ced4da');
         }
-    });
+
+        if (fm_company == '') {
+
+            $('#fm-company').css('border', '1px solid red');
+            $('.al_fm_company').html('กรุณากรอกชื่อบริษัท');
+
+        } else {
+
+            $('.al_fm_company').html('');
+            $('#fm-company').css('border', '1px solid #ced4da');
+
         }
-    })
 
+        if (fm_tel == '') {
 
+            $('#fm-tel').css('border', '1px solid red');
+            $('.al_fm_tel').html('กรุณากรอกเบอร์โทรศัพท์');
 
+        } else {
 
-}
+            $('.al_fm_tel').html('');
+            $('#fm-tel').css('border', '1px solid #ced4da');
 
-saveQuotation = () => {
+        }
 
-    let fm_fullname = $('#fm-fullname').val();
-    let fm_company = $('#fm-company').val();
-    let fm_tel = $('#fm-tel').val();
-    let fm_companyemail = $('#fm-companyemail').val();
-    let fm_message = $('#fm-message').val();
-    let fm_account_option = $('#fm_account_option').val();
-    let fm_taxid = $('#fm-taxid').val();
-    let fm_district = $('#fm-district').val();
-    let fm_amphoe = $('#fm-amphoe').val();
-    let fm_province = $('#fm-province').val();
-    let fm_zipcode = $('#fm-zipcode').val();
-    let fm_address = $('#fm-address').val();
+        if (fm_companyemail == '') {
 
+            $('#fm-companyemail').css('border', '1px solid red');
+            $('.al_fm_companyemail').html('กรุณากรอกอีเมลบริษัท');
 
+        } else {
 
+            $('.al_fm_companyemail').html('');
+            $('#fm-companyemail').css('border', '1px solid #ced4da');
 
-    if(fm_fullname == ''){
+        }
 
-        $('#fm-fullname').css('border', '1px solid red');
-        $('.al_fm_fullname').html('กรุณากรอกชื่อผู้ติดต่อ');
-        
-    }else{
-        $('.al_fm_fullname').html('');
-        $('#fm-fullname').css('border', '1px solid #ced4da');
-    }
+        if (fm_province == '') {
 
-    if(fm_company == ''){
+            $('#fm-province').css('border', '1px solid red');
+            $('.al_fm_province').html('กรุณากรอกจังหวัด');
 
-        $('#fm-company').css('border', '1px solid red');
-        $('.al_fm_company').html('กรุณากรอกชื่อบริษัท');
+        } else {
 
-    }else{
-
-        $('.al_fm_company').html('');
-        $('#fm-company').css('border', '1px solid #ced4da');
-
-    }
-
-    if(fm_tel == ''){
-
-        $('#fm-tel').css('border', '1px solid red');
-        $('.al_fm_tel').html('กรุณากรอกเบอร์โทรศัพท์');
-
-    }else{
-
-        $('.al_fm_tel').html('');
-        $('#fm-tel').css('border', '1px solid #ced4da');
-
-    }
-
-    if(fm_companyemail == ''){
-
-        $('#fm-companyemail').css('border', '1px solid red');
-        $('.al_fm_companyemail').html('กรุณากรอกอีเมลบริษัท');
-
-    }else{
-
-        $('.al_fm_companyemail').html('');
-        $('#fm-companyemail').css('border', '1px solid #ced4da');
-
-    }
-
-    if(fm_province == ''){
-
-        $('#fm-province').css('border', '1px solid red');
-        $('.al_fm_province').html('กรุณากรอกจังหวัด');
-
-    }else{
-            
             $('.al_fm_province').html('');
             $('#fm-province').css('border', '1px solid #ced4da');
-    
-    }
 
-    if(fm_amphoe == ''){
+        }
 
-        $('#fm-amphoe').css('border', '1px solid red');
-        $('.al_fm_amphoe').html('กรุณากรอกอำเภอ/เขต');
+        if (fm_amphoe == '') {
 
-    }else{
-            
+            $('#fm-amphoe').css('border', '1px solid red');
+            $('.al_fm_amphoe').html('กรุณากรอกอำเภอ/เขต');
+
+        } else {
+
             $('.al_fm_amphoe').html('');
             $('#fm-amphoe').css('border', '1px solid #ced4da');
 
-    }
+        }
 
-    if(fm_address == ''){
+        if (fm_address == '') {
 
-        $('#fm-address').css('border', '1px solid red');
-        $('.al_fm_address').html('กรุณากรอกที่อยู่');
+            $('#fm-address').css('border', '1px solid red');
+            $('.al_fm_address').html('กรุณากรอกที่อยู่');
 
-    }else{
-            
+        } else {
+
             $('.al_fm_address').html('');
             $('#fm-address').css('border', '1px solid #ced4da');
 
-    }
+        }
 
 
 
-    if(fm_fullname != '' && fm_company != '' && fm_tel != '' && fm_companyemail != '' && fm_province != '' && fm_amphoe != '' && fm_address != ''){
+        if (fm_fullname != '' && fm_company != '' && fm_tel != '' && fm_companyemail != '' && fm_province != '' && fm_amphoe != '' && fm_address != '') {
 
-    Swal.fire({
-        title: 'คุณต้องการขอใบเสนอราคาใช่หรือไม่ ?',
-        text: "คุณต้องการขอใบเสนอราคาใช่หรือไม่ ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#00C2C7',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ใช่',
-        cancelButtonText: 'ยกเลิก'
-    }).then((result) => {
-        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'คุณต้องการขอใบเสนอราคาใช่หรือไม่ ?',
+                text: "คุณต้องการขอใบเสนอราคาใช่หรือไม่ ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#00C2C7',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ใช่',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-        $.ajax({
-        url: "{{ route('quotation.save') }}",
-        type: "POST",
-        data: {
-            _token: "{{ csrf_token() }}",
-            fm_fullname: fm_fullname,
-            fm_company: fm_company,
-            fm_tel: fm_tel,
-            fm_companyemail: fm_companyemail,
-            fm_message: fm_message,
-            fm_account_option: fm_account_option,
-            fm_taxid: fm_taxid,
-            fm_address: fm_address,
-            fm_district: fm_district,
-            fm_amphoe: fm_amphoe,
-            fm_province: fm_province,
-            fm_zipcode: fm_zipcode
-        },
-        dataType:'json',
-        success: function(data) {
+                    $.ajax({
+                        url: "{{ route('quotation.save') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            fm_fullname: fm_fullname,
+                            fm_company: fm_company,
+                            fm_tel: fm_tel,
+                            fm_companyemail: fm_companyemail,
+                            fm_message: fm_message,
+                            fm_account_option: fm_account_option,
+                            fm_taxid: fm_taxid,
+                            fm_address: fm_address,
+                            fm_district: fm_district,
+                            fm_amphoe: fm_amphoe,
+                            fm_province: fm_province,
+                            fm_zipcode: fm_zipcode
+                        },
+                        dataType: 'json',
+                        success: function(data) {
 
-            if (data.status == true) {
-                $('.bt-send-quo').hide();
-                $('.el-q-q').html(`
+                            if (data.status == true) {
+                                $('.bt-send-quo').hide();
+                                $('.el-q-q').html(`
            <div id="f-q-q" style="text-align: center;">
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
             <g clip-path="url(#clip0_346_27773)">
@@ -895,36 +870,37 @@ saveQuotation = () => {
             <h3><b>ขอใบเสนอราคาสำเร็จ</b></h3>
             <p style="color:#9699b3">ทีมงาน Giftwise จะรีบติดต่อกลับไปภายใน 3 วัน<br>หากต้องการความช่วยเหลือ กรุณาติดต่อ 080-0000000</p>
             </div>    
-                    `)     
+                    `)
 
 
-                setTimeout(function() {     
-        
-                    location.reload();
-                }, 5000);
+                                setTimeout(function() {
+
+                                    location.reload();
+                                }, 5000);
 
 
-            } else {
+                            } else {
 
-                Swal.fire({
-                    icon: 'error',
-                    title: 'สถานะการลบสินค้า',
-                    text: data.msg,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'สถานะการลบสินค้า',
+                                    text: data.msg,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
 
 
 
-            }
+                            }
+                        }
+
+                    });
+                }
+            })
+
+
         }
 
-    });
-        }
-    })
-
-
-}
 
 
 
@@ -932,8 +908,6 @@ saveQuotation = () => {
 
 
 
-
-}
-  
+    }
 </script>
 @endsection

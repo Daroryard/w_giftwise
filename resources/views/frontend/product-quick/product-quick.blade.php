@@ -10,10 +10,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/multikart/css/themify-icons.css') }}">
 
 <style>
-
-    .img-wrapper{
-    max-width: 228px !important;
-    max-height: 225px !important;
+    .img-wrapper {
+        max-width: 228px !important;
+        max-height: 225px !important;
     }
 
     .ms-n5 {
@@ -362,11 +361,11 @@
         /* Adjust the color as needed */
         margin: 5px 0;
     }
+
     h6 {
-        size : 14px !important;
+        size: 14px !important;
         color: #000 !important;
     }
-
 </style>
 
 @endsection
@@ -375,33 +374,8 @@
     <div class="card-body">
         <div class="page-content">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
-                    <div class="input-group">
-                        <span class="input-group-text me-2">
-                            <i class="fas fa-search text-secondary mt-1"></i>
-                        </span>
-                        <input type="search" class="form-control no-border-input" placeholder="{{ __('validation.top_search_input') }}" onkeyup="search(this.value)" onclick="clearSearch()">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                <div class="d-flex flex">
-                        <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72/-"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71/-"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73/-"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74/-"><span class="badge p-2">Gift Set</span></a>
-                    </div>
-                </div>
+            @include('layouts.searchbar')
 
-                <div id="result-search" hidden>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-7" style="border: 0.2px solid #ccc;border-radius:5px !important">
-                        <ul class="list-group dropdown scroll-list">
-
-                        </ul>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                    </div>
-                </div>
             </div>
 
 
@@ -574,49 +548,49 @@
                                                     <div class="row margin-res">
                                                         @foreach ($pd as $key => $item)
                                                         @if($key < 4)
-                                                        <div class="col-xl-3 col-6 col-grid-box-ready active-hov">
-                                                        @else
-                                                        <div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:none">
-                                                        @endif
-                                                            <div class="product-box">
-                                                                <div class="img-wrapper">
-                                                                    <div class="front">
-                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                    </div>
-                                                                    <div class="back">
-                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                    </div>
+                                                            <div class="col-xl-3 col-6 col-grid-box-ready active-hov">
+                                                            @else
+                                                            <div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:none">
+                                                                @endif
+                                                                <div class="product-box">
+                                                                    <div class="img-wrapper">
+                                                                        <div class="front">
+                                                                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                        </div>
+                                                                        <div class="back">
+                                                                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                        </div>
 
-                                                                </div>
-                                                                <div class="product-detail">
-                                                                    <div>
-                                                                        <span class="product-tag">
-                                                                            @if(!empty($item->saleProductTags))
-                                                                            @foreach ($item->saleProductTags as $tag)
-                                                                            @if(app()->getLocale() == 'th')
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
-                                                                            @else
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
-                                                                            @endif
-                                                                            @endforeach
-                                                                            @endif
-                                                                        </span>
-                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                                                                            @if(app()->getLocale() == 'th')
-                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
-                                                                            @else
-                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
-                                                                            @endif
-                                                                        </a>
-                                                                        <h4>{{$item->price}}</h4>
-                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
-                                                                        <br>
-                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                    </div>
+                                                                    <div class="product-detail">
+                                                                        <div>
+                                                                            <span class="product-tag">
+                                                                                @if(!empty($item->saleProductTags))
+                                                                                @foreach ($item->saleProductTags as $tag)
+                                                                                @if(app()->getLocale() == 'th')
+                                                                                <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                                @else
+                                                                                <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                                @endif
+                                                                                @endforeach
+                                                                                @endif
+                                                                            </span>
+                                                                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                                                                                @if(app()->getLocale() == 'th')
+                                                                                <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
+                                                                                @else
+                                                                                <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
+                                                                                @endif
+                                                                            </a>
+                                                                            <h4>{{$item->price}}</h4>
+                                                                            <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                            <br>
+                                                                            <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        @endforeach
+                                                            @endforeach
                                                     </div>
                                                 </div>
                                                 @if(count($pd) > 4)
@@ -643,48 +617,48 @@
                                                     <div class="row margin-res">
                                                         @foreach ($pd1 as $key => $item)
                                                         @if($key < 4)
-                                                        <div class="col-xl-3 col-6 col-grid-box-7days active-hov">
-                                                        @else
-                                                        <div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:none">
-                                                        @endif
-                                                            <div class="product-box">
-                                                                <div class="img-wrapper">
-                                                                    <div class="front">
-                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                            <div class="col-xl-3 col-6 col-grid-box-7days active-hov">
+                                                            @else
+                                                            <div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:none">
+                                                                @endif
+                                                                <div class="product-box">
+                                                                    <div class="img-wrapper">
+                                                                        <div class="front">
+                                                                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                        </div>
+                                                                        <div class="back">
+                                                                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="back">
-                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="product-detail">
-                                                                    <div>
-                                                                        <span class="product-tag">
-                                                                            @if(!empty($item->saleProductTags))
-                                                                            @foreach ($item->saleProductTags as $tag)
-                                                                            @if(app()->getLocale() == 'th')
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
-                                                                            @else
-                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
-                                                                            @endif
-                                                                            @endforeach
-                                                                            @endif
-                                                                        </span>
-                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                                                                            @if(app()->getLocale() == 'th')
-                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
-                                                                            @else
-                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
-                                                                            @endif
-                                                                        </a>
-                                                                        <h4>{{$item->price}}</h4>
-                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
-                                                                        <br>
-                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                    <div class="product-detail">
+                                                                        <div>
+                                                                            <span class="product-tag">
+                                                                                @if(!empty($item->saleProductTags))
+                                                                                @foreach ($item->saleProductTags as $tag)
+                                                                                @if(app()->getLocale() == 'th')
+                                                                                <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                                @else
+                                                                                <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                                @endif
+                                                                                @endforeach
+                                                                                @endif
+                                                                            </span>
+                                                                            <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                                                                                @if(app()->getLocale() == 'th')
+                                                                                <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
+                                                                                @else
+                                                                                <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
+                                                                                @endif
+                                                                            </a>
+                                                                            <h4>{{$item->price}}</h4>
+                                                                            <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                            <br>
+                                                                            <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        @endforeach
+                                                            @endforeach
 
                                                     </div>
 
@@ -720,49 +694,49 @@
                                                 <div class="row margin-res">
                                                     @foreach ($pd2 as $key => $item)
                                                     @if($key < 4)
-                                                    <div class="col-xl-3 col-6 col-grid-box-14days active-hov">
-                                                    @else
-                                                    <div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:none">
-                                                    @endif
-                                                        <div class="product-box">
-                                                            <div class="img-wrapper">
-                                                                <div class="front">
-                                                                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                </div>
-                                                                <div class="back">
-                                                                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                </div>
+                                                        <div class="col-xl-3 col-6 col-grid-box-14days active-hov">
+                                                        @else
+                                                        <div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:none">
+                                                            @endif
+                                                            <div class="product-box">
+                                                                <div class="img-wrapper">
+                                                                    <div class="front">
+                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                    </div>
+                                                                    <div class="back">
+                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                    </div>
 
-                                                            </div>
-                                                            <div class="product-detail">
-                                                                <div>
-                                                                    <span class="product-tag">
-                                                                        @if(!empty($item->saleProductTags))
-                                                                        @foreach ($item->saleProductTags as $tag)
-                                                                        @if(app()->getLocale() == 'th')
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
-                                                                        @else
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
-                                                                        @endif
-                                                                        @endforeach
-                                                                        @endif
-                                                                    </span>
-                                                                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                                                                        @if(app()->getLocale() == 'th')
-                                                                        <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
-                                                                        @else
-                                                                        <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
-                                                                        @endif
-                                                                    </a>
-                                                                    <h4>{{$item->price}}</h4>
-                                                                    <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
-                                                                    <br>
-                                                                    <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                </div>
+                                                                <div class="product-detail">
+                                                                    <div>
+                                                                        <span class="product-tag">
+                                                                            @if(!empty($item->saleProductTags))
+                                                                            @foreach ($item->saleProductTags as $tag)
+                                                                            @if(app()->getLocale() == 'th')
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                            @else
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                            @endif
+                                                                            @endforeach
+                                                                            @endif
+                                                                        </span>
+                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                                                                            @if(app()->getLocale() == 'th')
+                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
+                                                                            @else
+                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
+                                                                            @endif
+                                                                        </a>
+                                                                        <h4>{{$item->price}}</h4>
+                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                        <br>
+                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    @endforeach
+                                                        @endforeach
                                                 </div>
                                             </div>
                                             @if(count($pd2) > 4)
@@ -790,49 +764,49 @@
                                                 <div class="row margin-res">
                                                     @foreach ($pd3 as $key => $item)
                                                     @if($key < 4)
-                                                    <div class="col-xl-3 col-6 col-grid-box-30days active-hov">
-                                                    @else
-                                                    <div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:none">
-                                                    @endif
-                                                        <div class="product-box">
-                                                            <div class="img-wrapper">
-                                                                <div class="front">
-                                                                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                </div>
-                                                                <div class="back">
-                                                                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
-                                                                </div>
+                                                        <div class="col-xl-3 col-6 col-grid-box-30days active-hov">
+                                                        @else
+                                                        <div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:none">
+                                                            @endif
+                                                            <div class="product-box">
+                                                                <div class="img-wrapper">
+                                                                    <div class="front">
+                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img1)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                    </div>
+                                                                    <div class="back">
+                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-"><img src="{{asset($item->conf_mainproduct_img2)}}" class="img-fluid  lazyload bg-img" alt=""></a>
+                                                                    </div>
 
-                                                            </div>
-                                                            <div class="product-detail">
-                                                                <div>
-                                                                    <span class="product-tag">
-                                                                        @if(!empty($item->saleProductTags))
-                                                                        @foreach ($item->saleProductTags as $tag)
-                                                                        @if(app()->getLocale() == 'th')
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
-                                                                        @else
-                                                                        <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
-                                                                        @endif
-                                                                        @endforeach
-                                                                        @endif
-                                                                    </span>
-                                                                    <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
-                                                                        @if(app()->getLocale() == 'th')
-                                                                        <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
-                                                                        @else
-                                                                        <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
-                                                                        @endif
-                                                                    </a>
-                                                                    <h4>{{$item->price}}</h4>
-                                                                    <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
-                                                                    <br>
-                                                                    <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                </div>
+                                                                <div class="product-detail">
+                                                                    <div>
+                                                                        <span class="product-tag">
+                                                                            @if(!empty($item->saleProductTags))
+                                                                            @foreach ($item->saleProductTags as $tag)
+                                                                            @if(app()->getLocale() == 'th')
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_th }}</span></a>
+                                                                            @else
+                                                                            <a href="/{{ app()->getLocale() }}/product-quick-tag/{{ $tag->conf_mainproduct_tag_id }}/-"><span class="badge">{{ $tag->conf_mainproduct_tag_name_en }}</span></a>
+                                                                            @endif
+                                                                            @endforeach
+                                                                            @endif
+                                                                        </span>
+                                                                        <a href="/{{ app()->getLocale() }}/product/{{$item->conf_mainproduct_id}}/-">
+                                                                            @if(app()->getLocale() == 'th')
+                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_th,50)}}</h6>
+                                                                            @else
+                                                                            <h6>{{Str::limit($item->conf_mainproduct_name_en,50)}}</h6>
+                                                                            @endif
+                                                                        </a>
+                                                                        <h4>{{$item->price}}</h4>
+                                                                        <small>{{ __('validation.product_production_min') }} {{number_format($item->conf_mainproduct_quota,0)}} {{ __('validation.unit_piece') }}</small>
+                                                                        <br>
+                                                                        <small>{{ __('validation.product_delivery_in') }} {{number_format($item->conf_mainproduct_days,0)}} {{ __('validation.unit_day') }}</small>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    @endforeach
+                                                        @endforeach
                                                 </div>
                                             </div>
                                             @if(count($pd3) > 4)
@@ -882,7 +856,6 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/backend/libs/jquery/jquery.min.js') }}"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/slick.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
@@ -892,15 +865,12 @@
 
 
 <script>
-
-
-
- $(function() {
+    $(function() {
 
         $(".loadmore-ready").on('click', function(e) {
             if ($(".product-ready .col-grid-box-ready:hidden").length === 0) {
                 $(".loadmore-ready").text('no more products');
-            }else{
+            } else {
                 $(".product-ready .col-grid-box-ready:hidden").slice(0, 4).slideDown().css('display', 'block');
 
             }
@@ -908,7 +878,7 @@
         $(".loadMore-7days").on('click', function(e) {
             if ($(".product-7days .col-grid-box-7days:hidden").length === 0) {
                 $(".loadMore-7days").text('no more products');
-            }else{
+            } else {
                 $(".product-7days .col-grid-box-7days:hidden").slice(0, 4).slideDown().css('display', 'block');
 
             }
@@ -916,7 +886,7 @@
         $(".loadMore-14days").on('click', function(e) {
             if ($(".product-14days .col-grid-box-14days:hidden").length === 0) {
                 $(".loadMore-14days").text('no more products');
-            }else{
+            } else {
                 $(".product-14days .col-grid-box-14days:hidden").slice(0, 4).slideDown().css('display', 'block');
 
             }
@@ -924,7 +894,7 @@
         $(".loadMore-30days").on('click', function(e) {
             if ($(".product-30days .col-grid-box-30days:hidden").length === 0) {
                 $(".loadMore-30days").text('no more products');
-            }else{
+            } else {
                 $(".product-30days .col-grid-box-30days:hidden").slice(0, 4).slideDown().css('display', 'block');
 
             }
@@ -1022,9 +992,9 @@
 
                                 let langcheck = '{{ app()->getLocale() }}';
 
-                                if(langcheck == 'th'){
+                                if (langcheck == 'th') {
                                     value.conf_mainproduct_name_th = value.conf_mainproduct_name_th.substring(0, 50);
-                                }else{
+                                } else {
                                     value.conf_mainproduct_name_th = value.conf_mainproduct_name_en.substring(0, 50);
                                 }
                                 let count_0 = 0;
@@ -1048,9 +1018,9 @@
 
                                     count_7++;
 
-                                    if(count_7 < 4){
+                                    if (count_7 < 4) {
                                         div_7 = '<div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:block;">';
-                                    }else{
+                                    } else {
                                         div_7 = '<div class="col-xl-3 col-6 col-grid-box-7days active-hov" style="display:none;">';
                                     }
                                     sec_7 += `
@@ -1095,9 +1065,9 @@
 
                                     count_14++;
 
-                                    if(count_14 < 4){
+                                    if (count_14 < 4) {
                                         div_14 = '<div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:block;">';
-                                    }else{
+                                    } else {
                                         div_14 = '<div class="col-xl-3 col-6 col-grid-box-14days active-hov" style="display:none;">';
                                     }
 
@@ -1137,14 +1107,14 @@
                                         });
                                     }
 
-                                    
+
                                     let div_30 = '';
 
                                     count_30++;
 
-                                    if(count_30 < 4){
+                                    if (count_30 < 4) {
                                         div_30 = '<div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:block;">';
-                                    }else{
+                                    } else {
                                         div_30 = '<div class="col-xl-3 col-6 col-grid-box-30days active-hov" style="display:none;">';
                                     }
 
@@ -1188,12 +1158,12 @@
 
                                     count_0++;
 
-                                    if(count_0 < 4){
+                                    if (count_0 < 4) {
                                         div_ready = '<div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:block;">';
-                                    }else{
+                                    } else {
                                         div_ready = '<div class="col-xl-3 col-6 col-grid-box-ready active-hov" style="display:none;">';
                                     }
-                                
+
                                     sec_ready += `
                                                         ${div_ready}
                                                             <div class="product-box">
@@ -1238,9 +1208,9 @@
 
                                 } else {
 
-                                if(unique.length > 4){
-                                    button_ready = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadmore-ready">{{ __('validation.product_view_more') }}</a></div>`;
-                                }
+                                    if (unique.length > 4) {
+                                        button_ready = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadmore-ready">{{ __('validation.product_view_more') }}</a></div>`;
+                                    }
 
 
                                     $('#sec-filter').append(`
@@ -1278,7 +1248,7 @@
 
                                 } else {
 
-                                    if(unique.length > 4){
+                                    if (unique.length > 4) {
                                         button_7 = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-7days">{{ __('validation.product_view_more') }}</a></div>`;
                                     }
 
@@ -1318,7 +1288,7 @@
 
                                 } else {
 
-                                    if(unique.length > 4){
+                                    if (unique.length > 4) {
                                         button_14 = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-14days">{{ __('validation.product_view_more') }}</a></div>`;
                                     }
 
@@ -1357,7 +1327,7 @@
 
                                 } else {
 
-                                    if(unique.length > 4){
+                                    if (unique.length > 4) {
                                         button_30 = `<div class="load-more-sec"><a href="javascript:void(0)" class="loadMore-30days">{{ __('validation.product_view_more') }}</a></div>`;
                                     }
 
