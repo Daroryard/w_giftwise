@@ -194,40 +194,31 @@
         height: 60px;
     }
 
-    /* Custom CSS to remove border and background color from input and icon */
     .no-border-input {
         border: none;
         border-radius: 0;
         box-shadow: none;
         background-color: transparent;
-        /* Remove background color */
         padding-left: 0;
-        /* Adjust padding as needed */
     }
 
     .input-group {
         border: 1px solid #ced4da;
-        /* Add border to input-group */
         border-radius: 5px;
-        /* Add border-radius for rounded corners */
     }
 
     .input-group-text {
         border: none;
         background-color: transparent;
-        /* Remove background color */
     }
 
     .form-control:focus {
         border-color: #ced4da;
-        /* Change border color on focus */
         box-shadow: 0 0 0 0rem transparent;
-        /* Add box shadow on focus */
     }
 
     .nav-link {
         line-height: 1;
-        /* Adjust the line height as needed */
     }
 
     .icon-nav {
@@ -240,7 +231,6 @@
         color: #00C2C7;
     }
 
-    /* Custom CSS for sub-menus */
     .sub-menu {
         display: none;
         position: absolute;
@@ -250,7 +240,6 @@
         z-index: 1;
     }
 
-    /* Custom CSS for mega menu */
     .mega-menu {
         display: none;
         position: absolute;
@@ -267,7 +256,6 @@
         display: block;
     }
 
-    /* Custom CSS for vertical mega menu on small screens */
     @media (max-width: 767px) {
         .mega-menu {
             position: static;
@@ -281,11 +269,9 @@
 
         .slick-slider {
             width: 96%;
-            /* Adjust to your preference for mobile devices */
         }
     }
 
-    /* Customize Next and Previous Buttons */
     .custom-nav-btn {
         background: transparent;
         border: none;
@@ -297,27 +283,17 @@
         height: 40px;
     }
 
-    /* the slides */
     .slick-slide {
         margin: 0 8px;
     }
 
-    /* the parent */
     .slick-list {
         margin: 0 -8px;
     }
 
-    /* .slick-next,
-                .slick-prev {
-                    background: transparent;
-                    border: none;
-                    font-size: 24px;
-                    color: #000;
-                } */
 
     .product-slider {
         width: 80%;
-        /* Adjust the width as needed */
         margin: 0 auto;
     }
 
@@ -332,7 +308,6 @@
 
     .product-tag {
         color: #FF5733;
-        /* Adjust the tag color */
         font-weight: bold;
     }
 
@@ -343,14 +318,12 @@
 
     .product-price {
         font-weight: bold;
-        /* Adjust the price color */
     }
 
     .product-min-quantity,
     .product-estimate-date {
         font-size: 0.9rem;
         color: #666;
-        /* Adjust the color as needed */
         margin: 5px 0;
     }
 
@@ -361,18 +334,18 @@
 
     .stepwizard-row {
         display: table-row;
-        
+
     }
 
     .stepwizard {
-    display: table;
-    width: 100%;
-    position: relative;
-}
+        display: table;
+        width: 100%;
+        position: relative;
+    }
 
     .stepwizard-step button[disabled] {
         /* /* opacity: 1 !important; */
-    /* filter: alpha(opacity=100) !important;*/ 
+        /* filter: alpha(opacity=100) !important;*/
     }
 
     .stepwizard .btn.disabled,
@@ -433,6 +406,7 @@
     .inradius {
         border-radius: 10px !important;
     }
+
     /* a:link {
     color: #00C2C7 !important;
     } */
@@ -443,33 +417,8 @@
     <div class="card-body">
         <div class="page-content">
             <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
-            <div class="input-group">
-                        <span class="input-group-text me-2">
-                            <i class="fas fa-search text-secondary mt-1"></i>
-                        </span>
-                        <input type="search" class="form-control no-border-input" placeholder="{{ __('validation.top_search_input') }}" onkeyup="search(this.value)" onclick="clearSearch()">            
-                </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                <div class="d-flex flex">
-                        <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72/-"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71/-"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73/-"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74/-"><span class="badge p-2">Gift Set</span></a>
-                    </div>
-                </div>
+            @include('layouts.searchbar')
 
-                <div id="result-search" hidden>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7" style="border: 0.2px solid #ccc;border-radius:5px !important">
-                <ul class="list-group dropdown scroll-list">
-                     
-                </ul>                                    
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                </div>
-                </div> 
             </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="checkout-page section-content-contact">
@@ -592,7 +541,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">{{__('validation.contact_title_input_contact_email')}}</label>
-                                                    <input maxlength="50" type="text" required="required" class="form-control inradius" placeholder="{{__('validation.contact_title_input_contact_email')}}" id="con_email" onkeyup="checkFormatMail(this.value)"/>
+                                                    <input maxlength="50" type="text" required="required" class="form-control inradius" placeholder="{{__('validation.contact_title_input_contact_email')}}" id="con_email" onkeyup="checkFormatMail(this.value)" />
                                                     <span class="noti-con-email" style="color:red;" hidden>{{__('validation.contact_alert_input_contact_email')}}</span>
                                                     <span class="noti-con-email-format" style="color:red;" hidden>{{__('validation.contact_alert_input_contact_email_format')}}</span>
 
@@ -610,7 +559,7 @@
                                         </div>
 
                                     </form>
-                                    
+
 
 
                                 </div>
@@ -622,7 +571,7 @@
                                 <div class="col-lg-6 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="col-lg-12 col-sm-6 col-xs-12 text-center">
-                                        <img src="{{ asset('assets/images/contact/img_contact.jpg') }}" class="img-fluid" alt="">
+                                            <img src="{{ asset('assets/images/contact/img_contact.jpg') }}" class="img-fluid" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -679,7 +628,7 @@
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
                 curInputs = curStep.find("input[type='text'],input[type='url']"),
                 isValid = true;
-               
+
             let con_pj_name = $('#con_pj_name').val();
             let con_pj_ob_name = $('#con_pj_ob_name').val();
             let con_pj_them = $('#con_pj_them').val();
@@ -747,7 +696,7 @@
 
 
                 $('.st1').html(`<p style="color:#00C2C7">✔</p>`);
-                                
+
                 // $('#step-1').addClass('display: none;');
 
 
@@ -848,7 +797,7 @@
         }
 
 
-        if(con_pj_name != '' && con_pj_ob_name != '' && con_pj_them != '' && con_pj_product != '' && con_pj_amount != '' && con_pj_time != '' && con_name != '' && con_company != '' && con_tel != '' && con_email != ''){
+        if (con_pj_name != '' && con_pj_ob_name != '' && con_pj_them != '' && con_pj_product != '' && con_pj_amount != '' && con_pj_time != '' && con_name != '' && con_company != '' && con_tel != '' && con_email != '') {
 
             $('.noti-pj-name').attr('hidden', true);
             $('#con_pj_name').removeClass('border border-danger');
@@ -882,31 +831,31 @@
 
             // console.log(con_pj_name);
 
-        $.ajax({
-            url: "{{ url('/contact-store') }}",
-            type: "POST",
-            data: {
-                con_pj_name:con_pj_name,
-                con_pj_ob_name:con_pj_ob_name,
-                con_pj_them:con_pj_them,
-                con_pj_product:con_pj_product,
-                con_pj_amount:con_pj_amount,
-                con_pj_time:con_pj_time,
-                con_pj_detail:con_pj_detail,
-                con_name:con_name,
-                con_company:con_company,
-                con_tel:con_tel,
-                con_email:con_email,
-                con_detail:con_detail,
-                con_help:con_help,
-                _token: "{{ csrf_token() }}"
-            },
-            dataType: "json",
-            success:function(response){
+            $.ajax({
+                url: "{{ url('/contact-store') }}",
+                type: "POST",
+                data: {
+                    con_pj_name: con_pj_name,
+                    con_pj_ob_name: con_pj_ob_name,
+                    con_pj_them: con_pj_them,
+                    con_pj_product: con_pj_product,
+                    con_pj_amount: con_pj_amount,
+                    con_pj_time: con_pj_time,
+                    con_pj_detail: con_pj_detail,
+                    con_name: con_name,
+                    con_company: con_company,
+                    con_tel: con_tel,
+                    con_email: con_email,
+                    con_detail: con_detail,
+                    con_help: con_help,
+                    _token: "{{ csrf_token() }}"
+                },
+                dataType: "json",
+                success: function(response) {
 
 
-                if(response.status == 'success'){
-                  $('.el-suc').html(`
+                    if (response.status == 'success') {
+                        $('.el-suc').html(`
                   <div id="f-q-q" style="text-align: center;margin-top:28%" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
                                     <g clip-path="url(#clip0_346_27773)">
@@ -930,21 +879,20 @@
                                     </div>
                   `)
 
-                }else{
-                    toastr.warning(
-                    'กรุณาลองใหม่อีกครั้ง',
-                    'เกิดข้อผิดพลาด',
-                    {
-                        closeButton: true,
-                        "positionClass": "toast-top-center"
+                    } else {
+                        toastr.warning(
+                            'กรุณาลองใหม่อีกครั้ง',
+                            'เกิดข้อผิดพลาด', {
+                                closeButton: true,
+                                "positionClass": "toast-top-center"
 
-                    })
+                            })
+                    }
+
                 }
+            });
 
-            }
-        });
-
-    }
+        }
 
 
 

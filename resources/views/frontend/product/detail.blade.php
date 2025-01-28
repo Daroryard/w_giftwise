@@ -12,9 +12,6 @@
 
 <!-- Themify icon -->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/multikart/css/themify-icons.css') }}">
-<!-- Bootstrap css -->
-<!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/multikart/css/bootstrap.css') }}"> -->
-<!-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/color1.css') }}" /> -->
 <style>
     .label-container {
         /* display: flex; */
@@ -1115,7 +1112,7 @@
 
 @section('script')
 <script src="{{ asset('assets/backend/libs/jquery/jquery.min.js') }}"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+
 <!-- menu js-->
 <script src="{{ asset('assets/frontend/multikart/js/menu.js') }}"></script>
 

@@ -97,40 +97,31 @@
         height: 60px;
     }
 
-    /* Custom CSS to remove border and background color from input and icon */
     .no-border-input {
         border: none;
         border-radius: 0;
         box-shadow: none;
         background-color: transparent;
-        /* Remove background color */
         padding-left: 0;
-        /* Adjust padding as needed */
     }
 
     .input-group {
         border: 1px solid #ced4da;
-        /* Add border to input-group */
         border-radius: 5px;
-        /* Add border-radius for rounded corners */
     }
 
     .input-group-text {
         border: none;
         background-color: transparent;
-        /* Remove background color */
     }
 
     .form-control:focus {
         border-color: #ced4da;
-        /* Change border color on focus */
         box-shadow: 0 0 0 0rem transparent;
-        /* Add box shadow on focus */
     }
 
     .nav-link {
         line-height: 1;
-        /* Adjust the line height as needed */
     }
 
     .icon-nav {
@@ -143,47 +134,45 @@
         color: #00C2C7;
     }
 
-   /* Custom CSS for sub-menus */
     .sub-menu {
         display: none;
         position: absolute;
         top: 0;
         left: 100%;
         min-width: 200px;
-        z-index: 2; /* เพิ่ม z-index */
+        z-index: 2;
     }
 
-    /* Custom CSS for mega menu */
     .mega-menu {
         display: none;
         position: absolute;
         top: 0;
         left: 100%;
         min-width: 200px;
-        z-index: 2; /* เพิ่ม z-index */
+        z-index: 2;
         background-color: #fff;
         border: 1px solid #ccc;
     }
 
     .carousel-control-prev {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15%;
-    padding: 0;
-    text-align: center;
-    background: 0 0;
-    border: 0;
-    transition: opacity .15s ease;
-    pointer-events: none; /* เพิ่มบรรทัดนี้ */
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15%;
+        padding: 0;
+        text-align: center;
+        background: 0 0;
+        border: 0;
+        transition: opacity .15s ease;
+        pointer-events: none;
     }
 
     .carousel-control-prev-icon {
-        pointer-events: auto; /* เพิ่มคลาสและสไตล์นี้ */
+        pointer-events: auto;
     }
 
 
@@ -192,7 +181,6 @@
         display: block;
     }
 
-    /* Custom CSS for vertical mega menu on small screens */
     @media (max-width: 767px) {
         .mega-menu {
             position: static;
@@ -206,11 +194,9 @@
 
         .slick-slider {
             width: 96%;
-            /* Adjust to your preference for mobile devices */
         }
     }
 
-    /* Customize Next and Previous Buttons */
     .custom-nav-btn {
         background: transparent;
         border: none;
@@ -222,12 +208,9 @@
         height: 40px;
     }
 
-    /* the slides */
 
     .slick-slide {
-        /* transform: scale(0.8); */
         transition: all 0.4s ease-in-out;
-        /* padding: 40px 0; */
     }
 
 
@@ -263,17 +246,9 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* .slick-next,
-                .slick-prev {
-                    background: transparent;
-                    border: none;
-                    font-size: 24px;
-                    color: #000;
-                } */
 
     .product-slider {
         width: 80%;
-        /* Adjust the width as needed */
         margin: 0 auto;
     }
 
@@ -282,14 +257,12 @@
     }
 
     .product-details {
-        /* background-color: #fff; */
         padding: 5px;
         margin-top: 3px !important;
     }
 
     .product-tag {
         color: #FF5733;
-        /* Adjust the tag color */
         font-weight: bold;
     }
 
@@ -300,14 +273,12 @@
 
     .product-price {
         font-weight: bold;
-        /* Adjust the price color */
     }
 
     .product-min-quantity,
     .product-estimate-date {
         font-size: 0.9rem;
         color: #666;
-        /* Adjust the color as needed */
         margin: 5px 0;
     }
 
@@ -324,15 +295,12 @@
         background: url('assets/frontend/images/home/bg-project.jpg');
         background-size: cover;
         height: 481px !important;
-        /* max-width: 1680px !important; */
     }
 
     .bg-exp {
         margin: auto;
         background: url('assets/frontend/images/home/bg-exp.jpg');
         background-size: cover;
-        /* height: 816px !important; */
-        /* max-width: 1680px !important; */
     }
 
     .service-block1 {
@@ -434,31 +402,32 @@
         background-color: #AFADAB !important;
 
     }
+
     .image-container {
-    background-color: #f8f9fa;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 50px; 
-    justify-content: center; 
-    align-items: center; 
-    min-height: 100px; 
-    padding: 10px 0; 
-    margin-bottom:20px;
-}
+        background-color: #f8f9fa;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        padding: 10px 0;
+        margin-bottom: 20px;
+    }
 
-.image-wrapper {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .image-wrapper {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.image-wrapper img {
-    width: 74px;
-    height: 48px;
-    object-fit: cover;
-}
+    .image-wrapper img {
+        width: 74px;
+        height: 48px;
+        object-fit: cover;
+    }
 </style>
 @endsection
 @section('content')
@@ -466,33 +435,7 @@
     <div class="card-body">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7 mt-3">
-                    <div class="input-group">
-                        <span class="input-group-text me-2">
-                            <i class="fas fa-search text-secondary mt-1"></i>
-                        </span>
-                        <input type="search" class="form-control no-border-input" placeholder="{{ __('validation.top_search_input') }}" onkeyup="search(this.value)" onclick="clearSearch()">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                    <div class="d-flex flex">
-                        <div class="me-2">{{ __('validation.top_popular_search') }} :</div>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/72/-"><span class="badge p-2">{{ __('validation.top_popular_search_1') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/71/-"><span class="badge p-2">{{ __('validation.top_popular_search_2') }}</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/73/-"><span class="badge p-2">Staff Pick</span></a>
-                        <a href="/{{ app()->getLocale() }}/product-quick-tag/74/-"><span class="badge p-2">Gift Set</span></a>
-                    </div>
-                </div>
-
-                <div id="result-search" hidden>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-7" style="border: 0.2px solid #ccc;border-radius:5px !important">
-                        <ul class="list-group dropdown scroll-list">
-
-                        </ul>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3" style="padding-top : 5px;">
-                    </div>
-                </div>
+                @include('layouts.searchbar')
 
                 <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 mt-2">
                     <div class="bg-white rounded-3 shadow border border-1 border-light p-3">
@@ -1082,10 +1025,6 @@
 
 
 
-
-
-
-
         {{-- <div class="container mt-5"> --}}
         <section class="service section-b-space border-section border-top-0 container">
             <div class="row partition4">
@@ -1134,7 +1073,7 @@
             </div>
         </section>
         {{-- </div> --}}
-  
+
 
         <div class="container">
             <div class="checkout-page">
@@ -1242,8 +1181,7 @@
 @endsection
 
 @section('script')
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-<!-- {{-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> --}} -->
+
 <script src="{{ asset('assets/backend/libs/jquery/jquery.min.js') }}"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
@@ -1269,7 +1207,7 @@
             },
             dataType: "json",
             success: function(res) {
-                
+
                 let html = '';
 
                 $.each(res.data, function(index, value) {
@@ -1668,23 +1606,23 @@
         });
 
         $('.product-slider').slick({
-            slidesToShow: 5, // Number of products to show at a time
-            slidesToScroll: 1, // Number of products to scroll at a time
-            autoplay: true, // Autoplay the slider
-            autoplaySpeed: 3000, // Autoplay interval in milliseconds
-            dots: true, // Display navigation dots
+            slidesToShow: 5, 
+            slidesToScroll: 1, 
+            autoplay: true, 
+            autoplaySpeed: 3000, 
+            dots: true, 
             responsive: [{
-                    breakpoint: 1024, // Tablet breakpoint
+                    breakpoint: 1024, 
                     settings: {
-                        slidesToShow: 2, // Number of products to show at a time
-                        slidesToScroll: 1, // Number of products to scroll at a time
+                        slidesToShow: 2, 
+                        slidesToScroll: 1, 
                     }
                 },
                 {
-                    breakpoint: 600, // Mobile breakpoint
+                    breakpoint: 600, 
                     settings: {
-                        slidesToShow: 1, // Number of products to show at a time
-                        slidesToScroll: 1, // Number of products to scroll at a time
+                        slidesToShow: 1, 
+                        slidesToScroll: 1, 
                     }
                 }
             ]

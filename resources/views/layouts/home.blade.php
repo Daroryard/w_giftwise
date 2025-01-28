@@ -531,9 +531,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/{{ app()->getLocale() }}/contact">{{ __('validation.menu_contact') }}</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#" style="padding-top: 5px;"><img src="{{ asset('assets/images/languagelogo/th.png') }}" alt="Logo" width="20" height="20" class="img-fluid d-inline-block align-text-top"> TH</a>                           
-          </li> -->
+      
         </ul>
 
 
