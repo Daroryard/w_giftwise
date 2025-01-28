@@ -25,10 +25,24 @@ class HomeController extends Controller
     public function index()
     {
 
+        $slides = HomeSlide::select(['conf_homeslide_img'])
+        ->where('conf_homeslide_active', 1)
+        ->orderBy('conf_homeslide_listno')
+        ->get();
+
+
+
+
         $slides = HomeSlide::where('conf_homeslide_active', 1)->orderBy('conf_homeslide_listno', 'asc')->get();
 
         $categories = CategorySub::
-        join('conf_category','conf_category.conf_category_id','=','conf_categorysub.conf_category_id')
+        select(
+        'conf_category_name_en',
+        'conf_categorysub_img1',
+        'conf_categorysub_name_th',
+        'conf_categorysub_name_en'   
+        )
+        ->join('conf_category','conf_category.conf_category_id','=','conf_categorysub.conf_category_id')
         ->where('conf_categorysub.conf_categorysub_active', 1)
         ->orderBy('conf_category.conf_category_id', 'asc')
         ->where('conf_categorysub_img1','<>',null)
@@ -38,7 +52,7 @@ class HomeController extends Controller
         $pdsale1 = SaleProduct::where('conf_mainproduct_name_th','not like','ค่า%')
         ->where('conf_mainproduct_img1','<>',null)
         ->orderBy('qty','DESC')
-        ->inRandomOrder()->take(50)->get();
+        ->inRandomOrder()->take(20)->get();
 
         $pdsale1 = $pdsale1->unique('conf_mainproduct_id');
 
@@ -48,7 +62,7 @@ class HomeController extends Controller
         ->where('price','<>','0')
         ->where('price','<>','0.00')
         ->where('price','<>','-')
-        ->orderBy('qty','ASC')->inRandomOrder()->take(50)->get();
+        ->orderBy('qty','ASC')->inRandomOrder()->take(20)->get();
 
         $pdsale2 = $pdsale2->unique('conf_mainproduct_id');
 
@@ -62,7 +76,7 @@ class HomeController extends Controller
         $pdsale4 = SaleProduct::where('conf_mainproduct_name_th','not like','ค่า%')
         ->where('conf_mainproduct_img1','<>',null)
         ->orderBy('timeline_day','ASC')
-        ->inRandomOrder()->take(50)->get(); 
+        ->inRandomOrder()->take(20)->get(); 
 
         $pdsale4 = $pdsale4->unique('conf_mainproduct_id');
 
